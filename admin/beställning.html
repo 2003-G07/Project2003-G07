@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../bootstrap.css" />
+    <title>Admin - Beställning</title>
+  </head>
+  <body>
+    <!-- 
+
+        1.  Sökfält
+            - Kan söka på Beställningar
+                - Ordernummer
+                - KundID
+                - Datum
+        2. Lista på Beställnignar
+            - Specifik beställning:
+                - Kundinformation
+                - Ordernummer
+                - Totalkostnad
+                - Beställda produkter
+                - Leveransinformation
+                - Datum på beställningen
+                - Skriva ut
+
+--------------------------------------------------------------------------------------------------------
+
+        Sprint 1:
+            - Sökfält ska bara vara innehåll (ska inte funka)
+            - Listan ska hämtas från JSon
+                - Designa Layout
+                - Lägga till Skriv ut knapp
+                    - Formattera CSS för A4 till utskrift.
+            
+    -->
+
+    <div class="container">
+      <div class="row" style="justify-content: center; margin-top: 10rem">
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="text"
+            placeholder="Search"
+          />
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="customRadio1"
+              name="customRadio"
+              class="custom-control-input"
+              checked=""
+            />
+            <label class="custom-control-label" for="customRadio1"
+              >Toggle this custom radio</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="customRadio3"
+              name="customRadio"
+              class="custom-control-input"
+              checked=""
+            />
+            <label class="custom-control-label" for="customRadio3"
+              >Toggle this custom radio</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="customRadio2"
+              name="customRadio"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" for="customRadio2"
+              >Or toggle this other custom radio</label
+            >
+          </div>
+        </form>
+      </div>
+      <div
+        class="row"
+        style="
+          border: solid 1px #e8e8e8;
+          box-shadow: 0px 1px 8px rgb(134, 24, 24);
+          border-color: rgb(219, 137, 30);
+          opacity: 98%;
+        "
+      >
+        <br /><br /><br /><br /><br />
+      </div>
+      <div
+        class="row"
+        style="
+          border: solid 1px #e8e8e8;
+          box-shadow: 0px 1px 8px rgb(134, 24, 24);
+          border-color: rgb(219, 137, 30);
+          opacity: 98%;
+        "
+      >
+        <br /><br /><br /><br /><br />
+      </div>
+      <div
+        class="row"
+        style="
+          border: solid 1px #e8e8e8;
+          box-shadow: 0px 1px 8px rgb(134, 24, 24);
+          border-color: rgb(219, 137, 30);
+          opacity: 98%;
+        "
+      >
+        <br /><br /><br /><br /><br />
+      </div>
+    </div>
+  </body>
+</html>
