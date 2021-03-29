@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Admin - Beställning</title>
   </head>
   <body>
@@ -36,14 +37,9 @@
             
     -->
 
-    <div class="container">
-      <div class="row" style="justify-content: center; margin-top: 10rem">
+    <div class="container" style="justify-content: center; margin-top: 10rem">
+      <div class="row d-flex justify-content-end">
         <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="text"
-            placeholder="Search"
-          />
           <div class="custom-control custom-radio">
             <input
               type="radio"
@@ -52,9 +48,7 @@
               class="custom-control-input"
               checked=""
             />
-            <label class="custom-control-label" for="customRadio1"
-              >Toggle this custom radio</label
-            >
+            <label class="custom-control-label" for="customRadio1">Order</label>
           </div>
           <div class="custom-control custom-radio">
             <input
@@ -64,9 +58,7 @@
               class="custom-control-input"
               checked=""
             />
-            <label class="custom-control-label" for="customRadio3"
-              >Toggle this custom radio</label
-            >
+            <label class="custom-control-label" for="customRadio3">Kund</label>
           </div>
           <div class="custom-control custom-radio">
             <input
@@ -75,45 +67,118 @@
               name="customRadio"
               class="custom-control-input"
             />
-            <label class="custom-control-label" for="customRadio2"
-              >Or toggle this other custom radio</label
-            >
+            <label class="custom-control-label" for="customRadio2">Datum</label>
           </div>
+          <input
+            class="form-control mr-sm-2"
+            type="text"
+            placeholder="Search"
+          />
         </form>
       </div>
-      <div
-        class="row"
-        style="
-          border: solid 1px #e8e8e8;
-          box-shadow: 0px 1px 8px rgb(134, 24, 24);
-          border-color: rgb(219, 137, 30);
-          opacity: 98%;
-        "
-      >
-        <br /><br /><br /><br /><br />
-      </div>
-      <div
-        class="row"
-        style="
-          border: solid 1px #e8e8e8;
-          box-shadow: 0px 1px 8px rgb(134, 24, 24);
-          border-color: rgb(219, 137, 30);
-          opacity: 98%;
-        "
-      >
-        <br /><br /><br /><br /><br />
-      </div>
-      <div
-        class="row"
-        style="
-          border: solid 1px #e8e8e8;
-          box-shadow: 0px 1px 8px rgb(134, 24, 24);
-          border-color: rgb(219, 137, 30);
-          opacity: 98%;
-        "
-      >
-        <br /><br /><br /><br /><br />
+      <div class="container" id="inputorder">
+        <!-- Main Input Card-->
       </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      fetch("testJason.json")
+        .then((response) => response.json())
+        .then((data) => cardGen(data));
+
+      function printinfo(infotoprint, outerarray, response) {
+        for (
+          let index = 0;
+          index < response[outerarray].products.length;
+          index++
+        ) {
+          infotoprint.innerHTML += `           
+          
+          <option>Produkt: ${response[outerarray].products[index]}</option> `;
+        }
+      }
+
+      let counter = 0;
+
+      const cardGen = (response) => {
+        for (let index = 0; index < response.length; index++) {
+          document.getElementById("inputorder").innerHTML += `
+          <div
+          class="row"
+          style="
+            border: solid 1px #e8e8e8;
+            box-shadow: 0px 1px 8px rgb(134, 24, 24);
+            border-color: rgb(219, 137, 30);
+            opacity: 98%;
+            margin-bottom: 
+          "
+
+
+        >
+        <div class="left_section" style="width: 20rem">
+          <!-- Här gör vi kortet för beställningsvyn-->
+
+          <div class="container row">
+              <div style=" margin-top: 2rem; margin-left: 2rem;  ">
+                  <p class="title_heading"> OrderID: ${response[index].orderID} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; ">
+                  <p class="title_heading"> CustomerID: ${response[index].customerID} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; margin-bottom: 1rem; width:max-content ">
+                  <p class="title_heading"> Leveransadress: ${response[index].address} </p> </div>
+
+          </div>
+
+        </div>
+
+
+          <div class="mid_section" style="margin-top: 1rem; margin-left: 2rem; width: 25rem">
+
+              <div class="form-group">
+
+        <label for="exampleSelect2">Beställda varor</label>
+        <select multiple="" class="form-control" id="${index}">
+
+
+
+            <!-- Här ligger produkter -->
+        </select>
+      </div>
+
+          </div>
+
+
+            <div class="right_section d-flex justify-content-end";> 
+
+                <div>
+
+
+                <p class="title_heading"; style="margin-left: 7rem"> Datum: ${response[index].date} </p>
+
+
+                
+                <button class="btn btn-primary btn-lg" style=" margin-left: 7rem; height: 3rem; margin-top: 5rem">Skriv ut      </button>
+
+                
+                
+
+                
+            </div>
+            </div>
+          `;
+          printinfo(document.getElementById(index), index, response);
+        }
+      };
+    </script>
   </body>
 </html>
