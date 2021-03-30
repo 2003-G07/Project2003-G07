@@ -87,7 +87,7 @@
     ></script>
 
     <script>
-      fetch("testJason.json")
+      fetch("testbeställning.json")
         .then((response) => response.json())
         .then((data) => cardGen(data));
 
@@ -102,8 +102,6 @@
           <option>Produkt: ${response[outerarray].products[index]}</option> `;
         }
       }
-
-      let counter = 0;
 
       const cardGen = (response) => {
         for (let index = 0; index < response.length; index++) {
@@ -134,8 +132,13 @@
 
           </div>
           <div class="container row">
-              <div style=" margin-left: 2rem; margin-bottom: 1rem; width:max-content ">
+              <div style=" margin-left: 2rem;; width:max-content ">
                   <p class="title_heading"> Leveransadress: ${response[index].address} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; margin-bottom: 1rem; width:max-content ">
+                  <p class="title_heading"> Totalkostnad: ${response[index].price} kr</p> </div>
 
           </div>
 

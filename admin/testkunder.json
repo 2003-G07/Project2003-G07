@@ -1,0 +1,102 @@
+[
+  {
+    "customerID": 1,
+    "firstName": "Viktor",
+    "lastName": "Hagström",
+    "phone": "070-1234567",
+    "mail": "Viktor@mail.se",
+    "address": "Lorem ipsum 47",
+    "town": "Bromma ",
+    "zip": "123 10"
+  },
+  {
+    "customerID": 2,
+    "firstName": "Elias",
+    "lastName": "Gilani",
+    "phone": "071-1234567",
+    "mail": "Elias@mail.se",
+    "address": "Lorem ipsum 20",
+    "town": "Gustavsberg",
+    "zip": "123 11"
+  },
+  {
+    "customerID": 3,
+    "firstName": "Hui",
+    "lastName": "Huang",
+    "phone": "072-1234567",
+    "mail": "Hui@mail.se",
+    "address": "Lorem ipsum 41",
+    "town": "Hässelby",
+    "zip": "123 12"
+  },
+  {
+    "customerID": 4,
+    "firstName": "Sobhan",
+    "lastName": "Gustafsson",
+    "phone": "073-1234567",
+    "mail": "Sobhan@mail.se",
+    "address": "Lorem ipsum 36",
+    "town": "Bredäng",
+    "zip": "123 13"
+  },
+  {
+    "customerID": 5,
+    "firstName": "Salah",
+    "lastName": "Andersson",
+    "phone": "074-1234567",
+    "mail": "Salah@mail.se",
+    "address": "Lorem ipsum 25",
+    "town": "Skarpnäck",
+    "zip": "123 14"
+  },
+  {
+    "customerID": 6,
+    "firstName": "Sana",
+    "lastName": "Svensson",
+    "phone": "075-1234567",
+    "mail": "Sana@mail.se",
+    "address": "Lorem ipsum 15",
+    "town": "Sollentuna",
+    "zip": "123 15"
+  },
+  {
+    "customerID": 7,
+    "firstName": "Yohannes",
+    "lastName": "Karlsson",
+    "phone": "076-1234567",
+    "mail": "Yohannes@mail.se",
+    "address": "Lorem ipsum 44",
+    "town": "Farsta",
+    "zip": "123 16"
+  },
+  {
+    "customerID": 8,
+    "firstName": "Meron",
+    "lastName": "Al Hakim",
+    "phone": "077-1234567",
+    "mail": "Meron@mail.se",
+    "address": "Lorem ipsum 36",
+    "town": "Mordor",
+    "zip": "128 66"
+  },
+  {
+    "customerID": 9,
+    "firstName": "Daniel",
+    "lastName": "Nilsson",
+    "phone": "078-1234567",
+    "mail": "Daniel@mail.se",
+    "address": "Lorem ipsum 37",
+    "town": "Fylke",
+    "zip": "134 42"
+  },
+  {
+    "customerID": 10,
+    "firstName": "Henrik",
+    "lastName": "Petersson",
+    "phone": "079-1234567",
+    "mail": "Henrik@mail.se",
+    "address": "Lorem ipsum 16",
+    "town": "Azeroth",
+    "zip": "165 73"
+  }
+]
