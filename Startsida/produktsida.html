@@ -1,12 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Admin - Kund</title>
+  </head>
+  <body style="background-color: red">
+    <div class="container" style="justify-content: center; margin-top: 10rem">
+      <div class="row d-flex justify-content-end"></div>
+      <div class="container" id="inputorder">
+        <!-- Main Input Card-->
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      fetch("testkunder.json")
+        .then((response) => response.json())
+        .then((data) => cardGen(data));
+
+      const cardGen = (response) => {
+        console.log(response);
+
+        for (let index = 0; index < 1; index++) {
+          document.getElementById("inputorder").innerHTML += `
+          
+          <div
+          class="row"
+          style="
+            border: solid 1px #e8e8e8;
+            box-shadow: 0px 1px 8px rgb(134, 24, 24);
+            border-color: rgb(219, 137, 30);
+            opacity: 98%;
+            background-color: white;
+            margin-left: 15rem
+          "
+
+
+        >
+        <div class="left_section" style="width: 20rem">
+          <!-- Här gör vi kortet för beställningsvyn-->
+
+          <div class="container row">
+              <div style=" margin-top: 2rem; margin-left: 2rem;  ">
+                  <p class="title_heading"> Namn: ${response[index].firstName} ${response[index].lastName} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; ">
+                  <p class="title_heading"> Telefonnummer: ${response[index].phone} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem;; width:max-content ">
+                  <p class="title_heading"> Adress:  <br> ${response[index].address} <br> ${response[index].zip} ${response[index].town} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; margin-bottom: 1rem; width:max-content ">
+                  <p class="title_heading"> Email: ${response[index].mail}</p> </div>
+
+          </div>
+
+        </div>
+
+
+          <div class="mid_section" style="margin-top: 1rem; margin-left: 2rem; width: 25rem">
+
+              <div class="form-group">
+
+        <label for="exampleSelect2">Beställningar</label>
+        <select multiple="" class="form-control" id="${index}">
+
+
+
+            <!-- Här ligger produkter -->
+        </select>
+        <div class="alert alert-success" id="coupon" style="display: none">Fill in city</div>
+      </div>
+
+          </div>
+
+
+            <div class="right_section" style="position:relative";> 
+
+
+               
+                    
+
+
+                <p class="title_heading"; style="margin-left: 7rem position:absolute;
+    float:right;"> KundID: ${response[index].customerID} </p>
+ 
+
+                
+
+                
+                
+
+                
+             
+            </div>
+          `;
+          // printinfo(document.getElementById(index), index, response);
+        }
+      };
+    </script>
+  </body>
 </html>
