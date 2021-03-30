@@ -2,10 +2,15 @@
     height: auto;
     width: 75px;
 }
-.logotyp{
-    width: 2%;
-    height: 2%;
+
+.navbar-custom{
+    background-color:#e7bd42;
 }
-.navbar-custom {
-    background-color: lightgreen;
+.btn{
+    margin: 5px;
+    padding: 5px;
+ }
+ footer{
+    padding-top: 2%;
+    box-shadow: 0 50vh 0 50vh #007A3D;
 }
