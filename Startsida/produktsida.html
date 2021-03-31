@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../bootstrap.css" />
-    <link rel="stylesheet" href="../About/style.css" />
-    <title>Admin - Kund</title>
+    <link rel="stylesheet" href="/style/bootstrap.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Produktsida</title>
   </head>
   <body>
     <div class="header" >
       <nav class="navbar navbar-custom navbar-expand-md navbar-light"  >
-        <img src="../About/images/logga_svart.svg" alt="" width=200px height=100px />
+        <a href="/index.html">
+          <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
+        </a>
           <a class="navbar-brand" href="#" ></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class = "navbar-toggler-icon"></span>
@@ -43,7 +45,7 @@
     ></script>
 
     <script>
-      fetch("testkunder.json")
+      fetch("/testdata/testkunder.json")
         .then((response) => response.json())
         .then((data) => cardGen(data));
 
@@ -134,5 +136,39 @@
         }
       };
     </script>
+    <footer style="background-color: #007A3D;" class="mt-5">
+      <div class="container">
+      <div class=" text-center row">
+
+          <div class="col" style="font-size: large;">
+              <h5>Kontaktinformation</h5>
+              <p class="text-center">
+                  <b>Address:</b> Lorem, ipsum. <br>
+                  <b>Öppetider:</b> TIDER <br>
+                  <b>Telefonnummer:</b> XXX-XXXXXX <br>
+                  <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+              </p>
+          </div>
+          <div class="col">
+              <h5>Följ oss!</h5>
+              <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
+              <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
+              <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
+          </div>
+          <div class="col">
+              <h5>Våra samarbetspartners</h5>
+              <img src="/img/klarna.svg" alt="" class="footer-logo">
+              <img src="/img/mastercard.svg" alt="" class="footer-logo">
+              <img src="/img/visa.svg" alt="" class="footer-logo">
+              <img src="/img/budbee.svg" alt="" class="footer-logo">
+              <img src="/img/postnord.svg" alt="" class="footer-logo">
+          </div>
+      </div>
+      <hr>
+      <div class="text-center">
+          <p class="copyright">Copyright 2021 &copy; G07</p>
+      </div>
+    </div>
+    </footer>
   </body>
 </html>
