@@ -1,150 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style/bootstrap.css" />
-    <link rel="stylesheet" href="/style/style.css" />
-    <title>Admin - Produkt</title>
-  </head>
-  <body>
-    <div class="header">
-      <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
-        <a href="/admin/index.html">
-          <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style/bootstrap.css" />
+        <link rel="stylesheet" href="/style/style.css" />
+    <title>Om Hakim Livs</title>
+</head>
+
+<body>
+    <!--Välkomsttext
+Några bilder som påminner om Hakim Livs
+Öppettider
+Adress
+Kontaktformulär (Fråga PO) (Låg)
+    namn
+    email
+    meddelande
+Så funkar Hakims livs-->
+
+<div class="header" >
+    <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
+        <a href="/index.html">
+            <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
         </a>
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="#" ></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
+          <span class = "navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
   
-          <form class="form-inline ml-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-secondary my-sm-0" type="submit">
-              <ion-icon name="search-outline"></ion-icon>Sök
-            </button>
-            <button class="btn btn-secondary my-sm-0">
-              <ion-icon name="person-outline"></ion-icon>Logga in
-            </button>
-            <button class="btn btn-secondary my-sm-0">
-              <ion-icon name="cart-outline"></ion-icon>Till kassa
-            </button>
-          </form>
-  
-  
-        </div>
+      <form class="form-inline ml-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-sm-0" type="submit"><ion-icon name="search-outline"></ion-icon>Sök</button>
+            <button class="btn btn-secondary my-sm-0" ><ion-icon name="person-outline"></ion-icon>Logga in</button>
+            <button class="btn btn-secondary my-sm-0"><ion-icon name="cart-outline"></ion-icon>Till kassa</button>
+            </form>
+ 
+      
+    </div>
       </nav>
       <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
     </div>
-    
-    <div
-      class="container card lg-3 mb-4"
-      style="justify-content: center; margin-top: 10rem"
-    >
-      <div
-        class="row"
-        id="inputproduct"
-        style="margin-right: 1rem; margin-top: 1rem"
-      ></div>
-    </div>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
 
-    <script>
-      fetch("/testdata/testprodukt.json")
-        .then((response) => response.json())
-        .then((data) => cardGen(data));
+    <div class="container d-flex justify-content-center">
 
-      /*function printinfo(infotoprint, outerarray, response) {
-        for (
-          let index = 0;
-          index < response[outerarray].products.length;
-          index++
-        ) {
-          infotoprint.innerHTML += `           
-          
-          <option>Produkt: ${response[outerarray].products[index]}</option> `;
-        }
-      }
-*/
-      const cardGen = (response) => {
-        console.log(response);
+        <div class="text-center row mt-5">
+            <h1>Om Hakim Livs</h1>
 
-        for (let index = 0; index < response.length; index++) {
-          document.getElementById("inputproduct").innerHTML += `
-
-          <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem">
-     
-
-        <img src="${response[index].image}" class="d-block user-select-none"
-        width="100%"
-        height="200"
-        aria-label="Placeholder: Image cap"
-        focusable="false"
-        role="img"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 318 180"
-        style="font-size: 1.125rem; text-anchor: middle"
-        alt="productimge">
-        <div class="d-flex justify-content-center">
-        <h3 class="card-header border-bottom-0" >${response[index].price}:-   </h3>
+            <div class="col-md-6">
+                <p class="text-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus repudiandae, consectetur sed
+                    assumenda suscipit velit ipsa exercitationem quos! Dicta, placeat dolorem. Saepe voluptatem modi,
+                    quaerat repudiandae architecto natus minus culpa aliquam eos tempore nesciunt reiciendis commodi
+                    harum quasi numquam, maxime exercitationem ducimus sed mollitia maiores id! Laboriosam quos,
+                    doloribus exercitationem nulla dignissimos a consequuntur tenetur cum veritatis dolorem maxime?
+                    Itaque in quam facere magnam ad asperiores dolore dolorum iure! Nostrum exercitationem rem inventore
+                    consectetur tempore quo, voluptatibus at eaque eum obcaecati magni laudantium quod ipsum, sequi
+                    esse. Ex, nihil autem ratione tempora odio tenetur incidunt, odit illum mollitia iste nulla
+                    accusamus animi ullam obcaecati nesciunt accusantium fugit provident expedita sunt. Rem, velit neque
+                    eius, cumque odit quas deserunt nemo reprehenderit, atque quibusdam similique officia assumenda
+                    veritatis tempora porro sed dolore. Accusantium omnis similique ratione atque itaque doloribus
+                    voluptates ipsum placeat id iusto voluptatibus vel deserunt repudiandae dolor, consectetur labore
+                    fugiat necessitatibus assumenda at dolorem sed exercitationem aliquam aliquid. Eligendi atque,
+                    distinctio iste dolorem quidem voluptate nulla aspernatur aliquid? Illum ducimus, nostrum distinctio
+                    vero quam ipsam suscipit, fugiat at perspiciatis praesentium quos, commodi quidem reiciendis fuga
+                    iusto unde perferendis quasi deleniti id voluptatum voluptatibus! Esse fuga asperiores fugiat
+                    facere. Cupiditate, soluta!</p>
+            </div>
+            <div class="col-md-auto">
+                <img src="/img/Hakim.jpg" class="img-fluid rounded" alt="Hakim">
+            </div>
         </div>
-        <p class="card-header">${response[index].name}</p>
-
-    
-        <div class="card-body">
-          <p class="card-text">
-            ${response[index].description}
-          </p>
-        </div>
-        <div class="card-body">
-            <button class="btn btn-primary btn-lg">Redigera</button>
-            <button class="btn btn-primary btn-lg">Ta bort</button>
-          </div>
-
-          `;
-          // printinfo(document.getElementById(index), index, response);
-        }
-      };
-    </script>
-    <footer style="background-color: #007A3D;" class="mt-5">
-      <div class="container">
-      <div class=" text-center row">
-  
-          <div class="col" style="font-size: large;">
-              <h5>Kontaktinformation</h5>
-              <p class="text-center">
-                  <b>Address:</b> Lorem, ipsum. <br>
-                  <b>Öppetider:</b> TIDER <br>
-                  <b>Telefonnummer:</b> XXX-XXXXXX <br>
-                  <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
-              </p>
-          </div>
-          <div class="col">
-              <h5>Följ oss!</h5>
-              <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
-              <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
-              <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
-          </div>
-          <div class="col">
-              <h5>Våra samarbetspartners</h5>
-              <img src="/img/klarna.svg" alt="" class="footer-logo">
-              <img src="/img/mastercard.svg" alt="" class="footer-logo">
-              <img src="/img/visa.svg" alt="" class="footer-logo">
-              <img src="/img/budbee.svg" alt="" class="footer-logo">
-              <img src="/img/postnord.svg" alt="" class="footer-logo">
-          </div>
-      </div>
-      <hr>
-      <div class="text-center">
-          <p class="copyright">Copyright 2021 &copy; G07</p>
-      </div>
     </div>
-  </footer>
-  </body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center">Kontakta oss!</a> </h1>
+
+        <form action="#" method="post" class="row mt-3">
+
+            <div class="col-md-6">
+                <input required type="text" name="name" class="form-control" placeholder="Namn">
+            </div>
+            <div class="col-md-6">
+                <input required type="email" name="email" class="form-control" placeholder="E-post">
+            </div>
+            <div class="col-md-12">
+                <textarea type="text" required name="message" cols="30" rows="5" class="form-control"
+                    placeholder="Skriv ett meddelande"></textarea>
+            </div>
+            <div class="col align-self-center">
+                <input type="submit" class="form-control mt-2 btn-primary" value="Skicka">
+            </div>
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Hitta till butiken!</h1>
+        <div class="row mt-3">
+            <div class="col" style="font-size: large;">
+                <p class="text-center">
+                    <b>Address:</b> Lorem, ipsum. <br>
+                    <b>Öppetider:</b> TIDER <br>
+                    <b>Telefonnummer:</b> XXX-XXXXXX <br>
+                    <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+                </p>
+
+            </div>
+            <div class="col-md-6 embed-responsive embed-responsive-16by9">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26494.87157984487!2d-118.2393201401809!3d33.893286384788354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cb6b7f1d5b4d%3A0x56bce9a915bcb42!2sCompton%2C%20CA%2C%20USA!5e0!3m2!1sen!2sse!4v1617018364662!5m2!1sen!2sse"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="embed-responsive-item"></iframe>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!--Kontaktinfo
+Öppettider
+Adress
+Logotyper:
+    visa
+    mastercard
+    Klarna
+Leverantör
+        postnord
+        budbee
+Sociala medier
+        twitter
+        facebook
+        ig
+Copyrighter: G07
+Kundservice
+(Om Hakim)-->
+<footer style="background-color: #007A3D;" class="mt-5">
+    <div class="container">
+    <div class=" text-center row">
+
+        <div class="col" style="font-size: large;">
+            <h5>Kontaktinformation</h5>
+            <p class="text-center">
+                <b>Address:</b> Lorem, ipsum. <br>
+                <b>Öppetider:</b> TIDER <br>
+                <b>Telefonnummer:</b> XXX-XXXXXX <br>
+                <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+            </p>
+        </div>
+        <div class="col">
+            <h5>Följ oss!</h5>
+            <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
+        </div>
+        <div class="col">
+            <h5>Våra samarbetspartners</h5>
+            <img src="/img/klarna.svg" alt="" class="footer-logo">
+            <img src="/img/mastercard.svg" alt="" class="footer-logo">
+            <img src="/img/visa.svg" alt="" class="footer-logo">
+            <img src="/img/budbee.svg" alt="" class="footer-logo">
+            <img src="/img/postnord.svg" alt="" class="footer-logo">
+        </div>
+    </div>
+    <hr>
+    <div class="text-center">
+        <p class="copyright">Copyright 2021 &copy; G07</p>
+    </div>
+  </div>
+</footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
