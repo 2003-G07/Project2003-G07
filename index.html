@@ -77,6 +77,40 @@
  
   </div>  
 
+  <footer style="background-color: #007A3D;" class="mt-5">
+    <div class="container">
+    <div class=" text-center row">
+
+        <div class="col" style="font-size: large;">
+            <h5>Kontaktinformation</h5>
+            <p class="text-center">
+                <b>Address:</b> Lorem, ipsum. <br>
+                <b>Öppetider:</b> TIDER <br>
+                <b>Telefonnummer:</b> XXX-XXXXXX <br>
+                <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+            </p>
+        </div>
+        <div class="col">
+            <h5>Följ oss!</h5>
+            <a href="#"><img src="../About/images/twitter.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="../About/images/facebook.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="../About/images/instagram.svg" alt="" class="footer-logo"></a>
+        </div>
+        <div class="col">
+            <h5>Våra samarbetspartners</h5>
+            <img src="../About/images/klarna.svg" alt="" class="footer-logo">
+            <img src="../About/images/mastercard.svg" alt="" class="footer-logo">
+            <img src="../About/images/visa.svg" alt="" class="footer-logo">
+            <img src="../About/images/budbee.svg" alt="" class="footer-logo">
+            <img src="../About/images/postnord.svg" alt="" class="footer-logo">
+        </div>
+    </div>
+    <hr>
+    <div class="text-center">
+        <p class="copyright">Copyright 2021 &copy; G07</p>
+    </div>
+</div>
+</footer>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -107,7 +141,7 @@
         for (let index = 0; index < response.length; index++) {
           document.getElementById("inputproduct").innerHTML += `
 
-          <div class="d-flex justify-content-center card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
+          <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
      
             <a href="/Startsida/produktsida.html" style="text-decoration: none;">
 
@@ -135,23 +169,15 @@
         </a>
         <a href="/Startsida/produktsida.html" style="text-decoration: none;">
 
-        <p class="card-header border-bottom-0" style="background-color: white; font-size: 20px";>${response[index].name}</p>
+        <p class="card-header text-center border-bottom-0" style="background-color: white; font-size: 20px";>${response[index].name}</p>
 
         </a>
     
-        <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+        
+           
 
-        <div class="card-body">
-          <p class="card-text" style="color: rgba(0, 0, 0, 0.5);">
-            ${response[index].description}
-          </p>
-        </a>
-
-          </div>
-          <button  class="btn btn-primary btn-lg" style="text-align: center" > Köp</button> 
-
+        <button  class="btn btn-primary btn-lg" style="text-align: center; " > Köp</button>
         </div>
-
           `;
           // printinfo(document.getElementById(index), index, response);
         }
