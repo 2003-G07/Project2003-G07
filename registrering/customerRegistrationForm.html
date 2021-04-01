@@ -4,203 +4,308 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration</title>
-    <link rel="stylesheet" href="../style/bootstrap.css" />
-    <link rel="stylesheet" href="../registrering/style.css" />
-    <script src="customerRegistrationForm.js"></script>
+    <link rel="stylesheet" href="/style/bootstrap.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <title>Produktsida</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Registrera dig</h1>
-      <p>Fyll i alla fält för att skapa ett konto</p>
-      <hr />
-      <form action="" name="form">
-        <div class="form-row">
-          <div class="form-group col-md-5">
-            <label for="firstname">Förnamn:</label>
-            <input
-              required
-              pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$"
-              type="text"
-              maxlength="50"
-              class="form-control"
-              id="firstname"
-              name="Förnamn"
-              oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken')"
-              onchange="validateInput(this, 'firstnameError')"
-            />
-            <label
-              class="red-text"
-              id="firstnameError"
-              hidden
-              for="firstname"
-            ></label>
-          </div>
-          <div class="form-group col-md-7">
-            <label for="lastname">Efternamn:</label>
-            <input
-              required
-              pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$"
-              type="text"
-              maxlength="50"
-              class="form-control"
-              id="lastname"
-              name="Efternamn"
-              oninvalid="invalidInput(this, 'lastnameError', 'Efternamn ska inte innehålla specialtecken')"
-              onchange="validateInput(this, 'lastnameError')"
-            />
-            <label
-              class="red-text"
-              id="lastnameError"
-              hidden
-              for="lastname"
-            ></label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-5">
-            <label for="phone">Telefonnummer:</label>
-            <input
-              required
-              pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"
-              type="tel"
-              id="phone"
-              class="form-control"
-              name="Telefonnummer"
-              oninvalid="invalidInput(this, 'phoneNumberError', 'Ange ditt telefonnummer i rätt format, tex 123-1234567')"
-              onchange="validateInput(this, 'phoneNumberError')"
-            />
-            <label
-              class="red-text"
-              id="phoneNumberError"
-              hidden
-              for="phone"
-            ></label>
-          </div>
-          <div class="form-group col-md-7">
-            <label for="email">Mailadress:</label>
-            <input
-              required
-              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-              type="email"
-              class="form-control"
-              id="email"
-              name="Mailadress"
-              oninvalid="invalidInput(this, 'emailerror', 'Ange din mailadress i rätt format,t.ex minmail@mail.com')"
-              onchange="validateInput(this, 'emailerror')"
-            />
-            <label
-              class="red-text"
-              id="emailerror"
-              hidden
-              for="Mailadress"
-            ></label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="adressid" class="control-label">Gatuadress</label>
-          <input
-            required
-            pattern="^([A-Za-z0-9åäöÅÄÖ.\- ,])+$"
-            type="text"
-            class="form-control"
-            id="adressid"
-            name="Gatuadress"
-            oninvalid="invalidInput(this, 'adresserror', 'Ditt adress måste inehålla text and siffra')"
-            onchange="validateInput(this, 'adresserror')"
-          />
-          <label
-            class="red-text"
-            id="adresserror"
-            hidden
-            for="adressid"
-          ></label>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-5">
-            <label for="zipcode">Postnummer:</label>
-            <input
-              required
-              pattern="^\d{5}$"
-              type="tel"
-              id="zipcode"
-              class="form-control"
-              name="Postnummer"
-              oninvalid="invalidInput(this, 'postNumberError', 'Post numberet ska inehålla fem siffror')"
-              onchange="validateInput(this, 'postNumberError')"
-            />
-            <label
-              class="red-text"
-              id="postNumberError"
-              hidden
-              for="zipcode"
-            ></label>
-          </div>
-          <div class="form-group col-md-7">
-            <label for="city_id" class="control-label">Postort</label>
-            <input
-              required
-              pattern="^([a-zA-Z])[\wåäöÅÄÖ ]*$"
-              type="text"
-              class="form-control"
-              id="cityid"
-              name="Postort"
-              minlength="3"
-              oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken')"
-              onchange="validateInput(this, 'cityError')"
-            />
-            <label class="red-text" id="cityError" hidden for="cityid"></label>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                required
-                type="checkbox"
-                id="termsCheck"
-                oninvalid="document.getElementById('termsCheckError').removeAttribute('hidden');"
-                onchange="document.getElementById('termsCheckError').setAttribute('hidden',true); setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions':'')"
-              />
-              <label class="form-check-label" for="termsCheck"> Villkor </label>
-            </div>
-            <label
-              class="red-text"
-              style="color: red"
-              id="termsCheckError"
-              hidden
-              for="termsCheck"
-              >Acceptera vår villkor</label
-            >
-          </div>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="newsletterCheck"
-          />
-          <label class="form-check-label" for="newsletterCheck">
-            Nyhetsbrev
-          </label>
-        </div>
+    <div class="header" >
+      <nav class="navbar navbar-custom navbar-expand-md navbar-light"  >
+        <a href="/index.html">
+          <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
+        </a>
+          <a class="navbar-brand" href="#" ></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class = "navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+        <form class="form-inline ml-auto">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search">
+          <button class="btn btn-secondary my-sm-0" type="submit"><ion-icon name="search-outline"></ion-icon>Sök</button>
+              <button class="btn btn-secondary my-sm-0" ><ion-icon name="person-outline"></ion-icon>Logga in</button>
+              <button class="btn btn-secondary my-sm-0"><ion-icon name="cart-outline"></ion-icon>Till kassa</button>
+              </form>
+   
+        
+      </div>
+        </nav>
+        <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+    </div>
 
-        <div class="form-group form-row">
-          <button id="submit" class="btn btn-danger">Skicka in</button>
+       <!--Sidebar-->
+       <div class="d-flex wrapper">
+        <div class="border-right" id="sidebar-wrapper" >
+          <div class="sidebar-heading">Kategorier</div>
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;">Kategori 1</a>
+
+            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;">Kategori 2</a>
+
+            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;">Kategori 3</a>
+
+            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;">Kategori 4</a>
+
+
+           
+            
+          </div>
+          <div class="sidebar-heading">Lite mer om oss</div>
+          <div class="list-group list-group-flush">
+            <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;"  >Om Oss</a>
         </div>
-      </form>
-      <div class="signin">
-        <p>Är du redan en kund? <a href="#">Logga in</a>.</p>
-        <p>Har du glömt ditt lösenord? <a href="#">Skapa nytt</a>.</p>
+      </div>
+
+       <div class="container">
+
+      <div class="row d-flex justify-">
+      <div class="container" 
+        id="inputorder"
+        style="margin-top: 3rem;"
+        >
+        
+        <!-- Main Input Card-->
+        <h1>Registrera dig</h1>
+        <p>Fyll i alla fält för att skapa ett konto</p>
+        <hr />
+        <form action="" name="form">
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="firstname">Förnamn:</label>
+              <input
+                required
+                pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$"
+                type="text"
+                maxlength="50"
+                class="form-control"
+                id="firstname"
+                name="Förnamn"
+                oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken')"
+                onchange="validateInput(this, 'firstnameError')"
+              />
+              <label
+                class="red-text"
+                id="firstnameError"
+                hidden
+                for="firstname"
+              ></label>
+            </div>
+            <div class="form-group col-md-7">
+              <label for="lastname">Efternamn:</label>
+              <input
+                required
+                pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$"
+                type="text"
+                maxlength="50"
+                class="form-control"
+                id="lastname"
+                name="Efternamn"
+                oninvalid="invalidInput(this, 'lastnameError', 'Efternamn ska inte innehålla specialtecken')"
+                onchange="validateInput(this, 'lastnameError')"
+              />
+              <label
+                class="red-text"
+                id="lastnameError"
+                hidden
+                for="lastname"
+              ></label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="phone">Telefonnummer:</label>
+              <input
+                required
+                pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"
+                type="tel"
+                id="phone"
+                class="form-control"
+                name="Telefonnummer"
+                oninvalid="invalidInput(this, 'phoneNumberError', 'Ange ditt telefonnummer i rätt format, tex 123-1234567')"
+                onchange="validateInput(this, 'phoneNumberError')"
+              />
+              <label
+                class="red-text"
+                id="phoneNumberError"
+                hidden
+                for="phone"
+              ></label>
+            </div>
+            <div class="form-group col-md-7">
+              <label for="email">Mailadress:</label>
+              <input
+                required
+                pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                type="email"
+                class="form-control"
+                id="email"
+                name="Mailadress"
+                oninvalid="invalidInput(this, 'emailerror', 'Ange din mailadress i rätt format,t.ex minmail@mail.com')"
+                onchange="validateInput(this, 'emailerror')"
+              />
+              <label
+                class="red-text"
+                id="emailerror"
+                hidden
+                for="Mailadress"
+              ></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="adressid" class="control-label">Gatuadress</label>
+            <input
+              required
+              pattern="^([A-Za-z0-9åäöÅÄÖ.\- ,])+$"
+              type="text"
+              class="form-control"
+              id="adressid"
+              name="Gatuadress"
+              oninvalid="invalidInput(this, 'adresserror', 'Ditt adress måste inehålla text and siffra')"
+              onchange="validateInput(this, 'adresserror')"
+            />
+            <label
+              class="red-text"
+              id="adresserror"
+              hidden
+              for="adressid"
+            ></label>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="zipcode">Postnummer:</label>
+              <input
+                required
+                pattern="^\d{5}$"
+                type="tel"
+                id="zipcode"
+                class="form-control"
+                name="Postnummer"
+                oninvalid="invalidInput(this, 'postNumberError', 'Post numberet ska inehålla fem siffror')"
+                onchange="validateInput(this, 'postNumberError')"
+              />
+              <label
+                class="red-text"
+                id="postNumberError"
+                hidden
+                for="zipcode"
+              ></label>
+            </div>
+            <div class="form-group col-md-7">
+              <label for="city_id" class="control-label">Postort</label>
+              <input
+                required
+                pattern="^([a-zA-Z])[\wåäöÅÄÖ ]*$"
+                type="text"
+                class="form-control"
+                id="cityid"
+                name="Postort"
+                minlength="3"
+                oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken')"
+                onchange="validateInput(this, 'cityError')"
+              />
+              <label class="red-text" id="cityError" hidden for="cityid"></label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  required
+                  type="checkbox"
+                  id="termsCheck"
+                  oninvalid="document.getElementById('termsCheckError').removeAttribute('hidden');"
+                  onchange="document.getElementById('termsCheckError').setAttribute('hidden',true); setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions':'')"
+                />
+                <label class="form-check-label" for="termsCheck"> Villkor </label>
+              </div>
+              <label
+                class="red-text"
+                style="color: red"
+                id="termsCheckError"
+                hidden
+                for="termsCheck"
+                >Acceptera vår villkor</label
+              >
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="newsletterCheck"
+            />
+            <label class="form-check-label" for="newsletterCheck">
+              Nyhetsbrev
+            </label>
+          </div>
+  
+          <div class="form-group form-row">
+            <button id="submit" class="btn btn-danger">Skicka in</button>
+          </div>
+        </form>
+        <div class="signin">
+          <p>Är du redan en kund? <a href="#">Logga in</a>.</p>
+          <p>Har du glömt ditt lösenord? <a href="#">Skapa nytt</a>.</p>
+        </div>
+          
+        
       </div>
     </div>
+    </div>
+    
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+
+    
+
+       </div>
+    <footer style="background-color: #007A3D;">
+      <div class="container">
+      <div class=" text-center row">
+
+          <div class="col" style="font-size: large;">
+              <h5>Kontaktinformation</h5>
+              <p class="text-center">
+                  <b>Address:</b> Lorem, ipsum. <br>
+                  <b>Öppetider:</b> TIDER <br>
+                  <b>Telefonnummer:</b> XXX-XXXXXX <br>
+                  <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+              </p>
+          </div>
+          <div class="col">
+              <h5>Följ oss!</h5>
+              <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
+              <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
+              <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
+          </div>
+          <div class="col">
+              <h5>Våra samarbetspartners</h5>
+              <img src="/img/klarna.svg" alt="" class="footer-logo">
+              <img src="/img/mastercard.svg" alt="" class="footer-logo">
+              <img src="/img/visa.svg" alt="" class="footer-logo">
+              <img src="/img/budbee.svg" alt="" class="footer-logo">
+              <img src="/img/postnord.svg" alt="" class="footer-logo">
+          </div>
+      </div>
+      <hr>
+      <div class="text-center">
+          <p class="copyright">Copyright 2021 &copy; G07</p>
+      </div>
+    </div>
+    </footer>
+       </div>
+       
+    
   </body>
-  <script>
-    document
-      .getElementById("termsCheck")
-      .setCustomValidity(
-        "Please indicate that you accept the Terms and Conditions"
-      );
-  </script>
 </html>
