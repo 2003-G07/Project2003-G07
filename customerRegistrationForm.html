@@ -18,17 +18,17 @@
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label for="firstname">Förnamn:</label>
-                    <input required pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$" type="text" maxlength="50"
+                    <input required pattern="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\- ]*$" type="text" maxlength="30"
                     class="form-control" id="firstname" name="Förnamn" 
-                    oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken')"
+                    oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken eller siffror')"
                     onchange="validateInput(this, 'firstnameError')">
                     <label class="red-text" id="firstnameError" hidden for="firstname"></label>
                 </div>
                 <div class="form-group col-md-7">
                     <label for="lastname">Efternamn:</label> 
-                    <input required pattern="^([a-zA-ZÅÄÖ])[\wåäöÅÄÖ ]*$" type="text" maxlength="50"
+                    <input required pattern="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\- ]*$" type="text" maxlength="30"
                     class="form-control" id="lastname" name="Efternamn"
-                    oninvalid="invalidInput(this, 'lastnameError', 'Efternamn ska inte innehålla specialtecken')"
+                    oninvalid="invalidInput(this, 'lastnameError', 'Efternamn ska inte innehålla specialtecken eller siffror')"
                     onchange="validateInput(this, 'lastnameError')">
                     <label class="red-text" id="lastnameError" hidden for="lastname"></label>
                 </div>
@@ -36,7 +36,7 @@
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label for="phone">Telefonnummer:</label>
-                   <input required pattern="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" 
+                   <input required pattern="^[\d ]+$|^\d+-[\d ]+$" 
                    type="tel" id="phone" class="form-control" name="Telefonnummer"
                    oninvalid="invalidInput(this, 'phoneNumberError', 'Ange ditt telefonnummer i rätt format, tex 123-1234567')"
                     onchange="validateInput(this, 'phoneNumberError')">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group col-md-7">
                     <label for="email">Mailadress:</label>
-                    <input required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" 
+                    <input required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$" 
                     type="email" class="form-control"id="email" name="Mailadress"
                     oninvalid="invalidInput(this, 'emailerror', 'Ange din mailadress i rätt format,t.ex minmail@mail.com')"
                     onchange="validateInput(this, 'emailerror')">
@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label for="adressid" class="control-label">Gatuadress</label>
-                <input required pattern="^([A-Za-z0-9åäöÅÄÖ.\- ,])+$"type="text" 
+                <input required pattern="^([A-Za-z0-9ôíèÔÍÈåäöÅÄÖ.\- ,])+$"type="text" 
                 class="form-control" id="adressid" name="Gatuadress"
                 oninvalid="invalidInput(this, 'adresserror', 'Ditt adress måste inehålla text and siffra')"
                 onchange="validateInput(this, 'adresserror')">
@@ -62,16 +62,16 @@
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label for="zipcode">Postnummer:</label>
-                    <input required pattern="^\d{5}$" type="tel" id="zipcode" class="form-control" name="Postnummer"
-                    oninvalid="invalidInput(this, 'postNumberError', 'Post numberet ska inehålla fem siffror')"
+                    <input required pattern="^\d{5}$|^\d{3} \d{2}$" type="tel" id="zipcode" class="form-control" name="Postnummer"
+                    oninvalid="invalidInput(this, 'postNumberError', 'Post numberet ska inehålla fem siffror (ok med space efter tre siffror)')"
                     onchange="validateInput(this, 'postNumberError')">
                     <label class="red-text" id="postNumberError" hidden for="zipcode"></label>
                 </div>
                 <div class="form-group col-md-7">
                     <label for="city_id" class="control-label">Postort</label>
-                    <input required pattern="^([a-zA-Z])[\wåäöÅÄÖ ]*$" type="text" 
+                    <input required pattern="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\- ]*$" type="text" 
                     class="form-control" id="cityid" name="Postort" minlength="3"
-                    oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken')"
+                    oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken eller siffror')"
                     onchange="validateInput(this, 'cityError')">
                     <label class="red-text" id="cityError" hidden for="cityid"></label>
                 </div>
@@ -87,7 +87,7 @@
                         Villkor
                         </label>
                     </div>
-                    <label class="red-text" id="termsCheckError" hidden for="termsCheck">Acceptera vår villkor</label>
+                    <label class="red-text" id="termsCheckError" hidden for="termsCheck">Du måste acceptera villkoren</label>
                 </div>
             </div>
             <div class="form-check">
@@ -108,9 +108,4 @@
         </div>
     </div>
 </body>
-<script>
-
-    document.getElementById("termsCheck").setCustomValidity("Please indicate that you accept the Terms and Conditions");
-
-  </script>
 </html>
