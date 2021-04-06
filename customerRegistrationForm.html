@@ -64,7 +64,7 @@
                 <div class="form-group col-md-5">
                     <label for="phone">Telefonnummer:</label>
                    <input required pattern="^[\d ]+$|^\d+-[\d ]+$" 
-                   type="tel" id="phone" class="form-control" name="Telefonnummer"
+                   type="tel" id="phone" class="form-control" name="Telefonnummer"minlength="10" maxlength="11"
                    oninvalid="invalidInput(this, 'phoneNumberError', 'Ange ditt telefonnummer i rätt format, tex 123-1234567')"
                     onchange="validateInput(this, 'phoneNumberError')">
                     <label class="red-text" id="phoneNumberError" hidden for="phone"></label>
@@ -81,7 +81,7 @@
             <div class="form-group">
                 <label for="adressid" class="control-label">Gatuadress</label>
                 <input required pattern="^([A-Za-z0-9ôíèÔÍÈåäöÅÄÖ.\- ,])+$"type="text" 
-                class="form-control" id="adressid" name="Gatuadress"
+                class="form-control" id="adressid" name="Gatuadress"maxlength="30"
                 oninvalid="invalidInput(this, 'adresserror', 'Ditt adress måste inehålla text and siffra')"
                 onchange="validateInput(this, 'adresserror')">
                 <label class="red-text" id="adresserror" hidden for="adressid"></label>
@@ -90,14 +90,14 @@
                 <div class="form-group col-md-5">
                     <label for="zipcode">Postnummer:</label>
                     <input required pattern="^\d{5}$|^\d{3} \d{2}$" type="tel" id="zipcode" class="form-control" name="Postnummer"
-                    oninvalid="invalidInput(this, 'postNumberError', 'Post numberet ska inehålla fem siffror (ok med space efter tre siffror)')"
+                    oninvalid="invalidInput(this, 'postNumberError', 'Ange postnummer som 123 45')"
                     onchange="validateInput(this, 'postNumberError')">
                     <label class="red-text" id="postNumberError" hidden for="zipcode"></label>
                 </div>
                 <div class="form-group col-md-7">
                     <label for="city_id" class="control-label">Postort</label>
                     <input required pattern="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\- ]*$" type="text" 
-                    class="form-control" id="cityid" name="Postort" minlength="3"
+                    class="form-control" id="cityid" name="Postort" minlength="3"maxlength="30"
                     oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken eller siffror')"
                     onchange="validateInput(this, 'cityError')">
                     <label class="red-text" id="cityError" hidden for="cityid"></label>
