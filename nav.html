@@ -17,8 +17,8 @@
           <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
             <ion-icon name="person-outline"></ion-icon>Logga in
           </a>
-          <a href="varukorg/groceryCart.html" class="btn btn-secondary my-sm-0">
-            <ion-icon name="cart-outline"></ion-icon>Till kassa
+          <a id="amount" href="../varukorg/groceryCart.html" class="btn btn-secondary my-sm-0">
+            <ion-icon name="cart-outline"></ion-icon>Till kassa 
           </a>
         </form>
 
@@ -27,3 +27,21 @@
     </nav>
    
   </div>
+
+  <script>
+
+var productcartparse = localStorage.getItem('cloudcart');
+var productcart = JSON.parse(productcartparse);
+
+
+
+
+
+
+var shoppingcart = document.getElementById("amount");
+
+shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${productcart.length} produkter`;
+
+
+
+  </script>

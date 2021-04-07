@@ -17,7 +17,7 @@
 
 </div>
 
-
+  <button onclick="clearbutton()">Clear</button>
   <!--Sidebar-->
   <div class="d-flex wrapper">
     <div class="border-right" id="sidebar-wrapper">
@@ -27,10 +27,13 @@
     <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
       <div class="row" id="inputproduct" style="margin-right: 1rem; margin-top: 1rem">
         <!-- Här skapas main-->
+
+        
       </div>
     </div>
 
   </div>
+
 
 
 
@@ -76,8 +79,7 @@ $(function(){
      
             <a href="/Startsida/produktsida.html" style="text-decoration: none;">
 
-        <img src="${response[index].image}"
-        href = "location.href='test.html' "        
+        <img src="${response[index].image}"       
         class="d-block user-select-none"
         width="100%"
         height="200"
@@ -113,7 +115,9 @@ $(function(){
         
            
 
-        <button  class="btn btn-primary btn-lg" style="text-align: center; " > Köp</button>
+        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${response[index].productid})" > Köp</button>
+
+        
         </div>
           `;
         // printinfo(document.getElementById(index), index, response);
@@ -129,8 +133,45 @@ $(function(){
   $("#foot").load("footer.html");
 
 });
-    
+
+var maincart = new Array();
+
+var shoppingcart = document.getElementById("amount");
+  
+function addToCart(värde){
+  maincart.push(värde);
+  localStorage.setItem('cloudcart', JSON.stringify(maincart));
+  console.log(maincart)
+  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+}
+
+
+var productcartparse = localStorage.getItem('cloudcart');
+var productcart = JSON.parse(productcartparse);
+
+
+if(!productcart.length == 0 ){
+  maincart = productcart
+}
+
+function clearbutton(){
+  
+  maincart.splice(0,maincart.length);
+
+
+localStorage.setItem('cloudcart', JSON.stringify(maincart));
+shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
+
+console.log(maincart);
+}
+
+
+
+
+
   </script>
+
+  
 </body>
 
 </html>
