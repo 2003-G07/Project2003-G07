@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/style/style.css" />
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
-    <link rel="stylesheet" href="cartStyle/cartBootstrap.css" />
     <link rel="stylesheet" href="cartStyle/cartStylish.css" />
 
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
@@ -75,117 +74,74 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container" id="inputorder" style="margin-top: 7rem;">
+            
+            
+                    
+                        
+                   
+                    <!-- LÄGG IN ALLT JS Generat -->
 
-            <div class="row d-flex justify-">
-                <div class="container" id="inputorder" style="margin-top: 3rem;">
+                    <div class="row justify-content-center">
+                        <h1>Varukorg</h1> 
+                    </div>
 
-                    <!-- LÄGG IN ALLT FRÅN BODY HÄR -->
-                    <article>
-                        <div class="shopping-cart">
 
-                            <div class="title">
-                                Varukorg
-                            </div>
-
+                        <div class="row justify-content-center shopping-cart mt-5 " >
+                            
+                            
+                            
                             <!-- Product #1 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
+                          
+                            <div class="row  itemCart mt-2">
+                                
+                                
+                                <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
                                     <img src="cartImages/delete-icn.svg" alt="" />
                                 </div>
 
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="200px" width="200px" alt="" />
+                                <div class="col imageCart  mr-5 ml-5">
+                                    <img src="cartImages/cucumber.jpeg" height="150px" alt="" />
                                 </div>
 
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>EKO</span>
-                                    <span>Sverige</span>
+                                <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
+                                    <span class="row">Gurka</span>
+                                    <span class="row">EKO</span>
+                                    <span class="row">Sverige</span>
                                 </div>
 
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
+                                <div class="row quantityCart  ml-5 mr-5">
+                              
+                                    <div class="row mt-5">
+                                      <div class="col-sm">
+                                        <button class="minus-btnCart" type="button" name="button">
+                                            <img src="cartImages/minus.svg" alt="" />
+                                        </button>
+                                      </div>
+                                      <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
+                                        <input id="input-field" style="width: 2rem;" type="text"  name="name" value="1">
+                                      </div>
+                                      <div class="col-sm">
+                                        <button class="plus-btnCart" type="button" name="button">
+                                            <img src="cartImages/plus.svg" alt="" />
+                                        </button>                                      </div>
+                                    </div>
                                 </div>
+                             
 
-                                <div class="total-priceCart">14,90 /kg</div>
+                                <div class="row total-priceCart  mt-5  mr-1 ml-1">14,90 /kg</div>
 
                             </div>
-
-                            <!-- Product #2 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="20px" width="20px" />
-                                </div>
-
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>EKO</span>
-                                    <span>Holland</span>
-                                </div>
-
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
-                                </div>
-
-                                <div class="total-priceCart">12,90 /kg</div>
-
-                            </div>
-
-                            <!-- Product #3 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="20px" width="20px" />
-                                </div>
-
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>Klass 1</span>
-                                    <span>Sverige</span>
-                                </div>
-
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
-                                </div>
-
-                                <div class="total-priceCart">9,90 /kg</div>
-
-                            </div>
+                          
+                
+   
                         </div>
-                    </article>
                     <!-- SLUTA LÄGGA IN HÄR -->
-                </div>
+
+                    
+
             </div>
-        </div>
+        
     </div>
 
     <!-- Footer -->
@@ -229,9 +185,7 @@
 
         $('.minus-btnCart').on('click', function (e) {
             console.log('clicked minus')
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
+            var $input = $('#input-field');
             var value = parseInt($input.val());
 
             if (value > 1) {
@@ -245,12 +199,8 @@
 
         $('.plus-btnCart').on('click', function (e) {
             console.log('clicked plus')
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
-            var $price = $this.find('total-priceCart');
+            var $input =  $('#input-field');
             var value = parseInt($input.val());
-            var totalprice = parseInt($)
 
             if (value < 100) {
                 value = value + 1;
@@ -269,6 +219,3 @@
 </body>
 
 </html>
-
-
-du är en kuksugare
