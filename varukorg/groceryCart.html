@@ -119,7 +119,7 @@
                                         </button>
                                       </div>
                                       <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <input id="input-field" style="width: 2rem;" type="text"  name="name" value="1">
+                                        <input id="field" style="width: 2rem;" type="text"  name="name" value="1">
                                       </div>
                                       <div class="col-sm">
                                         <button class="plus-btnCart" type="button" name="button">
@@ -183,24 +183,24 @@
     <script>
         //SKRIV IN DIN JAVASCRIPT KOD HÄR
 
-        $('.minus-btnCart').on('click', function (e) {
+        $('.minus-btnCart').on('click', function() {
             console.log('clicked minus')
-            var $input = $('#input-field');
-            var value = parseInt($input.val());
+           
+            var value = parseInt($('#field').val());
+          
 
             if (value > 1) {
                 value = value - 1;
             } else {
                 value = 0;
             }
-            $input.val(value);
+            $('#field').val(value);
 
         });
 
-        $('.plus-btnCart').on('click', function (e) {
+        $('.plus-btnCart').on('click', function() {
             console.log('clicked plus')
-            var $input =  $('#input-field');
-            var value = parseInt($input.val());
+            var value = parseInt($('#field').val());
 
             if (value < 100) {
                 value = value + 1;
@@ -208,7 +208,7 @@
                 value = 100;
             }
 
-            $input.val(value);
+            $('#field').val(value);
         });
 
 //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
