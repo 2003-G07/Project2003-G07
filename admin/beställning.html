@@ -95,8 +95,18 @@
             />
           </form>
         </div>
-        <div class="container" id="inputorder">
-          <!-- Main Input Card-->
+        <div class="container" id="orders0">
+          <h1>Nya beställningar</h1>
+          <!-- New Input Card-->
+        </div>
+        <div class="container" id="orders1">
+          <h1 style="margin-top: 2rem; margin-bottom: 1rem;">Pågående beställningar</h1>
+
+          <!-- In Progress Input Card-->
+        </div>
+        <div class="container" id="orders2">
+          <h1 style="margin-top: 2rem; margin-bottom: 1rem;">Avklarade beställningar</h1>
+          <!-- Finished Input Card-->
         </div>
       </div>
     
@@ -154,7 +164,10 @@
  
        const cardGen = (response) => {
          for (let index = 0; index < response.length; index++) {
-           document.getElementById("inputorder").innerHTML += `
+           let orderStatus = "orders"+response[index].status;
+           console.log(orderStatus);
+
+           document.getElementById(orderStatus).innerHTML += `
            <div
            class="row"
            style="
