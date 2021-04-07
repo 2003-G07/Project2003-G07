@@ -14,67 +14,24 @@
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
-
+ 
     <title>Hakim Livs</title>
 </head>
 
 <body>
     <!-- Navbar -->
-    <div class="header">
-        <nav class="navbar navbar-custom navbar-expand-md navbar-light">
-            <a href="/index.html">
-                <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
-            </a>
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div id="nav-placeholder">
 
-                <form class="form-inline ml-auto">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-sm-0" type="submit">
-                        <ion-icon name="search-outline"></ion-icon>Sök
-                    </button>
-                    <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
-                        <ion-icon name="person-outline"></ion-icon>Logga in
-                    </a>
-                    <button class="btn btn-secondary my-sm-0">
-                        <ion-icon name="cart-outline"></ion-icon>Till kassa
-                    </button>
-                </form>
 
-            </div>
-        </nav>
-        <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
     </div>
 
     <!--Sidebar-->
     <div class="d-flex wrapper">
         <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Kategorier</div>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 1</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 2</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 3</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 4</a>
-
-            </div>
-            <div class="sidebar-heading">Lite mer om oss</div>
-            <div class="list-group list-group-flush">
-                <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Om Oss</a>
-            </div>
+      
         </div>
 
-        <div class="container" id="inputorder" style="margin-top: 7rem;">
+        <div class="container"  style="margin-top: 7rem;">
             
             
                     
@@ -86,52 +43,15 @@
                         <h1>Varukorg</h1> 
                     </div>
 
+                    <div id="totalCartPrice">Totalpris: </div>
 
-                        <div class="row justify-content-center shopping-cart mt-5 " >
+                        <div id="inputorder" class="row justify-content-center shopping-cart mt-5 " >
                             
                             
                             
                             <!-- Product #1 -->
                           
-                            <div class="row  itemCart mt-2">
-                                
-                                
-                                <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="col imageCart  mr-5 ml-5">
-                                    <img src="cartImages/cucumber.jpeg" height="150px" alt="" />
-                                </div>
-
-                                <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
-                                    <span class="row">Gurka</span>
-                                    <span class="row">EKO</span>
-                                    <span class="row">Sverige</span>
-                                </div>
-
-                                <div class="row quantityCart  ml-5 mr-5">
-                              
-                                    <div class="row mt-5">
-                                      <div class="col-sm">
-                                        <button class="minus-btnCart" type="button" name="button">
-                                            <img src="cartImages/minus.svg" alt="" />
-                                        </button>
-                                      </div>
-                                      <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <input id="field" style="width: 2rem;" type="text"  name="name" value="1">
-                                      </div>
-                                      <div class="col-sm">
-                                        <button class="plus-btnCart" type="button" name="button">
-                                            <img src="cartImages/plus.svg" alt="" />
-                                        </button>                                      </div>
-                                    </div>
-                                </div>
-                             
-
-                                <div class="row total-priceCart  mt-5  mr-1 ml-1">14,90 /kg</div>
-
-                            </div>
+                
                           
                 
    
@@ -145,45 +65,119 @@
     </div>
 
     <!-- Footer -->
-    <footer style="background-color: #007A3D;">
-        <div class="container">
-            <div class=" text-center row">
-
-                <div class="col" style="font-size: large;">
-                    <h5>Kontaktinformation</h5>
-                    <p class="text-center">
-                        <b>Address:</b> Lorem, ipsum. <br>
-                        <b>Öppetider:</b> TIDER <br>
-                        <b>Telefonnummer:</b> XXX-XXXXXX <br>
-                        <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
-                    </p>
-                </div>
-                <div class="col">
-                    <h5>Följ oss!</h5>
-                    <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
-                    <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
-                    <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
-                </div>
-                <div class="col">
-                    <h5>Våra samarbetspartners</h5>
-                    <img src="/img/klarna.svg" alt="" class="footer-logo">
-                    <img src="/img/mastercard.svg" alt="" class="footer-logo">
-                    <img src="/img/visa.svg" alt="" class="footer-logo">
-                    <img src="/img/budbee.svg" alt="" class="footer-logo">
-                    <img src="/img/postnord.svg" alt="" class="footer-logo">
-                </div>
-            </div>
-            <hr>
-            <div class="text-center">
-                <p class="copyright">Copyright 2021 &copy; G07</p>
-            </div>
-        </div>
+    <footer id="foot" style="background-color: #007A3D;">
+        
     </footer>
 
     <script>
         //SKRIV IN DIN JAVASCRIPT KOD HÄR
+        $(function(){
+  $("#nav-placeholder").load("../nav.html");
+  $("#sidebar-wrapper").load("../sidebar.html");
+  $("#foot").load("../footer.html");
+});
 
-        $('.minus-btnCart').on('click', function() {
+var maincart = new Array();
+
+var productcartparse = localStorage.getItem('cloudcart');
+var productcart = JSON.parse(productcartparse);
+
+
+if(!productcart.length == 0 ){
+  maincart = productcart
+}
+
+
+        fetch("/testdata/testprodukt.json")
+      .then((response) => response.json())
+      .then((data) => cardGen(data));
+
+    const cardGen = (response) => {
+      console.log(response);
+
+      var generateItem = false;
+      var totalPriceAllItems = 0;
+      var lastId = 0;
+      var totalPriceSingleItem = 0;
+      var amountSingleItem = 0;
+
+      response.forEach(responseElement => {
+          maincart.forEach(maincartElement => {
+              if(maincartElement == responseElement.productid){
+                totalPriceAllItems += responseElement.price;
+                generateItem = true;
+                if(lastId == maincartElement){
+                    amountSingleItem++;
+                }else{
+                    lastId = maincartElement;
+                    amountSingleItem++;
+                }
+              }
+              if(!amountSingleItem == 0){
+                 totalPriceSingleItem = maincartElement * amountSingleItem; 
+              }else{
+                  totalPriceSingleItem = maincartElement.price;
+              }
+          })
+          if(generateItem){
+   document.getElementById("inputorder").innerHTML += `
+        
+        
+                                <div class="row  itemCart mt-2">
+                                
+                                
+                                <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
+                                    <img src="cartImages/delete-icn.svg" alt="" />
+                                </div>
+
+                                <div class="col imageCart  mr-5 ml-5">
+                                    <img src="${responseElement.image}" height="150px" alt="" />
+                                </div>
+
+                                <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
+                                    <span class="row">${responseElement.name}</span>
+                                    
+                                </div>
+
+                                <div class="row quantityCart  ml-5 mr-5">
+                              
+                                    <div class="row mt-5">
+                                      <div class="col-sm">
+                                        <button class="minus-btnCart" type="button" name="button">
+                                            <img src="cartImages/minus.svg" alt="" />
+                                        </button>
+                                      </div>
+                                      <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
+                                        <input id="field" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
+                                      </div>
+                                      <div class="col-sm">
+                                        <button class="plus-btnCart" type="button" name="button">
+                                            <img src="cartImages/plus.svg" alt="" />
+                                        </button>                                      </div>
+                                    </div>
+                                </div>
+                             
+
+                                <div class="row total-priceCart  mt-5  mr-1 ml-1">${responseElement.price} kr</div>
+
+                            </div>
+          `;
+          }
+
+totalPriceSingleItem = 0;
+generateItem = false;
+amountSingleItem = 0;
+ 
+      });
+     
+      var priceAll = document.getElementById("totalCartPrice");
+      priceAll.innerHTML +=` ${totalPriceAllItems} kr`;      
+     
+      
+    };
+
+
+    $('.minus-btnCart').on('click', function() {
             console.log('clicked minus')
            
             var value = parseInt($('#field').val());
@@ -210,6 +204,8 @@
 
             $('#field').val(value);
         });
+
+
 
 //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
     </script>
