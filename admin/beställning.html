@@ -124,15 +124,32 @@
          .then((data) => cardGen(data));
  
        function printinfo(infotoprint, outerarray, response) {
-         for (
+         let orderProductIds = response[outerarray].products;
+         let productCountArray = new Array(Math.max.apply(Math,orderProductIds)).fill(0);
+
+         for (let i = 0; i < orderProductIds.length; i++) {
+           const productId = orderProductIds[i];
+           productCountArray[productId-1]++;
+         }
+
+         let uniqueItems = [...new Set(orderProductIds)]
+         
+         for (let i = 0; i < uniqueItems.length; i++) {
+           const uniqueItem = uniqueItems[i];
+           infotoprint.innerHTML += `           
+
+           <option>Produkt: ${uniqueItem} Antal: ${productCountArray[uniqueItem-1]}</option> `
+         }
+         
+         /*for (
            let index = 0;
            index < response[outerarray].products.length;
            index++
          ) {
            infotoprint.innerHTML += `           
-           
+
            <option>Produkt: ${response[outerarray].products[index]}</option> `;
-         }
+         }*/
        }
  
        const cardGen = (response) => {
