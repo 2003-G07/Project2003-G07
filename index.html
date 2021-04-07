@@ -5,16 +5,16 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/style/bootstrap.css" />
-  <link rel="stylesheet" href="/style/style.css" />
+  <link rel="stylesheet" href="style/bootstrap.css" />
+  <link rel="stylesheet" href="style/style.css" />
   <title>Admin - Produkt</title>
 </head>
 
 <body>
   <div class="header">
     <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
-      <a href="/index.html">
-        <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
+      <a href="index.html">
+        <img src="img/logga_svart.svg" alt="" width=200px height=100px />
       </a>
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -27,7 +27,7 @@
           <button class="btn btn-secondary my-sm-0" style="position: center;" type="submit">
             <ion-icon name="search-outline"></ion-icon>Sök
           </button>
-          <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
+          <a href="inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
             <ion-icon name="person-outline"></ion-icon>Logga in
           </a>
           <a href="varukorg/groceryCart.html" class="btn btn-secondary my-sm-0">
@@ -85,7 +85,7 @@
     crossorigin="anonymous"></script>
 
   <script>
-    fetch("/testdata/testprodukt.json")
+    fetch("testdata/testprodukt.json")
       .then((response) => response.json())
       .then((data) => cardGen(data));
 
@@ -125,7 +125,7 @@
         alt="productimge"
         >
     </a>
-    <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+    <a href="Startsida/produktsida.html" style="text-decoration: none;">
 
         <div class="d-flex justify-content-center">
             
@@ -137,7 +137,7 @@
         </a>
 
         <div style="height: 84px">
-        <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+        <a href="Startsida/produktsida.html" style="text-decoration: none;">
 
           
         <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index].name}</p>
@@ -171,17 +171,18 @@
         </div>
         <div class="col">
           <h5>Följ oss!</h5>
-          <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
-          <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
-          <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
+          <a href="#"><img src="img/twitter.svg" alt="" class="footer-logo"></a>
+          <a href="#"><img src="img/facebook.svg" alt="" class="footer-logo"></a>
+          <a href="#"><img src="img/instagram.svg" alt="" class="footer-logo"></a>
         </div>
+        
         <div class="col">
           <h5>Våra samarbetspartners</h5>
-          <img src="/img/klarna.svg" alt="" class="footer-logo">
-          <img src="/img/mastercard.svg" alt="" class="footer-logo">
-          <img src="/img/visa.svg" alt="" class="footer-logo">
-          <img src="/img/budbee.svg" alt="" class="footer-logo">
-          <img src="/img/postnord.svg" alt="" class="footer-logo">
+          <img src="img/klarna.svg" alt="" class="footer-logo">
+          <img src="img/mastercard.svg" alt="" class="footer-logo">
+          <img src="img/visa.svg" alt="" class="footer-logo">
+          <img src="img/budbee.svg" alt="" class="footer-logo">
+          <img src="img/postnord.svg" alt="" class="footer-logo">
         </div>
       </div>
       <hr>
