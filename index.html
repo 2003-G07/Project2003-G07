@@ -60,8 +60,11 @@
   
     const cardGen = (response) => {
      
-globalData =response;
-      for (let index = 0; index < response.length; index++) {
+globalData = response;
+
+
+if(memory == "startsida"){
+for (let index = 0; index < response.length; index++) {
         document.getElementById("inputproduct").innerHTML += `
 
           <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
@@ -109,8 +112,19 @@ globalData =response;
         
         </div>
           `;
-        // printinfo(document.getElementById(index), index, response);
+        
       }
+
+}else{
+    console.log(globalData);
+  categorieFilter(globalData);
+}
+
+
+
+
+
+      
     };
   </script>
 
@@ -118,8 +132,9 @@ globalData =response;
   
   </footer>
   <script>
-console.log(document.URL.includes("index.html"))
 
+var memoryparse = localStorage.getItem('cloudmemory');
+var memory = JSON.parse(memoryparse);
 
 
 
@@ -169,69 +184,13 @@ cat.removeChild(cat.firstChild);
 
 
 
-      function categorieFilter(catName){
+      function categorieFilter(globalData){
     
     removeAllItems();
-
-    if(catName == "startsida"){
-      for(i=0; i<globalData.length;i++){
-    
- 
-    document.getElementById("inputproduct").innerHTML += `<div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
-     
-            <a href="/Startsida/produktsida.html" style="text-decoration: none;">
-
-        <img src="${globalData[i].image}"       
-        class="d-block user-select-none"
-        width="100%"
-        height="200"
-        aria-label="Placeholder: Image cap"
-        focusable="false"
-        role="img"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 318 180"
-        style="font-size: 1.125rem; text-anchor: middle"
-        alt="productimge"
-        >
-    </a>
-    <a href="/Startsida/produktsida.html" style="text-decoration: none;">
-
-        <div class="d-flex justify-content-center">
-            
-            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${globalData[i].price}:-   </p>
-          
-        </div>
-
-        
-        </a>
-
-        <div style="height: 84px">
-        <a href="/Startsida/produktsida.html" style="text-decoration: none;">
-
-          
-        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${globalData[i].name}</p>
-        
-        </a>
-        </div>
-    
-        
-           
-
-        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${globalData[i].productid})" > Köp</button>
-
-        
-        </div>
-    `;
-    
-    
-    }
-      
-    }
-    
     
     for(i=0; i<globalData.length;i++){
     
-    if(catName == globaldata[i].category){
+    if(memory == globalData[i].category){
     document.getElementById("inputproduct").innerHTML += `<div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
      
             <a href="/Startsida/produktsida.html" style="text-decoration: none;">
