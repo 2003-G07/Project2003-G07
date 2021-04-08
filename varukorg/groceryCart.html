@@ -114,7 +114,7 @@ if(!productcart.length == 0 ){
                 }
               }
               if(!amountSingleItem == 0){
-                 totalPriceSingleItem = maincartElement * amountSingleItem; 
+                 totalPriceSingleItem = maincartElement.price * amountSingleItem; 
               }else{
                   totalPriceSingleItem = maincartElement.price;
               }
@@ -143,15 +143,15 @@ if(!productcart.length == 0 ){
                               
                                     <div class="row mt-5">
                                       <div class="col-sm">
-                                        <button class="minus-btnCart" type="button" name="button">
+                                        <button onclick="minusItem(${responseElement.productid})" class="minus-btnCart" type="button" name="button">
                                             <img src="cartImages/minus.svg" alt="" />
                                         </button>
                                       </div>
                                       <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <input id="field" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
+                                        <input id="field${responseElement.productid}" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
                                       </div>
                                       <div class="col-sm">
-                                        <button class="plus-btnCart" type="button" name="button">
+                                        <button onclick="plusItem(${responseElement.productid})" class="plus-btnCart" type="button" name="button">
                                             <img src="cartImages/plus.svg" alt="" />
                                         </button>                                      </div>
                                     </div>
@@ -174,9 +174,28 @@ amountSingleItem = 0;
       priceAll.innerHTML +=` ${totalPriceAllItems} kr`;      
     };
 
+function minusItem(buttonid){
+console.log('clicked minus')
+console.log(buttonid)
+
+var buttonName = "field" + buttonid.toString;
+
+var buttonToChange = document.getElementById(buttonName);
+
+
+}
+
+
+function plusItem(buttonid){
+ console.log('clicked plus')
+ console.log(buttonid)
+
+}
+
+
 
     $('.minus-btnCart').on('click', function() {
-            console.log('clicked minus')
+            
            
             var value = parseInt($('#field').val());
           
@@ -191,7 +210,7 @@ amountSingleItem = 0;
         });
 
         $('.plus-btnCart').on('click', function() {
-            console.log('clicked plus')
+           
             var value = parseInt($('#field').val());
 
             if (value < 100) {
