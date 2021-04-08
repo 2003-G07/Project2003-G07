@@ -70,6 +70,8 @@
     </footer>
 
     <script>
+
+    var globalData;
         //SKRIV IN DIN JAVASCRIPT KOD HÄR
         $(function(){
   $("#nav-placeholder").load("../nav.html");
@@ -93,8 +95,8 @@ if(!productcart.length == 0 ){
       .then((data) => cardGen(data));
 
     const cardGen = (response) => {
-      console.log(response);
-
+     
+        globalData = response;
 
 
 
@@ -126,7 +128,7 @@ if(!productcart.length == 0 ){
    document.getElementById("inputorder").innerHTML += `
         
         
-                                <div class="row  itemCart mt-2">
+                                <div id="${responseElement.productid}" class="row  itemCart mt-2">
                                 
                                 
                                 <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
@@ -178,6 +180,7 @@ amountSingleItem = 0;
     };
 
 function minusItem(buttonid){
+
 var buttonName = "field" + buttonid;
 
 var positionInArray = 0;
@@ -207,9 +210,13 @@ document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
 
 
-fetch("/testdata/testprodukt.json")
-      .then((response) => response.json())
-      .then((data) => lowerPrice(data));
+lowerPrice(globalData);
+
+     if(amountInArrayCounter == 0){
+        var el = document.getElementById(buttonid);
+        el.remove();
+
+     }
 
 
 
@@ -267,9 +274,7 @@ document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
 
 
-fetch("/testdata/testprodukt.json")
-      .then((response) => response.json())
-      .then((data) => higherPrice(data));
+higherPrice(globalData);
 
 
 
@@ -298,33 +303,7 @@ localStorage.setItem('cloudcart', JSON.stringify(maincart));
 }
 
 
-    $('.minus-btnCart').on('click', function() {
-            
-           
-            var value = parseInt($('#field').val());
-          
 
-            if (value > 1) {
-                value = value - 1;
-            } else {
-                value = 0;
-            }
-            $('#field').val(value);
-
-        });
-
-        $('.plus-btnCart').on('click', function() {
-           
-            var value = parseInt($('#field').val());
-
-            if (value < 100) {
-                value = value + 1;
-            } else {
-                value = 100;
-            }
-
-            $('#field').val(value);
-        });
 
 
 
