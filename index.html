@@ -141,7 +141,6 @@ var shoppingcart = document.getElementById("amount");
 function addToCart(värde){
   maincart.push(värde);
   localStorage.setItem('cloudcart', JSON.stringify(maincart));
-  console.log(maincart)
   shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
 }
 
