@@ -44,6 +44,8 @@
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
   <script>
 
+
+
     var globalData;
     
 
@@ -116,6 +118,11 @@ globalData =response;
   
   </footer>
   <script>
+console.log(document.URL.includes("index.html"))
+
+
+
+
 $(function(){
   $("#foot").load("footer.html");
 
@@ -148,7 +155,7 @@ function clearbutton(){
 localStorage.setItem('cloudcart', JSON.stringify(maincart));
 shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
 
-console.log(maincart);
+
 }
 
 function removeAllItems(){
