@@ -46,11 +46,7 @@
 
     var globalData;
     
-$(function(){
-  $("#nav-placeholder").load("nav.html");
-  $("#sidebar-wrapper").load("sidebar.html");
 
-});
 
 
 
@@ -224,7 +220,11 @@ cat.removeChild(cat.firstChild);
     }
         }
 
+        $(function(){
+  $("#nav-placeholder").load("nav.html");
+  $("#sidebar-wrapper").load("sidebar.html");
 
+});
 
   </script>
 
