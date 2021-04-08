@@ -1,7 +1,8 @@
 <div class="sidebar-heading">Kategorier</div>
       <div id="categoryList" class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Alla produkter</a>
+            ; color: black;" onclick="categorieFilter('startsida')">Alla produkter</a>
+            
 
 
 
@@ -53,12 +54,10 @@ for(i=0;i<unique.length;i++){
 
 categories.innerHTML += `
 <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;" onclick="categorieFilter(${currentCat})">${unique[i]}</a>
-         
-
+            ; color: black;" onclick="categorieFilter('${currentCat}')">${unique[i]}</a>
 `;
 }
-      }
+      };
 
 
 
