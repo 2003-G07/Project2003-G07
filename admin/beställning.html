@@ -6,53 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style/bootstrap.css" />
     <link rel="stylesheet" href="/style/style.css" />
-    <title>Admin - Beställning</title>
+    <title>Admin - Beställning</title> 
+     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
   </head>
   <body>
-    <div class="header" >
-      <nav class="navbar navbar-custom navbar-expand-md navbar-light"  >
-        <a href="/index.html">
-          <img src="/img/logga_vit.svg" alt="" width=200px height=100px />
-        </a>
-          <a class="navbar-brand" href="#" ></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class = "navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-        <form class="form-inline ml-auto">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-secondary my-sm-0" type="submit"><ion-icon name="search-outline"></ion-icon>Sök</button>
-              <button class="btn btn-secondary my-sm-0" ><ion-icon name="person-outline"></ion-icon>Logga in</button>
-              <button class="btn btn-secondary my-sm-0"><ion-icon name="cart-outline"></ion-icon>Till kassa</button>
-              </form>
-   
-        
-      </div>
-        </nav>
-        <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
-    </div>
+<div id="nav-placeholder">
+
+
+</div>
 
        <!--Sidebar-->
        <div class="d-flex wrapper" >
         <div class="border-right" id="sidebar-wrapper"  >
-          <div class="sidebar-heading" >Admin-Panel</div>
-          <div class="list-group list-group-flush">
-            <a href="../admin/kund.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kunder</a>
-
-            <a href="../admin/beställning.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Beställningar</a>
-
-            <a href="../admin/produkt.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Produkter</a>
-
-          </div>
-          <div class="sidebar-heading">Övrigt</div>
-          <div class="list-group list-group-flush">
-            <a href="../index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;"  >Startsida</a>
-        </div>
+      
       </div>
 
       
@@ -101,11 +67,7 @@
       </div>
     
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
+ 
 
     
 
@@ -214,40 +176,16 @@
            printinfo(document.getElementById(index), index, response);
          }
        };
-     </script>
-    <footer style="background-color: #007A3D;">
-      <div class="container">
-      <div class=" text-center row">
 
-          <div class="col" style="font-size: large;">
-              <h5>Kontaktinformation</h5>
-              <p class="text-center">
-                  <b>Address:</b> Lorem, ipsum. <br>
-                  <b>Öppetider:</b> TIDER <br>
-                  <b>Telefonnummer:</b> XXX-XXXXXX <br>
-                  <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
-              </p>
-          </div>
-          <div class="col">
-              <h5>Följ oss!</h5>
-              <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
-              <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
-              <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
-          </div>
-          <div class="col">
-              <h5>Våra samarbetspartners</h5>
-              <img src="/img/klarna.svg" alt="" class="footer-logo">
-              <img src="/img/mastercard.svg" alt="" class="footer-logo">
-              <img src="/img/visa.svg" alt="" class="footer-logo">
-              <img src="/img/budbee.svg" alt="" class="footer-logo">
-              <img src="/img/postnord.svg" alt="" class="footer-logo">
-          </div>
-      </div>
-      <hr>
-      <div class="text-center">
-          <p class="copyright">Copyright 2021 &copy; G07</p>
-      </div>
-    </div>
+
+       $(function(){
+  $("#nav-placeholder").load("../admin/mall-admin/nav.html");
+  $("#sidebar-wrapper").load("../admin/mall-admin/sidebar/sidebar-best.html");
+  $("#foot").load("../footer.html");
+});
+     </script>
+    <footer id="foot" style="background-color: #007A3D;">
+     
     </footer>
        </div>
        
