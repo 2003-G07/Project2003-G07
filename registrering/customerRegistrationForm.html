@@ -10,57 +10,101 @@
     <title>Produktsida</title>
   </head>
   <body>
-    <div class="header" >
-      <nav class="navbar navbar-custom navbar-expand-md navbar-light"  >
-        <a href="/index.html">
-          <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
-        </a>
-          <a class="navbar-brand" href="#" ></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class = "navbar-toggler-icon"></span>
+    <div class="header">
+      <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
-        <form class="form-inline ml-auto">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-secondary my-sm-0" type="submit"><ion-icon name="search-outline"></ion-icon>Sök</button>
-              <a  href="../inloggning/inloggningsida.html"  class="btn btn-secondary my-sm-0" ><ion-icon name="person-outline"></ion-icon>Logga in</a>
-              <button class="btn btn-secondary my-sm-0"><ion-icon name="cart-outline"></ion-icon>Till kassa</button>
-              </form>
-   
+        <a href="/index.html">
+          <img src="/img/logga_svart.svg" alt="" width=200px height=100px  alt="">
+         </a>
+        <!--<a class="navbar-brand" href="#"></a>-->
         
-      </div>
-        </nav>
-        <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  
+          <form class="form-inline ml-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-secondary my-sm-0" style="position: center;" type="submit">
+              <ion-icon name="search-outline"></ion-icon>Sök
+            </button>
+            <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
+              <ion-icon name="person-outline"></ion-icon>Logga in
+            </a>
+            <a href="varukorg/groceryCart.html" class="btn btn-secondary my-sm-0">
+              <ion-icon name="cart-outline"></ion-icon>Till kassa
+            </a>
+          </form>
+  
+          <div class="nav-item dropdown d-sm-block d-md-none">
+            <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
+            <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                <a class="dropdown-item" href="#top">hjsahgjsa</a>
+                <a class="dropdown-item" href="#top">Profile</a>
+                <a class="dropdown-item" href="#top">Tasks</a>
+                <a class="dropdown-item" href="#top">Etc ...</a>
+            </div>
+          </div><!-- Smaller devices menu END -->
+  
+  
+        </div>
+      </nav>
+      <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
     </div>
-
+  
        <!--Sidebar-->
        <div class="d-flex wrapper">
+       <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
         <div class="border-right" id="sidebar-wrapper" >
           <div class="sidebar-heading">Kategorier</div>
           <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 1</a>
+            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start"style="background-color:#e7bd42
+             ; color: black;">
+                 <div class="d-flex w-100 justify-content-start align-items-center">
+                     <span class="fa fa-dashboard fa-fw mr-3"></span>
+                     <span class="menu-collapsed">Kategori 1</span>
+                     <span class="submenu-icon ml-auto"></span>
+                 </div>
+             </a>
+             <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:#e7bd42
+             ; color: black;">
+                 <div class="d-flex w-100 justify-content-start align-items-center">
+                     <span class="fa fa-user fa-fw mr-3"></span>
+                     <span class="menu-collapsed">Kategori 2</span>
+                     <span class="submenu-icon ml-auto"></span>
+                 </div>
+             </a>
+            <!-- Submenu content -->
+    
+              <!-- /END Separator -->
+              <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+              ; color: black;">
+                  <div class="d-flex w-100 justify-content-start align-items-center" >
+                      <span class="fa fa-calendar fa-fw mr-3"></span>
+                      <span class="menu-collapsed">Kategori 3</span>
+                  </div>
+              </a>
+    
+              <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+              ; color: black;">
+                  <div class="d-flex w-100 justify-content-start align-items-center" >
+                      <span id="collapse-icon" class="fa fa-calendar fa-fw mr-3"></span>
+                      <span class="menu-collapsed">Kategori 4</span>
+                  </div>
+              </a>
+              <!-- Separator without title -->
+    
+          </ul><!-- List Group END-->
+      </div>
+      <!-- sidebar-container END -->
 
-            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 2</a>
-
-            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 3</a>
-
-            <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 4</a>
-
+            
 
            
             
           </div>
-          <div class="sidebar-heading">Lite mer om oss</div>
-          <div class="list-group list-group-flush">
-            <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;"  >Om Oss</a>
-        </div>
-      </div>
+         
+    </div>
 
        <div class="container">
 
