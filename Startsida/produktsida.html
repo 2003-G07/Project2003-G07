@@ -41,43 +41,11 @@
         <!-- Main Input Card-->
     
           
-        <div
+        <div id="productCard"
         class="row mt-5"
         >
 
-          <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;">
-          
-            <img id="image" src="https://picsum.photos/500?random=2" alt="">
-          
-          </div>
-          <div class="col col-lg-6" style="width: max-content;">
-          
-            <div class="row" style="margin-left: 1rem; margin-top: 1rem;" >
-              <h1 style="font-size: 4rem">Titel</h1>
-            </div>
-
-            <div class="row" style="margin-left: 1rem;" >
-              <h2 >Märke | Vikt</h2>
-            </div>
-
-            <div class="row" style="margin-left: 1rem;" >
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati temporibus ab sit veritatis aperiam exercitationem harum at natus quae cum, iusto excepturi consequuntur consectetur sunt nemo, eligendi optio voluptas asperiores.</p>
-            </div>
-
-            <div class="row d-flex justify-content-center"   >
-              <h2 style="font-size: 8rem; color: red;">50:-</h2>
-            </div>
-
-            <div class="row d-flex justify-content-center"   >
-              <button onclick="addToCart(1)" type="button" style="width:400px; height: 60px; font-size: 30px;" class="btn btn-info">Lägg till i varukorg</button>
-              <button onclick="clearbutton()">Clear</button>
-            </div>
-
-            <div class="row d-flex justify-content-start" style="margin-left: 5rem;"  >
-              <p>Antal kvar i lager: 7 </p>
-            </div>
-          </div>
-       
+  
 
 
            
@@ -125,7 +93,7 @@ function addToCart(värde){
   maincart.push(värde);
   localStorage.setItem('cloudcart', JSON.stringify(maincart));
   shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-  console.log(maincart)
+  
 }
 
 
@@ -139,10 +107,75 @@ localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
 shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
 
-console.log(maincart);
+
 
 }
 
+
+fetch("/testdata/testprodukt.json")
+      .then((response) => response.json())
+      .then((data) => productGen(data));
+
+
+
+      const productGen = (response) => {
+
+        var productChosenParse = localStorage.getItem('lastClickedProduct');
+        var productChosen = JSON.parse(productChosenParse);
+
+
+        var findProduct = 0;
+
+        for(i=0; i<response.length; i++){
+          if(response[i].productid == productChosen){
+            findProduct = i;
+            break;
+          }
+        }
+
+
+
+        var generator = document.getElementById("productCard");
+
+        generator.innerHTML = `
+        <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;">
+          
+          <img id="image" src="${response[findProduct].image}" alt="">
+        
+        </div>
+        <div class="col col-lg-6" style="width: max-content;">
+        
+          <div class="row" style="margin-left: 1rem; margin-top: 1rem;" >
+            <h1 style="font-size: 4rem">${response[findProduct].name}</h1>
+          </div>
+
+          <div class="row" style="margin-left: 1rem;" >
+            <h2 >${response[findProduct].category}</h2>
+          </div>
+
+          <div class="row" style="margin-left: 1rem;" >
+            <p>${response[findProduct].description}</p>
+          </div>
+
+          <div class="row d-flex justify-content-center"   >
+            <h2 style="font-size: 8rem; color: red;">${response[findProduct].price}:-</h2>
+          </div>
+
+          <div class="row d-flex justify-content-center"   >
+            <button onclick="addToCart(${productChosen})" type="button" style="width:400px; height: 60px; font-size: 30px;" class="btn btn-info">Lägg till i varukorg</button>
+            <button onclick="clearbutton()">Clear</button>
+          </div>
+
+          <div class="row d-flex justify-content-start" style="margin-left: 5rem;"  >
+            <p>Antal kvar i lager: ${response[findProduct].storage} </p>
+          </div>
+        </div>
+     
+        
+        `;
+
+
+      };
 
        </script>
     

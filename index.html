@@ -63,13 +63,17 @@
 globalData = response;
 
 
+
+
+
+
 if(memory == "startsida"){
 for (let index = 0; index < response.length; index++) {
         document.getElementById("inputproduct").innerHTML += `
 
           <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
      
-            <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+            <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
 
         <img src="${response[index].image}"       
         class="d-block user-select-none"
@@ -84,7 +88,7 @@ for (let index = 0; index < response.length; index++) {
         alt="productimge"
         >
     </a>
-    <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+    <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
 
         <div class="d-flex justify-content-center">
             
@@ -96,7 +100,7 @@ for (let index = 0; index < response.length; index++) {
         </a>
 
         <div style="height: 84px">
-        <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+        <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
 
           
         <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index].name}</p>
@@ -132,6 +136,13 @@ for (let index = 0; index < response.length; index++) {
   
   </footer>
   <script>
+
+
+
+
+
+
+
 
 var memoryparse = localStorage.getItem('cloudmemory');
 var memory = JSON.parse(memoryparse);
@@ -193,7 +204,7 @@ cat.removeChild(cat.firstChild);
     if(memory == globalData[i].category){
     document.getElementById("inputproduct").innerHTML += `<div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
      
-            <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+            <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
 
         <img src="${globalData[i].image}"       
         class="d-block user-select-none"
@@ -208,7 +219,7 @@ cat.removeChild(cat.firstChild);
         alt="productimge"
         >
     </a>
-    <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+    <a href="#" onclick="openProduct(${globalData[i].productid})" style="text-decoration: none;">
 
         <div class="d-flex justify-content-center">
             
@@ -220,7 +231,7 @@ cat.removeChild(cat.firstChild);
         </a>
 
         <div style="height: 84px">
-        <a href="/Startsida/produktsida.html" style="text-decoration: none;">
+        <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
 
           
         <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${globalData[i].name}</p>
@@ -246,6 +257,15 @@ cat.removeChild(cat.firstChild);
   $("#sidebar-wrapper").load("sidebar.html");
 
 });
+
+
+
+function openProduct(produktID){
+  
+  location.href="../Startsida/produktsida.html";
+  localStorage.setItem('lastClickedProduct', JSON.stringify(produktID));
+  
+  }
 
   </script>
 
