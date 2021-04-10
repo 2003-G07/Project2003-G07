@@ -11,52 +11,46 @@
 </head>
 
 <body>
- 
-<div id="nav-placeholder">
+
+<!--Navbar-->
+<div id="nav-placeholder"></div>
 
 
-</div>
-
-
-  <!--Sidebar-->
   <div class="d-flex wrapper">
-    <div class="border-right" id="sidebar-wrapper">
 
-    </div>
+    <!--Sidebar-->
+    <div class="border-right" id="sidebar-wrapper"></div>
 
+
+    <!--Main Body-->
     <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
-    
+    <!--Här Börjar Main ↓ Skriv koden här..-->
+
+
+
+
+    <!--Här Slutar Main ↑ Sluta skriva här -->
     </div>
 
   </div>
+
+  <!--Footer-->
+  <footer id="foot" style="background-color: #007A3D;" class="mt-5"></footer>
 
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-
-
-    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+  <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
   <script>
     
 $(function(){
   $("#nav-placeholder").load("nav.html");
   $("#sidebar-wrapper").load("sidebar.html");
-
-});
-
-  </script>
-
-  <footer id="foot" style="background-color: #007A3D;" class="mt-5">
-  
-  </footer>
-  <script>
-$(function(){
   $("#foot").load("footer.html");
 
 });
-    
+
   </script>
 </body>
-
 </html>
