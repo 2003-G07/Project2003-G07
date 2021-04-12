@@ -12,21 +12,22 @@
   <body>
     <div class="header">
       <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" onclick="dropDown()">
           <span class="navbar-toggler-icon"></span>
+              <i class="fa fa-caret-down"></i>
           </button>
         <a href="/index.html">
           <img src="/img/logga_svart.svg" alt="" width=200px height=100px  alt="">
          </a>
         <!--<a class="navbar-brand" href="#"></a>-->
-        
-        
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse mt-2" id="navbarNavDropdown">
   
           <form class="form-inline ml-auto">
             <input class="form-control mr-sm-2" type="search" placeholder="Search">
             <button class="btn btn-secondary my-sm-0" style="position: center;" type="submit">
               <ion-icon name="search-outline"></ion-icon>Sök
+          
             </button>
             <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
               <ion-icon name="person-outline"></ion-icon>Logga in
@@ -36,16 +37,17 @@
             </a>
           </form>
   
-          <div class="nav-item dropdown d-sm-block d-md-none">
-            <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
-            <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                <a class="dropdown-item" href="#top">hjsahgjsa</a>
-                <a class="dropdown-item" href="#top">Profile</a>
-                <a class="dropdown-item" href="#top">Tasks</a>
-                <a class="dropdown-item" href="#top">Etc ...</a>
+  
+          <div class="nav-item dropdown d-sm-block d-md-none" >
+            <a> Kategorier </a>
+             
+            <div class="dropdown-content" aria-labelledby="smallerscreenmenu">
+                <a class="dropdown-item" href="../inloggning/inloggningsida.html">Kategori 1</a>
+                <a class="dropdown-item" href="#top">Kategori 2</a>
+                <a class="dropdown-item" href="#top">Kategori 3</a>
+                 <a class="dropdown-item" href="#top">Kategori 4</a>
             </div>
           </div><!-- Smaller devices menu END -->
-  
   
         </div>
       </nav>
@@ -92,9 +94,9 @@
                       <span class="menu-collapsed">Kategori 4</span>
                   </div>
               </a>
-              <!-- Separator without title -->
+             
     
-          </ul><!-- List Group END-->
+          </ul>
       </div>
       <!-- sidebar-container END -->
 
@@ -113,6 +115,34 @@
         id="inputorder"
         style="margin-top: 3rem;"
         >
+
+            
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+        
+        <script>
+    function dropDown() {
+    document.getElementById("navbarNavDropdown").classList.toggle("show");
+     console.log('clicked category');
+    }       
+    
+    // Close the dropdown if the user clicks outside of it 
+     window.onclick = function(e) {
+         console.log(e.target)
+if (!(e.target.matches('.navbar-toggler')||e.target.matches('.navbar-toggler-icon'))) {
+      var navbarNavDropdown = document.getElementById("navbarNavDropdown");
+   if (navbarNavDropdown.classList.contains('show')) {
+    navbarNavDropdown.classList.remove('show');
+   }
+  } 
+}     
+    </script>
+    
+
         
         <!--customer registration-->
     <div class="container">
@@ -211,13 +241,7 @@
 </div>
 </div>
        </div>
-    
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
 
     
 
