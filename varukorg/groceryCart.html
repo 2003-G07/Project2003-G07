@@ -86,7 +86,7 @@ var productcartparse = localStorage.getItem('cloudcart');
 var productcart = JSON.parse(productcartparse);
 
 
-if(!productcart.length == 0 ){
+if(!productcart == null){
   maincart = productcart
 }
 
