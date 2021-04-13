@@ -67,7 +67,7 @@ globalData = response;
 
 
 
-if(memory == "startsida"){
+if(memory == "startsida" || memory == null){
 for (let index = 0; index < response.length; index++) {
         document.getElementById("inputproduct").innerHTML += `
 
@@ -146,6 +146,8 @@ for (let index = 0; index < response.length; index++) {
 
 var memoryparse = localStorage.getItem('cloudmemory');
 var memory = JSON.parse(memoryparse);
+
+
 
 
 
