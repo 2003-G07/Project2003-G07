@@ -1,0 +1,82 @@
+[
+  {
+    "customerID": 8,
+    "orderID": 16,
+    "date": "2021-03-14 17:26",
+    "products": [5, 4, 4, 1],
+    "price": 394,
+    "address": "Lorem ipsum 19"
+  },
+  {
+    "customerID": 5,
+    "orderID": 38,
+    "date": "2021-03-23 07:11",
+    "products": [7, 3, 9, 5, 10, 8, 10, 7, 8],
+    "price": 265,
+    "address": "Lorem ipsum 28"
+  },
+  {
+    "customerID": 3,
+    "orderID": 5,
+    "date": "2021-03-03 20:27",
+    "products": [6, 5, 2, 9],
+    "price": 282,
+    "address": "Lorem ipsum 29"
+  },
+  {
+    "customerID": 6,
+    "orderID": 18,
+    "date": "2021-03-15 23:54",
+    "products": [8, 2, 7, 7, 3, 6, 9, 1],
+    "price": 243,
+    "address": "Lorem ipsum 22"
+  },
+  {
+    "customerID": 7,
+    "orderID": 12,
+    "date": "2021-03-21 05:32",
+    "products": [7, 8, 7, 6, 7, 4],
+    "price": 136,
+    "address": "Lorem ipsum 19"
+  },
+  {
+    "customerID": 2,
+    "orderID": 39,
+    "date": "2021-03-17 20:25",
+    "products": [5, 7, 2, 4, 5, 10, 1, 1],
+    "price": 186,
+    "address": "Lorem ipsum 1"
+  },
+  {
+    "customerID": 4,
+    "orderID": 12,
+    "date": "2021-03-21 11:26",
+    "products": [3, 7, 5, 5, 8, 5],
+    "price": 400,
+    "address": "Lorem ipsum 15"
+  },
+  {
+    "customerID": 7,
+    "orderID": 37,
+    "date": "2021-03-24 23:50",
+    "products": [9, 9, 3, 6, 5, 6, 7, 4, 8, 7],
+    "price": 245,
+    "address": "Lorem ipsum 50"
+  },
+  {
+    "customerID": 8,
+    "orderID": 41,
+    "date": "2021-03-10 00:23",
+    "products": [5, 2, 4, 1],
+    "price": 434,
+    "address": "Lorem ipsum 7"
+  },
+  {
+    "customerID": 6,
+    "orderID": 32,
+    "date": "2021-03-14 07:09",
+    "products": [3, 10, 2, 7, 3, 9, 7],
+    "price": 322,
+    "address": "Lorem ipsum 13"
+  }
+]

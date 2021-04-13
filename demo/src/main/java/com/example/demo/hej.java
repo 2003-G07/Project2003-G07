@@ -16,9 +16,8 @@ import java.nio.file.Path;
 public class hej {
 
     @RequestMapping("/")
-    public Path  index(){
-        Path path = Path.of("/Users/dannekun/Documents/Nackademin/Klientutveckling/Grupp 7/Project2003-G07/index.html");
-        return path;
+    public String  index(){
+        return "hej!!";
     }
 
 }

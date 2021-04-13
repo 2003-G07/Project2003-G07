@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/bootstrap.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
+
+    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+
+    
+
+    <title>Mina beställningar</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="nav-placeholder">
+
+
+    </div>
+
+       <!--Sidebar-->
+       <div class="d-flex wrapper">
+        <div class="border-right" id="sidebar-wrapper" >
+         
+      </div>
+
+       <div class="container">
+
+      <div class="row d-flex justify-">
+      <div class="container" 
+        id="inputorder"
+        style="margin-top: 3rem;"
+        >
+        
+        <!-- LÄGG IN ALLT FRÅN BODY HÄR -->
+ 
+        
+        
+<div class = "container" style="
+    margin-top: 1rem;">
+    <div class="col col-lg-3 col-md-4">
+      <a href="index.html"><button class="btn btn-primary btn-lg">Tillbaka</button></a>
+    </div>
+      <p class="text-center" style="font-size: 2rem;">
+        Aktuella beställningar
+      </p>
+    </div>
+
+
+    <div class="container" style="justify-content: center; margin-top: rem">
+      <div class="row d-flex justify-content-end">
+        <form class="form-inline my-2 my-lg-0">
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="customRadio1"
+              name="customRadio"
+              class="custom-control-input"
+              checked=""
+            />
+            <label class="custom-control-label" for="customRadio1">Order</label>
+          </div>
+          
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="customRadio2"
+              name="customRadio"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" for="customRadio2">Datum</label>
+          </div>
+          <input
+            class="form-control mr-sm-2"
+            type="text"
+            placeholder="Search"
+          />
+        </form>
+      </div>
+      <div class="container" id="inputorder">
+        <!-- Main Input Card-->
+      </div>
+    </div>
+    
+    <div class = "container" style="
+    margin-top: 2rem;">
+      <p class="text-center" style="font-size: 2rem;">
+        Avslutade beställningar
+      </p>
+    </div>
+
+    
+
+
+
+
+        <!-- SLUTA LÄGGA IN HÄR -->
+      </div>
+    </div>
+    </div>
+    
+    
+
+ 
+
+    
+
+       </div>
+
+
+       <!-- Footer -->
+    <footer id="foot"style="background-color: #007A3D;">
+
+    </footer>
+       </div>
+       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+       crossorigin="anonymous"></script>
+
+       <script>
+//SKRIV IN DIN JAVASCRIPT KOD HÄR
+
+$(function(){
+  $("#nav-placeholder").load("../nav.html");
+  $("#sidebar-wrapper").load("../sidebar.html");
+  $("#foot").load("../footer.html");
+});
+
+
+
+      fetch("/testdata/testbeställning.json")
+        .then((response) => response.json())
+        .then((data) => cardGen(data));
+
+      function printinfo(infotoprint, outerarray, response) {
+        for (
+          let index = 0;
+          index < response[outerarray].products.length;
+          index++
+        ) {
+          infotoprint.innerHTML += `           
+          
+          <option>Produkt: ${response[outerarray].products[index]}</option> `;
+        }
+      }
+
+      const cardGen = (response) => {
+        for (let index = 0; index < response.length; index++) {
+          document.getElementById("inputorder").innerHTML += `
+          <div
+          class="row"
+          style="
+            border: solid 1px #e8e8e8;
+            box-shadow: 0px 1px 8px rgb(134, 24, 24);
+            border-color: rgb(219, 137, 30);
+            opacity: 98%;
+            margin-bottom: 
+          "
+
+
+        >
+        <div class="left_section" style="width: 20rem">
+          <!-- Här gör vi kortet för beställningsvyn-->
+
+          <div class="container row">
+              <div style=" margin-top: 2rem; margin-left: 2rem;  ">
+                  <p class="title_heading"> OrderID: ${response[index].orderID} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; ">
+                  <p class="title_heading"> CustomerID: ${response[index].customerID} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem;; width:max-content ">
+                  <p class="title_heading"> Leveransadress: ${response[index].address} </p> </div>
+
+          </div>
+          <div class="container row">
+              <div style=" margin-left: 2rem; margin-bottom: 1rem; width:max-content ">
+                  <p class="title_heading"> Totalkostnad: ${response[index].price} kr</p> </div>
+
+          </div>
+
+        </div>
+
+
+          <div class="mid_section" style="margin-top: 1rem; margin-left: 2rem; width: 25rem">
+
+              <div class="form-group">
+
+        <label for="exampleSelect2">Beställda varor</label>
+        <select multiple="" class="form-control" id="${index}">
+
+
+
+            <!-- Här ligger produkter -->
+        </select>
+      </div>
+
+          </div>
+
+
+            <div class="right_section d-flex justify-content-end";> 
+
+                <div>
+
+
+                <p class="title_heading"; style="margin-left: 7rem"> Datum: ${response[index].date} </p>
+
+
+                
+                <button class="btn btn-primary btn-lg" style=" margin-left: 7rem; height: 3rem; margin-top: 5rem">Skriv ut      </button>
+
+                
+                
+
+                
+            </div>
+            </div>
+          `;
+          printinfo(document.getElementById(index), index, response);
+        }
+      };
+
+
+
+
+
+
+//SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
+       </script>
+    
+
+
+
+
+
+
+       <script
+       src="https://code.jquery.com/jquery-3.6.0.js"
+       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+       crossorigin="anonymous"
+     ></script>
+  </body>
+</html>
