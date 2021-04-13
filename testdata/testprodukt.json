@@ -5,7 +5,8 @@
     "storage": 11,
     "image": "https://picsum.photos/500?random=1",
     "description": "Ett svart te smaksatt med bergamott.",
-    "price": 160
+    "price": 160,
+    "category": "Dryck"
   },
   {
     "productid": 2,
@@ -13,7 +14,8 @@
     "storage": 38,
     "image": "https://picsum.photos/500?random=2",
     "description": "En Raw-vegansk chokladkaka med 100% kakaohalt.",
-    "price": 260
+    "price": 260,
+    "category": "Godis"
   },
   {
     "productid": 3,
@@ -21,7 +23,8 @@
     "storage": 33,
     "image": "https://picsum.photos/500?random=3",
     "description": "Madagaskar Bourbon av högsta kvalitet, 12-14 cm långa.",
-    "price": 900
+    "price": 900,
+    "category": "Kryddor"
   },
   {
     "productid": 4,
@@ -29,7 +32,8 @@
     "storage": 44,
     "image": "https://picsum.photos/500?random=4",
     "description": "Odlat i de mest ogenomträngliga delarna av Colombias regnskogar. En fyllig och aromatisk mörkrost som lovar att pigga upp i mörkret.",
-    "price": 9000
+    "price": 9000,
+    "category": "Dryck"
   },
   {
     "productid": 5,
@@ -37,7 +41,8 @@
     "storage": 8,
     "image": "https://picsum.photos/500?random=5",
     "description": "På en liten familjeägd kooperativ farm i Colombias regnskogar odlas kaffet för att sedan rostas till perfektion i familjens egna rosteri.",
-    "price": 9000
+    "price": 9000,
+    "category": "Dryck"
   },
   {
     "productid": 6,
@@ -45,7 +50,8 @@
     "storage": 23,
     "image": "https://picsum.photos/500?random=6",
     "description": "Ekologisk Sargol från Iran, med en söt och floral smak passar utmärkt till såväl bakverk som matlagning.",
-    "price": 70000
+    "price": 70000,
+    "category": "Kryddor"
   },
   {
     "productid": 7,
@@ -53,7 +59,8 @@
     "storage": 21,
     "image": "https://picsum.photos/500?random=7",
     "description": "Bark från Kassiaträdet, kraftig och djup smak som gör sig perfekt till både matlagning och bakverk, orsakar leverskador vid regelbundet intag.",
-    "price": 300
+    "price": 300,
+    "category": "Kryddor"
   },
   {
     "productid": 8,
@@ -61,7 +68,8 @@
     "storage": 2,
     "image": "https://picsum.photos/500?random=8",
     "description": "\"Äkta\" kanel med en mild och armomatisk smak",
-    "price": 1200
+    "price": 1200,
+    "category": "Kryddor"
   },
   {
     "productid": 9,
@@ -69,7 +77,8 @@
     "storage": 23,
     "image": "https://picsum.photos/500?random=9",
     "description": "Grön kardemumma från södra Indien, denna krydda används framför allt till desserter och risrätter men gör sig även utmärkt i desserter och bakverk.",
-    "price": 1500
+    "price": 1500,
+    "category": "Kryddor"
   },
   {
     "productid": 10,
@@ -77,6 +86,7 @@
     "storage": 13,
     "image": "https://picsum.photos/500?random=10",
     "description": "Mycket kraftig anissmak, utmärkt till både mat och dessert",
-    "price": 700
+    "price": 700,
+    "category": "Kryddor"
   }
 ]

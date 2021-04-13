@@ -9,257 +9,304 @@
     <link rel="stylesheet" href="/style/style.css" />
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
-    <link rel="stylesheet" href="cartStyle/cartBootstrap.css" />
     <link rel="stylesheet" href="cartStyle/cartStylish.css" />
 
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
-
+ 
     <title>Hakim Livs</title>
 </head>
 
 <body>
     <!-- Navbar -->
-    <div class="header">
-        <nav class="navbar navbar-custom navbar-expand-md navbar-light">
-            <a href="/index.html">
-                <img src="/img/logga_svart.svg" alt="" width=200px height=100px />
-            </a>
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div id="nav-placeholder">
 
-                <form class="form-inline ml-auto">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-sm-0" type="submit">
-                        <ion-icon name="search-outline"></ion-icon>Sök
-                    </button>
-                    <a href="../inloggning/inloggningsida.html" class="btn btn-secondary my-sm-0">
-                        <ion-icon name="person-outline"></ion-icon>Logga in
-                    </a>
-                    <button class="btn btn-secondary my-sm-0">
-                        <ion-icon name="cart-outline"></ion-icon>Till kassa
-                    </button>
-                </form>
 
-            </div>
-        </nav>
-        <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
     </div>
 
     <!--Sidebar-->
     <div class="d-flex wrapper">
         <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Kategorier</div>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 1</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 2</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 3</a>
-
-                <a href="#" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Kategori 4</a>
-
-            </div>
-            <div class="sidebar-heading">Lite mer om oss</div>
-            <div class="list-group list-group-flush">
-                <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;">Om Oss</a>
-            </div>
+      
         </div>
 
-        <div class="container">
+        <div class="container"  style="margin-top: 7rem;">
+            
+            
+                    
+                        
+                   
+                    <!-- LÄGG IN ALLT JS Generat -->
 
-            <div class="row d-flex justify-">
-                <div class="container" id="inputorder" style="margin-top: 3rem;">
+                    <div class="row justify-content-center">
+                        <h1>Varukorg</h1> 
+                    </div>
 
-                    <!-- LÄGG IN ALLT FRÅN BODY HÄR -->
-                    <article>
-                        <div class="shopping-cart">
+                    <div id="totalCartPrice">Totalpris: </div>
+                    <button onclick="location.href='checkout.html'" class="btn btn-primary" type="button">Checkout</button>
 
-                            <div class="title">
-                                Varukorg
-                            </div>
-
-                            <!-- Product #1 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="20px" width="20px" alt="" />
-                                </div>
-
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>EKO</span>
-                                    <span>Sverige</span>
-                                </div>
-
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
-                                </div>
-
-                                <div class="total-priceCart">14,90 /kg</div>
-
-                            </div>
-
-                            <!-- Product #2 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="20px" width="20px" />
-                                </div>
-
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>EKO</span>
-                                    <span>Holland</span>
-                                </div>
-
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
-                                </div>
-
-                                <div class="total-priceCart">12,90 /kg</div>
-
-                            </div>
-
-                            <!-- Product #3 -->
-                            <div class="itemCart">
-                                <div class="buttonsCart">
-                                    <span class="deleteCart-btn"></span>
-                                    <img src="cartImages/delete-icn.svg" alt="" />
-                                </div>
-
-                                <div class="imageCart">
-                                    <img src="cartImages/cucumber.jpeg" height="20px" width="20px" />
-                                </div>
-
-                                <div class="descriptionCart">
-                                    <span>Gurka</span>
-                                    <span>Klass 1</span>
-                                    <span>Sverige</span>
-                                </div>
-
-                                <div class="quantityCart">
-                                    <button class="plus-btnCart" type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="" />
-                                    </button>
-                                    <input type="text" name="name" value="1">
-                                    <button class="minus-btnCart" type="button" name="button">
-                                        <img src="cartImages/minus.svg" alt="" />
-                                    </button>
-                                </div>
-
-                                <div class="total-priceCart">9,90 /kg</div>
-
-                            </div>
+                        <div id="inputorder" class="row justify-content-center shopping-cart mt-5 " >
+                            
+                            
+                            
+                            <!-- Product -->
+                          
+                
+                          
+                
+   
                         </div>
-                    </article>
                     <!-- SLUTA LÄGGA IN HÄR -->
-                </div>
+
+                    
+
             </div>
-        </div>
+        
     </div>
 
     <!-- Footer -->
-    <footer style="background-color: #007A3D;">
-        <div class="container">
-            <div class=" text-center row">
-
-                <div class="col" style="font-size: large;">
-                    <h5>Kontaktinformation</h5>
-                    <p class="text-center">
-                        <b>Address:</b> Lorem, ipsum. <br>
-                        <b>Öppetider:</b> TIDER <br>
-                        <b>Telefonnummer:</b> XXX-XXXXXX <br>
-                        <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
-                    </p>
-                </div>
-                <div class="col">
-                    <h5>Följ oss!</h5>
-                    <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
-                    <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
-                    <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
-                </div>
-                <div class="col">
-                    <h5>Våra samarbetspartners</h5>
-                    <img src="/img/klarna.svg" alt="" class="footer-logo">
-                    <img src="/img/mastercard.svg" alt="" class="footer-logo">
-                    <img src="/img/visa.svg" alt="" class="footer-logo">
-                    <img src="/img/budbee.svg" alt="" class="footer-logo">
-                    <img src="/img/postnord.svg" alt="" class="footer-logo">
-                </div>
-            </div>
-            <hr>
-            <div class="text-center">
-                <p class="copyright">Copyright 2021 &copy; G07</p>
-            </div>
-        </div>
+    <footer id="foot" style="background-color: #007A3D;">
+        
     </footer>
 
     <script>
+
+    var globalData;
         //SKRIV IN DIN JAVASCRIPT KOD HÄR
+        $(function(){
+  $("#nav-placeholder").load("../nav.html");
+  $("#sidebar-wrapper").load("../sidebar.html");
+  $("#foot").load("../footer.html");
+});
 
-        $('.minus-btnCart').on('click', function (e) {
-            console.log('clicked minus')
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
-            var value = parseInt($input.val());
+var maincart = new Array();
 
-            if (value > 1) {
-                value = value - 1;
-            } else {
-                value = 0;
-            }
-            $input.val(value);
+var productcartparse = localStorage.getItem('cloudcart');
+var productcart = JSON.parse(productcartparse);
 
-        });
 
-        $('.plus-btnCart').on('click', function (e) {
-            console.log('clicked plus')
-            e.preventDefault();
-            var $this = $(this);
-            var $input = $this.closest('div').find('input');
-            var $price = $this.find('total-priceCart');
-            var value = parseInt($input.val());
-            var totalprice = parseInt($)
+if(!productcart.length == 0 ){
+  maincart = productcart
+}
 
-            if (value < 100) {
-                value = value + 1;
-            } else {
-                value = 100;
-            }
 
-            $input.val(value);
-        });
+        fetch("/testdata/testprodukt.json")
+      .then((response) => response.json())
+      .then((data) => cardGen(data));
+
+    const cardGen = (response) => {
+     
+        globalData = response;
+
+
+
+      var generateItem = false;
+      var totalPriceAllItems = 0;
+      var lastId = 0;
+      var totalPriceSingleItem = 0;
+      var amountSingleItem = 0;
+
+      response.forEach(responseElement => {
+          maincart.forEach(maincartElement => {
+              if(maincartElement == responseElement.productid){
+                totalPriceAllItems += responseElement.price;
+                generateItem = true;
+                if(lastId == maincartElement){
+                    amountSingleItem++;
+                }else{
+                    lastId = maincartElement;
+                    amountSingleItem++;
+                }
+              }
+              if(!amountSingleItem == 0){
+                 totalPriceSingleItem = maincartElement.price * amountSingleItem; 
+              }else{
+                  totalPriceSingleItem = maincartElement.price;
+              }
+          })
+          if(generateItem){
+   document.getElementById("inputorder").innerHTML += `
+        
+        
+                                <div id="${responseElement.productid}" class="row  itemCart mt-2">
+                                
+                                
+                                <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
+                                    <img src="cartImages/delete-icn.svg" alt="" />
+                                </div>
+
+                                <div class="col imageCart  mr-5 ml-5">
+                                    <img src="${responseElement.image}" height="150px" alt="" />
+                                </div>
+
+                                <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
+                                    <span class="row">${responseElement.name}</span>
+                                    
+                                </div>
+
+                                <div class="row quantityCart  ml-5 mr-5">
+                              
+                                    <div class="row mt-5">
+                                      <div class="col-sm">
+                                        <button onclick="minusItem(${responseElement.productid})" class="minus-btnCart" type="button" name="button">
+                                            <img src="cartImages/minus.svg" alt="" />
+                                        </button>
+                                      </div>
+                                      <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
+                                        <input disabled id="field${responseElement.productid}" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
+                                      </div>
+                                      <div class="col-sm">
+                                        <button onclick="plusItem(${responseElement.productid})" class="plus-btnCart" type="button" name="button">
+                                            <img src="cartImages/plus.svg" alt="" />
+                                        </button>                                      </div>
+                                    </div>
+                                </div>
+                             
+
+                                <div class="row total-priceCart  mt-5  mr-1 ml-1">${responseElement.price} kr</div>
+
+                            </div>
+          `;
+          }
+
+totalPriceSingleItem = 0;
+generateItem = false;
+amountSingleItem = 0;
+ 
+      });
+     
+      var priceAll = document.getElementById("totalCartPrice");
+      priceAll.innerHTML +=` ${totalPriceAllItems} kr`;      
+    };
+
+function minusItem(buttonid){
+
+var buttonName = "field" + buttonid;
+
+var positionInArray = 0;
+
+if(document.getElementById(buttonName).value > 0){
+
+for(i=0; i < maincart.length; i++){
+if(maincart[i] == buttonid){
+positionInArray = i;
+break;
+}
+}
+
+maincart.splice(positionInArray, 1);
+
+var amountInArrayCounter = 0;
+
+for(i = 0; i < maincart.length; i++){
+if(maincart[i] == buttonid){
+amountInArrayCounter++;
+}
+}
+
+
+document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+
+
+
+
+lowerPrice(globalData);
+
+     if(amountInArrayCounter == 0){
+        var el = document.getElementById(buttonid);
+        el.remove();
+
+     }
+
+
+
+  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+ 
+
+amountInArrayCounter = 0;
+}
+
+
+}
+
+
+function lowerPrice(data){
+var totalPriceInCart = 0;
+for(i=0; i<maincart.length; i++){
+    for(y=0; y<data.length; y++){
+        if(maincart[i] == data[y].productid){
+totalPriceInCart += data[y].price;
+        }
+
+    }
+
+}
+
+ document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+
+localStorage.setItem('cloudcart', JSON.stringify(maincart));
+}
+
+
+
+
+
+function plusItem(buttonid){
+
+    var buttonName = "field" + buttonid;
+
+var positionInArray = 0;
+
+
+maincart.push(buttonid);
+
+var amountInArrayCounter = 0;
+
+for(i = 0; i < maincart.length; i++){
+if(maincart[i] == buttonid){
+amountInArrayCounter++;
+}
+}
+
+
+document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+
+
+
+
+higherPrice(globalData);
+
+
+
+  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+ 
+
+amountInArrayCounter = 0;
+
+
+}
+
+function higherPrice(data){
+var totalPriceInCart = 0;
+for(i=0; i<maincart.length; i++){
+    for(y=0; y < data.length; y++){
+        if(maincart[i] == data[y].productid){
+totalPriceInCart += data[y].price;
+        }
+    }
+
+}
+
+ document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+
+localStorage.setItem('cloudcart', JSON.stringify(maincart));
+}
+
+
+
+
+
 
 //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
     </script>
