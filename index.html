@@ -45,6 +45,13 @@
   <script>
 
 
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+  $("#sidebar-wrapper").load("sidebar.html");
+});
+
+
+
 
     var globalData;
     
@@ -265,11 +272,8 @@ function openProduct(produktID){
   
   }
 
-        $(function(){
-  $("#nav-placeholder").load("nav.html");
-  $("#sidebar-wrapper").load("sidebar.html");
 
-});
+
 
 
 
