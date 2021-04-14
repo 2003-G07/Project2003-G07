@@ -1,145 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style/bootstrap.css" />
-    <link rel="stylesheet" href="/style/style.css" />
-    <title>Produktsida</title>
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"
 
-    
-  ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style/bootstrap.css" />
+  <link rel="stylesheet" href="/style/style.css" />
+  <title>Produktsida</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 
   <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
-  </head>
-  <body>
-    
-    <div id="nav-placeholder">
+</head>
 
+<body>
+
+  <div id="nav-placeholder">
+
+
+  </div>
+  <!--Sidebar-->
+  <div class="d-flex wrapper">
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+    <div class="border-right" id="sidebar-wrapper">
 
     </div>
-       <!--Sidebar-->
-       <div class="d-flex wrapper">
-        <div class="border-right" id="sidebar-wrapper" >
-      
-      </div>
+  </div>
+    <div class="container">
 
-       <div class="container">
+      <div class="d-flex w-100 justify-content-start align-items-center">
+        <div class="container" id="inputorder">
 
-      <div class="row d-flex justify-">
-      <div class="container" 
-        id="inputorder"
-        
-        >
-        
-        <!-- Main Input Card-->
-    
-          
-        <div id="productCard"
-        class="row mt-5"
-        >
+          <!-- Main Input Card-->
 
-  
+          <div id="productCard" class="row mt-5">
 
-
-           
           </div>
+        </div>
       </div>
     </div>
-    </div>
-    
-    
 
- 
+  </div>
+  <footer id="foot" style="background-color: #007A3D;">
 
-       </div>
-    <footer id="foot" style="background-color: #007A3D;">
-     
-    </footer>
-       </div>
-       
-       <script>
+  </footer>
+  </div>
 
-$(function(){
-  $("#foot").load("../footer.html");
+  <script>
 
-});
-$(function(){
-  $("#nav-placeholder").load("../nav.html");
-  $("#sidebar-wrapper").load("../sidebar.html");
+    $(function () {
+      $("#foot").load("../footer.html");
 
-});
+    });
+    $(function () {
+      $("#nav-placeholder").load("../nav.html");
+      $("#sidebar-wrapper").load("../sidebar.html");
 
+    });
 
-var productcartparse = localStorage.getItem('cloudcart');
-var productcart = JSON.parse(productcartparse);
+    var productcartparse = localStorage.getItem('cloudcart');
+    var productcart = JSON.parse(productcartparse);
 
+    var maincart = new Array();
+    var shoppingcart = document.getElementById("amount");
 
+    if (!productcart == null) {
+      maincart = productcart
+    }
 
+    function addToCart(värde) {
+      maincart.push(värde);
+      localStorage.setItem('cloudcart', JSON.stringify(maincart));
+      shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
 
-var maincart = new Array();
-var shoppingcart = document.getElementById("amount");
-
-
-if(!productcart == null ){
-  maincart = productcart
-}
-
-function addToCart(värde){
-  maincart.push(värde);
-  localStorage.setItem('cloudcart', JSON.stringify(maincart));
-  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-  
-}
+    }
 
 
 
-function clearbutton(){
-  
-  maincart.splice(0,maincart.length);
+    function clearbutton() {
+
+      maincart.splice(0, maincart.length);
 
 
-localStorage.setItem('cloudcart', JSON.stringify(maincart));
+      localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
-shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-
-
-
-}
+      shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
 
 
-fetch("/testdata/testprodukt.json")
+
+    }
+
+
+    fetch("/testdata/testprodukt.json")
       .then((response) => response.json())
       .then((data) => productGen(data));
 
 
 
-      const productGen = (response) => {
+    const productGen = (response) => {
 
-        var productChosenParse = localStorage.getItem('lastClickedProduct');
-        var productChosen = JSON.parse(productChosenParse);
+      var productChosenParse = localStorage.getItem('lastClickedProduct');
+      var productChosen = JSON.parse(productChosenParse);
 
 
-        var findProduct = 0;
+      var findProduct = 0;
 
-        for(i=0; i<response.length; i++){
-          if(response[i].productid == productChosen){
-            findProduct = i;
-            break;
-          }
+      for (i = 0; i < response.length; i++) {
+        if (response[i].productid == productChosen) {
+          findProduct = i;
+          break;
         }
+      }
 
 
 
-        var generator = document.getElementById("productCard");
+      var generator = document.getElementById("productCard");
 
-        generator.innerHTML = `
+      generator.innerHTML = `
         <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;">
           
           <img id="image" src="${response[findProduct].image}" alt="">
@@ -177,9 +156,10 @@ fetch("/testdata/testprodukt.json")
         `;
 
 
-      };
+    };
 
-       </script>
-    
-  </body>
+  </script>
+
+</body>
+
 </html>
