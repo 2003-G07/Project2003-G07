@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style/bootstrap.css" />
+  <link rel="stylesheet" href="/style/style.css" />
+  <title>Admin - Kund</title>
+
+  <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+</head>
+<body>
+
+<div id="nav-placeholder">
+
+
+</div>
+
+<!--Sidebar-->
+<div class="d-flex wrapper" >
+  <div class="border-right" id="sidebar-wrapper"  >
+
+  </div>
+
+  <div class="container" style="justify-content: center; margin-top: 10rem">
+    <div class="row d-flex justify-content-end">
+
+    </div>
+    <div class="container" id="inputorder" style="margin-bottom: 5rem;">
+      <!-- Main Input Card-->
+
+
+      <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
+
+
+        <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
+
+<form action="/greeting" method="get">
+  <input type="text" name="firstNa" placeholder="Förnamn">
+  <input type="text" name="lastNa" placeholder="Efternamn">
+  <input type="text" name="teleNr" placeholder="TelefonNummer">
+  <input type="text" name="emailAd" placeholder="Email">
+
+
+  <input type="submit" value="Jalla bror">
+</form>
+
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+  <script
+          src="https://code.jquery.com/jquery-3.6.0.js"
+          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+          crossorigin="anonymous"
+  ></script>
+
+
+
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"
+></script>
+
+<script>
+
+
+
+  $(function(){
+    $("#nav-placeholder").load("../admin/mall-admin/nav.html");
+    $("#sidebar-wrapper").load("../admin/mall-admin/sidebar/sidebar-kund.html");
+    $("#foot").load("../footer.html");
+  });
+</script>
+<footer id="foot" style="background-color: #007A3D;">
+
+</footer>
+</div>
+
+
+</body>
+</html>

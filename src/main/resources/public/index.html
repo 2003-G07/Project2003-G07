@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style/bootstrap.css" />
+  <link rel="stylesheet" href="../style/style.css" />
+  <title>Admin - Produkt</title>
+</head>
+
+<body>
+ 
+<div id="nav-placeholder">
+
+
+</div>
+
+  <button onclick="clearbutton()">Clear</button>
+  <!--Sidebar-->
+  <div class="d-flex wrapper">
+    <div class="border-right" id="sidebar-wrapper">
+
+    </div>
+
+    <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
+      <div class="row" id="inputproduct" style="margin-right: 1rem; margin-top: 1rem">
+        <!-- Här skapas main-->
+
+        
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+
+    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+  <script>
+
+
+
+    var globalData;
+    
+
+
+
+
+
+    fetch("/testdata/testprodukt.json")
+      .then((response) => response.json())
+      .then((data) => cardGen(data));
+
+  
+    const cardGen = (response) => {
+     
+globalData = response;
+
+
+
+
+
+
+if(memory == "startsida" || memory == null){
+for (let index = 0; index < response.length; index++) {
+        document.getElementById("inputproduct").innerHTML += `
+
+          <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
+     
+            <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+
+        <img src="${response[index].image}"       
+        class="d-block user-select-none"
+        width="100%"
+        height="200"
+        aria-label="Placeholder: Image cap"
+        focusable="false"
+        role="img"
+        preserveAspectRatio="xMidYMid slice"
+        viewBox="0 0 318 180"
+        style="font-size: 1.125rem; text-anchor: middle"
+        alt="productimge"
+        >
+    </a>
+    <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+
+        <div class="d-flex justify-content-center">
+            
+            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${response[index].price}:-   </p>
+          
+        </div>
+
+        
+        </a>
+
+        <div style="height: 84px">
+        <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+
+          
+        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index].name}</p>
+        
+        </a>
+        </div>
+    
+        
+           
+
+        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${response[index].productid})" > Köp</button>
+
+        
+        </div>
+          `;
+        
+      }
+
+}else{
+    console.log(globalData);
+  categorieFilter(globalData);
+}
+
+
+
+
+
+      
+    };
+  </script>
+
+  <footer id="foot" style="background-color: #007A3D;" class="mt-5">
+  
+  </footer>
+  <script>
+
+
+
+
+
+
+
+
+var memoryparse = localStorage.getItem('cloudmemory');
+var memory = JSON.parse(memoryparse);
+
+
+
+
+
+$(function(){
+  $("#foot").load("footer.html");
+
+});
+
+var maincart = new Array();
+
+var shoppingcart = document.getElementById("amount");
+  
+function addToCart(värde){
+  maincart.push(värde);
+  localStorage.setItem('cloudcart', JSON.stringify(maincart));
+  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+}
+
+
+var productcartparse = localStorage.getItem('cloudcart');
+var productcart = JSON.parse(productcartparse);
+
+
+if(!productcart.length == 0 ){
+  maincart = productcart
+}
+
+function clearbutton(){
+  
+  maincart.splice(0,maincart.length);
+
+
+localStorage.setItem('cloudcart', JSON.stringify(maincart));
+shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
+
+
+}
+
+function removeAllItems(){
+var cat = document.getElementById("inputproduct");
+
+
+while(cat.firstChild){
+cat.removeChild(cat.firstChild);
+}
+      }
+
+
+
+      function categorieFilter(globalData){
+    
+    removeAllItems();
+    
+    for(i=0; i<globalData.length;i++){
+    
+    if(memory == globalData[i].category){
+    document.getElementById("inputproduct").innerHTML += `<div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
+     
+            <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
+
+        <img src="${globalData[i].image}"       
+        class="d-block user-select-none"
+        width="100%"
+        height="200"
+        aria-label="Placeholder: Image cap"
+        focusable="false"
+        role="img"
+        preserveAspectRatio="xMidYMid slice"
+        viewBox="0 0 318 180"
+        style="font-size: 1.125rem; text-anchor: middle"
+        alt="productimge"
+        >
+    </a>
+    <a href="#" onclick="openProduct(${globalData[i].productid})" style="text-decoration: none;">
+
+        <div class="d-flex justify-content-center">
+            
+            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${globalData[i].price}:-   </p>
+          
+        </div>
+
+        
+        </a>
+
+        <div style="height: 84px">
+        <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
+
+          
+        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${globalData[i].name}</p>
+        
+        </a>
+        </div>
+    
+        
+           
+
+        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${globalData[i].productid})" > Köp</button>
+
+        
+        </div>
+    `;
+    }
+    
+    }
+        }
+
+        $(function(){
+  $("#nav-placeholder").load("nav.html");
+  $("#sidebar-wrapper").load("sidebar.html");
+
+});
+
+
+
+function openProduct(produktID){
+  
+  location.href="../Startsida/produktsida.html";
+  localStorage.setItem('lastClickedProduct', JSON.stringify(produktID));
+  
+  }
+
+  </script>
+
+  
+</body>
+
+</html>
