@@ -31,6 +31,8 @@ public class hej {
    @Autowired
    private ProduktRepository produktRepository;
 
+   private int idTracker;
+
 
     @GetMapping("/greeting")
     public String greetingForm(@RequestParam String firstNa, String lastNa,String teleNr , String emailAd , Model model) throws SQLException {
@@ -81,6 +83,8 @@ public class hej {
 
 
         produktRepository.save(new Produkt("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        produktRepository.save(new Produkt("Kuksugare",11,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        produktRepository.save(new Produkt("Din mamma",11,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",160,"Dryck"));
 
 
 
@@ -91,6 +95,30 @@ public class hej {
 
         return modelAndView;
     }
+
+
+    @GetMapping("/BarackObama")
+    public int obama(@RequestParam int id){
+        idTracker = id;
+        System.out.println("Obamaid" + idTracker);
+
+        return idTracker;
+    }
+
+
+    @GetMapping("Startsida/produktsida.html")
+    public ModelAndView showProduct() throws SQLException {
+        System.out.println("det funkar");
+
+        ModelAndView modelAndView = new ModelAndView();
+
+
+        modelAndView.addObject("listCustomers", produktRepository.findAll());
+
+
+        return modelAndView;
+    }
+
 
 
 
