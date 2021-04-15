@@ -1,4 +1,9 @@
-package com.example.demo1;
+package com.example.demo1.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by Daniel Bojic
@@ -7,8 +12,11 @@ package com.example.demo1;
  * Project: Project2003-G07
  * Copyright: MIT
  */
+@Entity
 public class Customer {
-    protected int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
     protected String firstName;
     protected String lastName;
     protected String tel;
@@ -24,11 +32,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,5 +79,4 @@ public class Customer {
     public void setAddressId(int addressId) {
         this.addressId = addressId;
     }
-
 }

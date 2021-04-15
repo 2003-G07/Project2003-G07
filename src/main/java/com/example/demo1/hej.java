@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 
+import com.example.demo1.models.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,44 +23,6 @@ public class hej {
     importSQLData data = new importSQLData();
 
 
-    @RequestMapping("/")
-    public String index() {
-        return "hejsan!!";
-    }
-
-    @RequestMapping("")
-    public String addKund() throws SQLException {
-        data.connectToAndQueryDatabase("daniel", "daniel");
-        data.findAllCustomer();
-        List<Customer> shunos = data.getShunos();
-        String temp = "Hello ";
-        for (int i = 0; i < shunos.size(); i++) {
-            temp += shunos.get(i).firstName + " ";
-        }
-
-
-        return temp;
-    }
-
-    @RequestMapping(value = "/kuk")
-    public String saveCustomer() throws SQLException {
-        data.connectToAndQueryDatabase("daniel", "daniel");
-
-
-        Customer customer =new Customer("Daniel","Bojic","9792759","Dannekun@hotmail.com");
-
-        data.addCustomer(customer);
-
-        data.findAllCustomer();
-        List<Customer> shunos = data.getShunos();
-        String temp = "Hello ";
-        for (int i = 0; i < shunos.size(); i++) {
-            temp += shunos.get(i).firstName + " ";
-        }
-
-
-        return temp;
-    }
 
     @GetMapping("/greeting")
     public String greetingForm(@RequestParam String firstNa, String lastNa,String teleNr , String emailAd , Model model) throws SQLException {
@@ -96,13 +59,6 @@ public class hej {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        data.connectToAndQueryDatabase("daniel", "daniel");
-        data.findAllCustomer();
-       List<Customer> listCustomers = data.getShunos();
-
-       modelAndView.addObject("listCustomers", listCustomers);
-
-
 
         return modelAndView;
     }
@@ -113,14 +69,6 @@ public class hej {
         System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
-
-        data.connectToAndQueryDatabase("daniel", "daniel");
-        data.findAllCustomer();
-        List<Customer> listCustomers = data.getShunos();
-
-        modelAndView.addObject("listCustomers", listCustomers);
-
-
 
 
         return modelAndView;
