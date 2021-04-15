@@ -2,12 +2,17 @@ package com.example.demo1;
 
 
 import com.example.demo1.models.Customer;
+import com.example.demo1.models.Produkt;
+import com.example.demo1.repositories.CustomerRepository;
+import com.example.demo1.repositories.ProduktRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +25,11 @@ import java.util.List;
 @Controller
 public class hej {
 
-    importSQLData data = new importSQLData();
+    @Autowired
+    private CustomerRepository customerRepository;
 
+   @Autowired
+   private ProduktRepository produktRepository;
 
 
     @GetMapping("/greeting")
@@ -40,8 +48,7 @@ public class hej {
     @GetMapping("/register")
     public String showForm(Model model){
         System.out.println("register funkar");
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
+
 
         return "regiser_form";
     }
@@ -53,8 +60,11 @@ public class hej {
    }
 
 
-    @GetMapping("/index")
-    public ModelAndView listCustomers() throws SQLException {
+
+
+
+    @GetMapping("admin/addKund")
+    public ModelAndView addCustomer() throws SQLException {
         System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
@@ -63,12 +73,20 @@ public class hej {
         return modelAndView;
     }
 
-
-    @GetMapping("admin/addKund")
-    public ModelAndView addCustomer() throws SQLException {
+    @GetMapping("/index.html")
+    public ModelAndView listCustomers() throws SQLException {
         System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
+
+
+        produktRepository.save(new Produkt("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+
+
+
+
+        modelAndView.addObject("listCustomers", produktRepository.findAll());
+
 
 
         return modelAndView;

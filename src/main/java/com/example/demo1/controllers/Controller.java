@@ -4,7 +4,10 @@ import com.example.demo1.models.Customer;
 import com.example.demo1.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +43,9 @@ public class Controller {
 
         return (List<Customer>) customerRepository.findAll();
     }
+
+
+
 
 
 }
