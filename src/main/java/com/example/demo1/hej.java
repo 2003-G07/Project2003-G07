@@ -119,6 +119,17 @@ public class hej {
         return modelAndView;
     }
 
+    @GetMapping("/Startsida/produktsida/{id}")
+    public String showProducts(@PathVariable (value = "id") long id, Model model){
+        Produkt produkt = produktRepository.getProduktById(id);
+
+        model.addAttribute("produkt", produkt);
+
+        return "update_produkt";
+
+
+    }
+
 
 
 
