@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeLeaf.org">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../style/bootstrap.css" />
-  <link rel="stylesheet" href="../style/style.css" />
+  <link rel="stylesheet" href="/style/bootstrap.css" />
+  <link rel="stylesheet" href="/style/style.css" />
   <title>Admin - Produkt</title>
 </head>
 
@@ -27,8 +28,25 @@
     <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
       <div class="row" id="inputproduct" style="margin-right: 1rem; margin-top: 1rem">
         <!-- Här skapas main-->
+        <th:block th:each="customer : ${listCustomers}">
+        <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
 
-        
+
+
+
+            <tr>
+              <td>[[${customer.firstName}]]</td>
+
+
+            </tr>
+
+
+
+
+
+        </div>
+
+        </th:block>
       </div>
     </div>
 
@@ -53,9 +71,7 @@
 
 
 
-    fetch("/testdata/testprodukt.json")
-      .then((response) => response.json())
-      .then((data) => cardGen(data));
+
 
   
     const cardGen = (response) => {
@@ -68,14 +84,14 @@ globalData = response;
 
 
 if(memory == "startsida" || memory == null){
-for (let index = 0; index < response.length; index++) {
+for (let index = 0; index2 < response.length; index2++) {
         document.getElementById("inputproduct").innerHTML += `
 
           <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
      
-            <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+            <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
 
-        <img src="${response[index].image}"       
+        <img src="${response[index2].image}"
         class="d-block user-select-none"
         width="100%"
         height="200"
@@ -88,11 +104,11 @@ for (let index = 0; index < response.length; index++) {
         alt="productimge"
         >
     </a>
-    <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+    <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
 
         <div class="d-flex justify-content-center">
             
-            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${response[index].price}:-   </p>
+            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${response[index2].price}:-   </p>
           
         </div>
 
@@ -100,10 +116,10 @@ for (let index = 0; index < response.length; index++) {
         </a>
 
         <div style="height: 84px">
-        <a href="#" onclick="openProduct(${response[index].productid})" style="text-decoration: none;">
+        <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
 
           
-        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index].name}</p>
+        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index2].name}</p>
         
         </a>
         </div>
@@ -111,7 +127,7 @@ for (let index = 0; index < response.length; index++) {
         
            
 
-        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${response[index].productid})" > Köp</button>
+        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${response[index2].productid})" > Köp</button>
 
         
         </div>
@@ -255,8 +271,8 @@ cat.removeChild(cat.firstChild);
         }
 
         $(function(){
-  $("#nav-placeholder").load("nav.html");
-  $("#sidebar-wrapper").load("sidebar.html");
+  $("#nav-placeholder").load("../nav.html");
+  $("#sidebar-wrapper").load("../sidebar.html");
 
 });
 

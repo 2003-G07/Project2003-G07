@@ -1,8 +1,10 @@
 package com.example.demo1;
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * Project: Project2003-G07
  * Copyright: MIT
  */
-@RestController
+@Controller
 public class hej {
 
     importSQLData data = new importSQLData();
@@ -67,21 +69,63 @@ public class hej {
         model.addAttribute("teleNr",teleNr);
         model.addAttribute("emailAd",emailAd);
 
-        Customer customer = new Customer(firstNa, lastNa,teleNr,emailAd);
+
+        return "customers";
+    }
+
+
+    @GetMapping("/register")
+    public String showForm(Model model){
+        System.out.println("register funkar");
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+
+        return "regiser_form";
+    }
+
+   @PostMapping("/register")
+   public String submitForm(@ModelAttribute("customer") Customer customer){
+       System.out.println(customer);
+       return "register_success";
+   }
+
+
+    @GetMapping("/index")
+    public ModelAndView listCustomers() throws SQLException {
+        System.out.println("det funkar");
+
+        ModelAndView modelAndView = new ModelAndView();
+
         data.connectToAndQueryDatabase("daniel", "daniel");
         data.findAllCustomer();
+       List<Customer> listCustomers = data.getShunos();
 
-        List<Customer> shunos = data.getShunos();
-
-        String y = "";
-
-        for (int i = 0; i < shunos.size(); i++) {
-            y += shunos.get(i).getFirstName();
-        }
+       modelAndView.addObject("listCustomers", listCustomers);
 
 
-        return customer.getFirstName() + " " + customer.getLastName() + " " + customer.getTel() + " " + customer.getEmail()+ "\n" + "Din kamrater heter " + y;
+
+        return modelAndView;
     }
+
+
+    @GetMapping("admin/addKund")
+    public ModelAndView addCustomer() throws SQLException {
+        System.out.println("det funkar");
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        data.connectToAndQueryDatabase("daniel", "daniel");
+        data.findAllCustomer();
+        List<Customer> listCustomers = data.getShunos();
+
+        modelAndView.addObject("listCustomers", listCustomers);
+
+
+
+
+        return modelAndView;
+    }
+
 
 
 }
