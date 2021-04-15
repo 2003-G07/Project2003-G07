@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeLeaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,10 +11,8 @@
     <script
     src="https://code.jquery.com/jquery-3.6.0.js"
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"
+    crossorigin="anonymous"></script>
 
-    
-  ></script>
 
   <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
@@ -45,7 +44,7 @@
         class="row mt-5"
         >
 
-          <th:block th:each="product : ${listCustomers}">
+          <th:block th:each="product : ${productToShow}">
 
           <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;">
 
@@ -55,19 +54,19 @@
           <div class="col col-lg-6" style="width: max-content;">
 
             <div class="row" style="margin-left: 1rem; margin-top: 1rem;" >
-              <h1 style="font-size: 4rem">${response[findProduct].name}</h1>
+              <h1 style="font-size: 4rem">[[${product.name}]]</h1>
             </div>
 
             <div class="row" style="margin-left: 1rem;" >
-              <h2 >${response[findProduct].category}</h2>
+              <h2 >[[${product.category}]]</h2>
             </div>
 
             <div class="row" style="margin-left: 1rem;" >
-              <p>${response[findProduct].description}</p>
+              <p>[[${product.description}]]</p>
             </div>
 
             <div class="row d-flex justify-content-center"   >
-              <h2 style="font-size: 8rem; color: red;">${response[findProduct].price}:-</h2>
+              <h2 style="font-size: 8rem; color: red;">[[${product.price}]]:-</h2>
             </div>
 
             <div class="row d-flex justify-content-center"   >
@@ -76,12 +75,12 @@
             </div>
 
             <div class="row d-flex justify-content-start" style="margin-left: 5rem;"  >
-              <p>Antal kvar i lager: ${response[findProduct].storage} </p>
+              <p>Antal kvar i lager: [[${product.price}]] </p>
             </div>
           </div>
-  
 
 
+          </th:block>
            
           </div>
       </div>
@@ -100,14 +99,11 @@
        
        <script>
 
-$(function(){
-  $("#foot").load("../footer.html");
 
-});
 $(function(){
   $("#nav-placeholder").load("../nav.html");
   $("#sidebar-wrapper").load("../sidebar.html");
-
+  $("#foot").load("../footer.html");
 });
 
 
