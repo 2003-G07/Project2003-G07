@@ -43,9 +43,5 @@ public class Controller {
 
         return (List<Customer>) customerRepository.findAll();
     }
-
-
-
-
-
+    
 }
