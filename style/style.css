@@ -109,29 +109,29 @@ footer {
     margin-left: -15rem;
   }
 }
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 541px) {
   #product-name-size {
     font-size: 4rem;
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 540px) {
   #product-name-size {
     font-size: 2rem;
   }
 }
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 541px) {
   #price-size {
     font-size: 7rem;
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 540px) {
   #price-size {
     font-size: 4rem;
   }
 }
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 541px) {
   #button-size {
     width:400px; 
     height: 60px;
@@ -139,7 +139,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 540px) {
   #button-size {
     width:400px; 
     height: 40px;

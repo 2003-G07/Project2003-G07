@@ -37,22 +37,25 @@
 
             <div class="d-flex w-100 justify-content-start align-items-center">
                 <div class="container" id="inputorder">
+<!--
+
 
                     <div class="container" style="margin-top: 7rem;">
 
                     </div>
-
+-->
                     <!-- LÄGG IN ALLT JS Generat -->
 
-                    <div class="row mt-sm-5 justify-content-center ">
+                    <div class="row mt-5 justify-content-center ">
                         <h1>Varukorg</h1>
                     </div>
 
-                    <div id="totalCartPrice">Totalpris: </div>
-                    <button onclick="location.href='checkout.html'" class="btn btn-primary"
-                        type="button">Checkout</button>
+                    <div id="totalCartPrice" class="card-header border-bottom-0">
+                        Totalpris: </div>
+                    <button onclick="location.href='checkout.html'" class="btn btn-outline-warning mt-sm-5"
+                        type="button" id = "checkout-size">Checkout</button>
 
-                    <div id="inputorder" class="row justify-content-center shopping-cart mt-5 ">
+                    <div id="inputorder" class="row justify-content-center shopping-cart mt-sm-5 ">
 
                         <!-- Product -->
 
@@ -64,8 +67,8 @@
             </div>
 
             <!-- Footer -->
-            <footer id="foot" style="background-color: #007A3D;">
-
+            <footer id="foot" style="background-color: #007A3D;" class="mt-5 justify-content-center">
+  
             </footer>
         </div>
             <script>
@@ -134,23 +137,23 @@ if(!productcart.length == 0){
                             document.getElementById("inputorder").innerHTML += `
         
         
-                                <div id="${responseElement.productid}" class="row d-flex flex-wrap justify-content-start itemCart mt-2">
+                                <div id="${responseElement.productid}" class="row d-flex justify-content-start itemCart mt-2 ">
                                 
                                 
-                                <div class="col col-lg-1 buttonsCart justify-content-center  ">
-                                    <img src="cartImages/delete-icn.svg" alt="" >
+                                <div class="col-sm-1 col-lg-1 buttonsCart d-flex justify-content-center">
+                                    <img src="cartImages/delete-icn.svg" alt="" width = "15px;" class = ".d-sm-none .d-md-block">
                                 </div>
 
-                                <div class="col-sm-2 col-lg-2 imageCart  mr-5 ml-5">
-                                    <img src="${responseElement.image}" height="150px" class = "responsive" alt="product image" />
+                                <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
+                                    <img src="${responseElement.image}" height="150px" class = "responsive" alt="product image" >
                                 </div>
 
-                                <div class="col-sm-3 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
-                                    <span class="row ">${responseElement.name}</span>
+                                <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
+                                    <span class="row d-flex justify-content-center">${responseElement.name}</span>
                                     
                                 </div>
 
-                                <div class="row quantityCart ml-5 mr-5">
+                                <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
                               
                                     <div class="row mt-5">
                                       <div class="col-3">
@@ -158,18 +161,18 @@ if(!productcart.length == 0){
                                             <img src="cartImages/minus.svg" alt="">
                                         </button>
                                       </div>
-                                      <div class="col-3 justify-content-center" style="padding-left: 15px; padding-right: 1px; padding-top: 1px; padding-bottom: 2px;">
+                                      <div class="col-3 justify-content-center" style="padding-left: 10px; padding-right: 1px; padding-top: 1px; padding-bottom: 2px;">
                                         <input disabled id="field${responseElement.productid}" class = "" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
                                       </div>
                                       <div class="col-3">
                                         <button onclick="plusItem(${responseElement.productid})" class="plus-btnCart " type="button" name="button">
                                             <img src="cartImages/plus.svg" alt="" >
-                                        </button>                                      </div>
+                                        </button>                                 
+                                    </div>
                                     </div>
                                 </div>
                              
-
-                                <div class="col col-lg-2total-priceCart  mt-5  mr-1 ml-1">${responseElement.price} kr</div>
+                                <div class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">${responseElement.price} kr</div>
 
                             </div>
           `;
