@@ -25,6 +25,8 @@ import java.util.List;
 @Controller
 public class hej {
 
+
+
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -43,6 +45,7 @@ public class hej {
         model.addAttribute("emailAd",emailAd);
 
 
+        System.out.println("hej!");
         return "customers";
     }
 
