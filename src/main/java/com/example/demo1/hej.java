@@ -45,7 +45,7 @@ public class hej {
         model.addAttribute("emailAd",emailAd);
 
 
-        System.out.println("hej!");
+        System.out.println("hejhej!");
         return "customers";
     }
 
