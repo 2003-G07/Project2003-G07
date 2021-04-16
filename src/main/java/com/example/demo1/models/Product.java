@@ -13,7 +13,7 @@ import javax.persistence.Id;
  * Copyright: MIT
  */
 @Entity
-public class Produkt {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,13 +22,13 @@ public class Produkt {
     protected int storage;
     protected String image;
     protected String description;
-    protected int price;
+    protected double price;
     protected String category;
 
-    public Produkt(){}
+    public Product(){}
 
 
-    public Produkt(String name, int storage, String image, String description, int price, String category){
+    public Product(String name, int storage, String image, String description, double price, String category){
         setName(name);
         setStorage(storage);
         setImage(image);
@@ -78,11 +78,11 @@ public class Produkt {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -92,5 +92,18 @@ public class Produkt {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", storage=" + storage +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

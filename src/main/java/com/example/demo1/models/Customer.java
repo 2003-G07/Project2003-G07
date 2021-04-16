@@ -21,7 +21,7 @@ public class Customer {
     protected String lastName;
     protected String tel;
     protected String email;
-    protected int addressId;
+    protected Long addressId;
 
     public Customer() {}
 
@@ -72,11 +72,23 @@ public class Customer {
         this.email = email;
     }
 
-    public int getAddressId() {
+    public Long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", addressId=" + addressId +
+                '}';
     }
 }

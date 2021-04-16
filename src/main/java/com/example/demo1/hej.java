@@ -2,9 +2,9 @@ package com.example.demo1;
 
 
 import com.example.demo1.models.Customer;
-import com.example.demo1.models.Produkt;
+import com.example.demo1.models.Product;
 import com.example.demo1.repositories.CustomerRepository;
-import com.example.demo1.repositories.ProduktRepository;
+import com.example.demo1.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +29,7 @@ public class hej {
     private CustomerRepository customerRepository;
 
    @Autowired
-   private ProduktRepository produktRepository;
+   private ProductRepository productRepository;
 
    private int idTracker;
 
@@ -82,14 +82,14 @@ public class hej {
         ModelAndView modelAndView = new ModelAndView();
 
 /*
-        produktRepository.save(new Produkt("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        produktRepository.save(new Produkt("Kuksugare",11,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        produktRepository.save(new Produkt("Din mamma",11,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        productRepository.save(new Product("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        productRepository.save(new Product("Kuksugare",11,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        productRepository.save(new Product("Din mamma",11,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",160,"Dryck"));
 
 
  */
 
-        modelAndView.addObject("listCustomers", produktRepository.findAll());
+        modelAndView.addObject("listCustomers", productRepository.findAll());
 
 
 
@@ -108,7 +108,7 @@ public class hej {
         ModelAndView modelAndView = new ModelAndView();
 
 
-        modelAndView.addObject("listCustomers", produktRepository.findAll());
+        modelAndView.addObject("listCustomers", productRepository.findAll());
 
 
         return modelAndView;
@@ -117,15 +117,15 @@ public class hej {
 
     @GetMapping("/Startsida/produktsida/")
     public ModelAndView showProducts(@RequestParam long id){
-        Produkt produkt = produktRepository.getProduktById(id);
+        Product product = productRepository.getProductById(id);
 
-        List<Produkt> produktList = new ArrayList<>();
-        produktList.clear();
-        produktList.add(produkt);
+        List<Product> productList = new ArrayList<>();
+        productList.clear();
+        productList.add(product);
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("productToShow",produktList);
+        modelAndView.addObject("productToShow",productList);
 
         return modelAndView;
     }
