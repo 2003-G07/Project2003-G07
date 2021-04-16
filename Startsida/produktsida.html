@@ -35,7 +35,7 @@
 
           <!-- Main Input Card-->
 
-          <div id="productCard" class="row mt-5">
+          <div id="productCard" class="row mt-sm-5">
 
           </div>
         </div>
@@ -43,7 +43,7 @@
     </div>
 
   </div>
-  <footer id="foot" style="background-color: #007A3D;">
+  <footer id="foot" style="background-color: #007A3D;" class="justify-content-center">
 
   </footer>
   </div>
@@ -123,15 +123,16 @@ if(!productcart.length == 0 ){
       var generator = document.getElementById("productCard");
 
       generator.innerHTML = `
-        <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;">
+        <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;" >
           
-          <img id="image" src="${response[findProduct].image}" alt="">
+          <img id="image" src="${response[findProduct].image}" alt="product image" class = "responsive" width="800 px" height= 800 px" >
         
         </div>
-        <div class="col col-lg-6" style="width: max-content;">
+       
+        <div class="col col-lg-6 mt-4" style="width: max-content;">
         
           <div class="row" style="margin-left: 1rem; margin-top: 1rem;" >
-            <h1 style="font-size: 4rem">${response[findProduct].name}</h1>
+            <h1 id = "product-name-size">${response[findProduct].name}</h1>
           </div>
 
           <div class="row" style="margin-left: 1rem;" >
@@ -142,17 +143,17 @@ if(!productcart.length == 0 ){
             <p>${response[findProduct].description}</p>
           </div>
 
-          <div class="row d-flex justify-content-center"   >
-            <h2 style="font-size: 8rem; color: red;">${response[findProduct].price}:-</h2>
+          <div class="row justify-content-start" style="margin-left: 1rem;"   >
+            <h2 id="price-size" style="color: red;">${response[findProduct].price}:-</h2>
           </div>
 
-          <div class="row d-flex justify-content-center"   >
-            <button onclick="addToCart(${productChosen})" type="button" style="width:400px; height: 60px; font-size: 30px;" class="btn btn-info">Lägg till i varukorg</button>
-            <button onclick="clearbutton()">Clear</button>
+          <div class="row d-flex justify-content-start"  style="margin-left: 1rem;" >
+            <button onclick="addToCart(${productChosen})" type="button" id ="button-size" class="btn btn-info col-8 col-lg-7">Lägg till i varukorg</button>
+            <button onclick="clearbutton()" id ="button-size" class="btn btn-outline-warning col-2 col-lg-3">Clear</button>
           </div>
 
-          <div class="row d-flex justify-content-start" style="margin-left: 5rem;"  >
-            <p>Antal kvar i lager: ${response[findProduct].storage} </p>
+          <div class="row d-flex justify-content-start" style="margin-left: 1rem; margin-top: 1rem;"  >
+            <p >Antal kvar i lager: ${response[findProduct].storage} </p>
           </div>
         </div>
      
