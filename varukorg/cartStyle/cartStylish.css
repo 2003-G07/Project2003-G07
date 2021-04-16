@@ -19,10 +19,11 @@
     text-align: center;
     margin: 6px 0;
   }
+  /*
   .buttonsCart {
     margin-right: 20px;
   }
-
+*/
   .is-active {
     animation-name: animate;
     animation-duration: 0.8s;
@@ -41,5 +42,29 @@
     100% {
       background-position: right;
     }
+  }
+}
+
+.responsive {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
+
+@media screen and (max-width: 375px) {
+  #buttonsCart {
+
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+    
+  }
+}
+@media screen and (min-width: 376px) {
+  #buttonsCart {
+    margin-top: 5rem;
+    margin-left: 1rem;
+    margin-right: 1px;
   }
 }

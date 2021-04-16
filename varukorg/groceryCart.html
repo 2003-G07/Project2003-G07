@@ -44,7 +44,7 @@
 
                     <!-- LÄGG IN ALLT JS Generat -->
 
-                    <div class="row justify-content-center">
+                    <div class="row mt-sm-5 justify-content-center ">
                         <h1>Varukorg</h1>
                     </div>
 
@@ -67,7 +67,7 @@
             <footer id="foot" style="background-color: #007A3D;">
 
             </footer>
-
+        </div>
             <script>
 
                 var globalData;
@@ -134,42 +134,42 @@ if(!productcart.length == 0){
                             document.getElementById("inputorder").innerHTML += `
         
         
-                                <div id="${responseElement.productid}" class="row  itemCart mt-2">
+                                <div id="${responseElement.productid}" class="row d-flex flex-wrap justify-content-start itemCart mt-2">
                                 
                                 
-                                <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
-                                    <img src="cartImages/delete-icn.svg" alt="" />
+                                <div class="col col-lg-1 buttonsCart justify-content-center  ">
+                                    <img src="cartImages/delete-icn.svg" alt="" >
                                 </div>
 
-                                <div class="col imageCart  mr-5 ml-5">
-                                    <img src="${responseElement.image}" height="150px" alt="" />
+                                <div class="col-sm-2 col-lg-2 imageCart  mr-5 ml-5">
+                                    <img src="${responseElement.image}" height="150px" class = "responsive" alt="product image" />
                                 </div>
 
-                                <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
-                                    <span class="row">${responseElement.name}</span>
+                                <div class="col-sm-3 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
+                                    <span class="row ">${responseElement.name}</span>
                                     
                                 </div>
 
-                                <div class="row quantityCart  ml-5 mr-5">
+                                <div class="row quantityCart ml-5 mr-5">
                               
                                     <div class="row mt-5">
-                                      <div class="col-sm">
-                                        <button onclick="minusItem(${responseElement.productid})" class="minus-btnCart" type="button" name="button">
-                                            <img src="cartImages/minus.svg" alt="" />
+                                      <div class="col-3">
+                                        <button onclick="minusItem(${responseElement.productid})" class="minus-btnCart " type="button" name="button">
+                                            <img src="cartImages/minus.svg" alt="">
                                         </button>
                                       </div>
-                                      <div class="col-sm" style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <input disabled id="field${responseElement.productid}" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
+                                      <div class="col-3 justify-content-center" style="padding-left: 15px; padding-right: 1px; padding-top: 1px; padding-bottom: 2px;">
+                                        <input disabled id="field${responseElement.productid}" class = "" style="width: 2rem;" type="text"  name="name" value="${amountSingleItem}">
                                       </div>
-                                      <div class="col-sm">
-                                        <button onclick="plusItem(${responseElement.productid})" class="plus-btnCart" type="button" name="button">
-                                            <img src="cartImages/plus.svg" alt="" />
+                                      <div class="col-3">
+                                        <button onclick="plusItem(${responseElement.productid})" class="plus-btnCart " type="button" name="button">
+                                            <img src="cartImages/plus.svg" alt="" >
                                         </button>                                      </div>
                                     </div>
                                 </div>
                              
 
-                                <div class="row total-priceCart  mt-5  mr-1 ml-1">${responseElement.price} kr</div>
+                                <div class="col col-lg-2total-priceCart  mt-5  mr-1 ml-1">${responseElement.price} kr</div>
 
                             </div>
           `;
