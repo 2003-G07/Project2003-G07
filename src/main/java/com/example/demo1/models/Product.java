@@ -38,6 +38,14 @@ public class Product {
     }
 
 
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
     public Long getId() {
         return id;
     }
