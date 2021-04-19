@@ -81,7 +81,6 @@ public class ProductController {
     @GetMapping(path = "/showProducts")
     public @ResponseBody Iterable<Product> showProducts(){
 
-
         return productRepository.findAll();
 
     }
