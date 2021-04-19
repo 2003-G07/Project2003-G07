@@ -24,7 +24,6 @@ public class ProductController {
     /**
      * Adds product to database, ID is auto-incremented
      * checks to see that there is not already an existing version of the same product
-     * localhost:1234/addProduct
      * @return String
      */
 
@@ -55,7 +54,7 @@ public class ProductController {
     }
 
     // Ändra så att produkten bara gömmer sid! Test ATM
-    //localhost:1234/product/deleteProduct?productId=1234
+
     @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteProduct(@RequestParam Long id){
 
@@ -88,7 +87,6 @@ public class ProductController {
 
     /**
      * Shows product from id
-     * localhost:1234/product/showProductById
      * @param id
      * @return
      */
