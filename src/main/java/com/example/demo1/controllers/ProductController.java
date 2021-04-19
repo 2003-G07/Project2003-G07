@@ -15,6 +15,7 @@ import java.util.Optional;
  * Copyright: MIT
  */
 @RestController
+@RequestMapping(path = "/product/")
 public class ProductController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class ProductController {
      * @return String
      */
 
-    @PostMapping(path = "/addProduct")
+    @PostMapping(path = "/add")
     public @ResponseBody String addProduct(
                             @RequestParam String name,
                             @RequestParam (required = false) int storage,
@@ -55,7 +56,7 @@ public class ProductController {
 
     // Ändra så att produkten bara gömmer sid! Test ATM
     //localhost:1234/product/deleteProduct?productId=1234
-    @DeleteMapping(path = "/deleteProduct")
+    @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteProduct(@RequestParam Long id){
 
 
@@ -78,7 +79,7 @@ public class ProductController {
 
     }
     //localhost:1234/product/showProducts
-    @GetMapping(path = "/showProducts")
+    @GetMapping(path = "/showAll")
     public @ResponseBody Iterable<Product> showProducts(){
 
         return productRepository.findAll();
@@ -99,7 +100,7 @@ public class ProductController {
 
     }
 
-    @PutMapping(path = "/updateProductById")
+    @PutMapping(path = "/update")
     public @ResponseBody String updateProduct(
                             @RequestParam Long id,
                             @RequestParam (required = false) String name,
