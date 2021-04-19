@@ -160,4 +160,5 @@ footer {
 
 .sidebar-expanded{
   padding-top: 120px;
+  z-index: auto;
 }
