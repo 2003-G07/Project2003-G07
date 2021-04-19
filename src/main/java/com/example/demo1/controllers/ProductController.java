@@ -37,7 +37,7 @@ public class ProductController {
                             @RequestParam  String category,
                             @RequestParam  boolean isVisible ){
 
-        System.out.println(name);
+        System.out.println("YO");
 
         Product product = new Product(name,storage, image, description, price,category,isVisible);
 
