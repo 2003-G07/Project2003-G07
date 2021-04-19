@@ -22,7 +22,7 @@ public class Product {
     protected int storage;
     protected String image;
     protected String description;
-    protected double price;
+    protected int price;
     protected String category;
     protected boolean isVisible;
 
@@ -30,7 +30,7 @@ public class Product {
     public Product(){}
 
 
-    public Product(String name, int storage, String image, String description, double price, String category, boolean isVisible){
+    public Product(String name, int storage, String image, String description, int price, String category, boolean isVisible){
         setName(name);
         setStorage(storage);
         setImage(image);
@@ -91,7 +91,7 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
