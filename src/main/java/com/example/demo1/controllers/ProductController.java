@@ -131,15 +131,8 @@ public class ProductController {
 
            productRepository.save(temp);
 
-            return "Product updated";
+           return "Product updated";
 
         }
-
-
-
-
-
     }
-
-
 }
