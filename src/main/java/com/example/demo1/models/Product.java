@@ -43,6 +43,8 @@ public class Product {
     }
 
     public void setVisible(boolean visible) {
+        System.out.println("hej");
+
         isVisible = visible;
     }
 
