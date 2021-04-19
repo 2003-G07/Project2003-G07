@@ -24,17 +24,20 @@ public class Product {
     protected String description;
     protected double price;
     protected String category;
+    protected boolean isVisible;
+
 
     public Product(){}
 
 
-    public Product(String name, int storage, String image, String description, double price, String category){
+    public Product(String name, int storage, String image, String description, double price, String category, boolean isVisible){
         setName(name);
         setStorage(storage);
         setImage(image);
         setDescription(description);
         setPrice(price);
         setCategory(category);
+        setVisible(isVisible);
     }
 
 
