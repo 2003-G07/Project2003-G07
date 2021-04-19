@@ -146,3 +146,18 @@ footer {
     font-size: 1rem;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .navbarpadding{
+    padding-top: 120px; 
+    padding-left: 242px;
+  }
+}
+
+.navbarpadding{
+  padding-top: 120px; 
+}
+
+.sidebar-expanded{
+  padding-top: 120px;
+}
