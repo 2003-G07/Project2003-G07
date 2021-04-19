@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 
+import com.example.demo1.models.CartService;
 import com.example.demo1.models.Customer;
 import com.example.demo1.models.Product;
 import com.example.demo1.repositories.CustomerRepository;
@@ -8,10 +9,7 @@ import com.example.demo1.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -36,7 +34,10 @@ public class hej {
    @Autowired
    private ProductRepository productRepository;
 
-   private int idTracker;
+   List<CartService> cartServiceList = new ArrayList<>();
+
+   List<Product> proInCart = new ArrayList<>();
+
 
 
     @GetMapping("/greeting")
@@ -48,7 +49,6 @@ public class hej {
         model.addAttribute("emailAd",emailAd);
 
 
-        System.out.println("hejhej!");
         return "customers";
     }
 
@@ -73,7 +73,6 @@ public class hej {
 
     @GetMapping("admin/addKund.html")
     public ModelAndView addCustomer() throws SQLException {
-        System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -81,35 +80,75 @@ public class hej {
         return modelAndView;
     }
 
-    @GetMapping("/index.html")
-    public ModelAndView listCustomers() throws SQLException {
-        System.out.println("det funkar");
+    @GetMapping("/index")
+    public String listCustomers(Model model) throws SQLException {
 
-        ModelAndView modelAndView = new ModelAndView();
 
+       // ModelAndView modelAndView = new ModelAndView();
 /*
-        productRepository.save(new Product("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        productRepository.save(new Product("Kuksugare",11,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        productRepository.save(new Product("Din mamma",11,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+
+        productRepository.save(new Product("Falun Gong Earl Grey",160,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",7000,"Dryck", true));
+        productRepository.save(new Product("Glass",200,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",200,"Dryck",true));
+        productRepository.save(new Product("Pasta",99,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
 
 
  */
 
-        modelAndView.addObject("listCustomers", productRepository.findAll());
+       // modelAndView.addObject("listCustomers", productRepository.findAll());
 
+        model.addAttribute("listCustomers", productRepository.findAll());
 
-
-
-
-        return modelAndView;
+        return "index";
     }
 
+    @RequestMapping("/index/add")
+    public String addProductToCart1(@RequestParam("id") Product product){
+
+        Product stock = productRepository.findById(product.getId()).get();
+
+
+        if (stock.getStorage() > 0){
+           // cartService.setProductInCart(product);
+            stock.setStorage(stock.getStorage()-1);
+            productRepository.save(stock);
+
+            System.out.println(productRepository.findById(product.getId()).get().getStorage());
+
+
+proInCart.add(product);
+
+            boolean newItemInCart = false;
+
+
+            for (int i = 0; i < cartServiceList.size(); i++) {
+                if (cartServiceList.get(i).getProduct().getId() == product.getId()){
+                    cartServiceList.get(i).setQuantity(cartServiceList.get(i).getQuantity()+1);
+                    newItemInCart = false;
+                    break;
+                }else {
+                    newItemInCart = true;
+                }
+            }
+            if (newItemInCart) {
+                cartServiceList.add(new CartService(product, 1));
+            }
+
+        }else {
+
+        }
+
+
+
+
+
+
+        return "redirect:/index";
+    }
 
 
 
     @GetMapping("Startsida/produktsida")
     public ModelAndView showProduct() throws SQLException {
-        System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -135,6 +174,19 @@ public class hej {
 
         return modelAndView;
     }
+
+
+   @GetMapping("varukorg/groceryCart")
+   public String showCart(Model model){
+
+
+
+        model.addAttribute("listProductsInCart", proInCart);
+
+
+
+        return "varukorg/grocerycart";
+   }
 
 
 

@@ -18,13 +18,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    protected String name;
+     String name;
     protected int storage;
     protected String image;
     protected String description;
-    protected int price;
+        int price;
     protected String category;
     boolean isVisible;
+
+    int quant;
 
     public Product(){}
 
@@ -36,6 +38,7 @@ public class Product {
         setDescription(description);
         setPrice(price);
         setCategory(category);
+        setVisible(isVisible);
     }
 
 

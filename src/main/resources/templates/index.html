@@ -69,8 +69,13 @@
 
 
 
+<form action="#" th:action="@{/index/add}" >
+  <input type="hidden" th:value="${product.id}" name="id"/>
 
-            <button class="btn btn-primary btn-lg" style="text-align: center;" th:onclick="addToCart([[${product.id}]])" > Köp</button>
+  <button class="btn btn-primary btn-lg" style="text-align: center;" type="submit"> Köp</button>
+
+</form>
+
 
 
           </div>
@@ -93,7 +98,7 @@
 
 
 
-    var globalData;
+
     
 
 
@@ -103,78 +108,7 @@
 
 
   
-    const cardGen = (response) => {
-     
-globalData = response;
 
-
-
-
-
-
-if(memory == "startsida" || memory == null){
-for (let index = 0; index2 < response.length; index2++) {
-        document.getElementById("inputproduct").innerHTML += `
-
-          <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
-     
-            <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
-
-        <img src="${response[index2].image}"
-        class="d-block user-select-none"
-        width="100%"
-        height="200"
-        aria-label="Placeholder: Image cap"
-        focusable="false"
-        role="img"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 318 180"
-        style="font-size: 1.125rem; text-anchor: middle"
-        alt="productimge"
-        >
-    </a>
-    <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
-
-        <div class="d-flex justify-content-center">
-            
-            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${response[index2].price}:-   </p>
-          
-        </div>
-
-        
-        </a>
-
-        <div style="height: 84px">
-        <a href="#" onclick="openProduct(${response[index2].productid})" style="text-decoration: none;">
-
-          
-        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${response[index2].name}</p>
-        
-        </a>
-        </div>
-    
-        
-           
-
-        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${response[index2].productid})" > Köp</button>
-
-        
-        </div>
-          `;
-        
-      }
-
-}else{
-    console.log(globalData);
-  categorieFilter(globalData);
-}
-
-
-
-
-
-      
-    };
   </script>
 
   <footer id="foot" style="background-color: #007A3D;" class="mt-5">
@@ -206,9 +140,25 @@ var maincart = new Array();
 var shoppingcart = document.getElementById("amount");
   
 function addToCart(värde){
+  /*
   maincart.push(värde);
   localStorage.setItem('cloudcart', JSON.stringify(maincart));
   shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+
+   */
+/*
+  var url = "/index.html/?id="+värde;
+
+  $.ajax({
+    type: "Post",
+    url : url,
+  });
+
+ */
+  alert("tillagd")
+
+
+
 }
 
 
@@ -242,64 +192,9 @@ cat.removeChild(cat.firstChild);
 
 
 
-      function categorieFilter(globalData){
-    
-    removeAllItems();
-    
-    for(i=0; i<globalData.length;i++){
-    
-    if(memory == globalData[i].category){
-    document.getElementById("inputproduct").innerHTML += `<div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
-     
-            <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
 
-        <img src="${globalData[i].image}"       
-        class="d-block user-select-none"
-        width="100%"
-        height="200"
-        aria-label="Placeholder: Image cap"
-        focusable="false"
-        role="img"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 318 180"
-        style="font-size: 1.125rem; text-anchor: middle"
-        alt="productimge"
-        >
-    </a>
-    <a href="#" onclick="openProduct(${globalData[i].productid})" style="text-decoration: none;">
 
-        <div class="d-flex justify-content-center">
-            
-            <p class="card-header border-bottom-0 " style="background-color: white; font-size: 40px; color: red " >${globalData[i].price}:-   </p>
-          
-        </div>
-
-        
-        </a>
-
-        <div style="height: 84px">
-        <a href="#" onclick="openProduct(${globalData[i].productid})"style="text-decoration: none;">
-
-          
-        <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>${globalData[i].name}</p>
-        
-        </a>
-        </div>
-    
-        
-           
-
-        <button class="btn btn-primary btn-lg" style="text-align: center;" onclick="addToCart(${globalData[i].productid})" > Köp</button>
-
-        
-        </div>
-    `;
-    }
-    
-    }
-        }
-
-        $(function(){
+$(function(){
   $("#nav-placeholder").load("../nav.html");
   $("#sidebar-wrapper").load("../sidebar.html");
 
