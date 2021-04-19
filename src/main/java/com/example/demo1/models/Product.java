@@ -22,13 +22,14 @@ public class Product {
     protected int storage;
     protected String image;
     protected String description;
-    protected double price;
+    protected int price;
     protected String category;
+    boolean isVisible;
 
     public Product(){}
 
 
-    public Product(String name, int storage, String image, String description, double price, String category){
+    public Product(String name, int storage, String image, String description, int price, String category, boolean isVisible){
         setName(name);
         setStorage(storage);
         setImage(image);
@@ -43,7 +44,7 @@ public class Product {
     }
 
     public void setVisible(boolean visible) {
-        System.out.println("hej");
+
 
         isVisible = visible;
     }
@@ -92,7 +93,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

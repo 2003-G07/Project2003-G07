@@ -8,7 +8,10 @@ import com.example.demo1.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -37,7 +40,7 @@ public class hej {
 
 
     @GetMapping("/greeting")
-    public String greetingForm(@RequestParam String firstNa, String lastNa,String teleNr , String emailAd , Model model) throws SQLException {
+    public String greetingForm(@RequestParam String firstNa, String lastNa, String teleNr , String emailAd , Model model) throws SQLException {
 
         model.addAttribute("firstNa",firstNa);
         model.addAttribute("lastNa",lastNa);
