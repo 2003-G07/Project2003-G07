@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Henrik Elofsson
@@ -21,7 +21,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     protected Long customerId;
-    protected LocalDateTime date;
+    protected String date;
     protected String image;
     protected Long cost;
     protected int status;
@@ -31,11 +31,20 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(LocalDateTime date, String image, Long cost, int status) {
-        this.date = date;
+    public Orders(String image, Long cost, int status) {
+        this.date = currentTime();
         this.image = image;
         this.cost = cost;
         this.status = status;
+    }
+
+    public String currentTime(){
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+
+        return dtf.format(now);
     }
 
 
@@ -56,12 +65,8 @@ public class Orders {
         this.customerId = customerId;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public String getImage() {
