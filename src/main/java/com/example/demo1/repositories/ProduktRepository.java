@@ -19,5 +19,4 @@ public interface ProduktRepository extends CrudRepository <Produkt, Long> {
     List<Produkt> findByName(String name);
     Produkt getProduktById(long id);
 
-
 }
