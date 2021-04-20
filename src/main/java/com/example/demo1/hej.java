@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 
+import com.example.demo1.models.CartService;
 import com.example.demo1.models.Customer;
 import com.example.demo1.models.Product;
 import com.example.demo1.repositories.CustomerRepository;
@@ -33,11 +34,15 @@ public class hej {
    @Autowired
    private ProductRepository productRepository;
 
-   private int idTracker;
+   List<CartService> cartServiceList = new ArrayList<>();
+
+   List<Product> proInCart = new ArrayList<>();
+   int totalpris;
+
 
 
     @GetMapping("/greeting")
-    public String greetingForm(@RequestParam String firstNa, String lastNa,String teleNr , String emailAd , Model model) throws SQLException {
+    public String greetingForm(@RequestParam String firstNa, String lastNa, String teleNr , String emailAd , Model model) throws SQLException {
 
         model.addAttribute("firstNa",firstNa);
         model.addAttribute("lastNa",lastNa);
@@ -45,7 +50,6 @@ public class hej {
         model.addAttribute("emailAd",emailAd);
 
 
-        System.out.println("hejhej!");
         return "customers";
     }
 
@@ -70,7 +74,6 @@ public class hej {
 
     @GetMapping("admin/addKund.html")
     public ModelAndView addCustomer() throws SQLException {
-        System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -79,34 +82,86 @@ public class hej {
     }
 
     @GetMapping("/index.html")
-    public ModelAndView listCustomers() throws SQLException {
-        System.out.println("det funkar");
+    public String listCustomers(Model model) throws SQLException {
 
-        ModelAndView modelAndView = new ModelAndView();
+
+
 
 /*
-        productRepository.save(new Product("Falun Gong Earl Grey",11,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        productRepository.save(new Product("Kuksugare",11,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",160,"Dryck"));
-        productRepository.save(new Product("Din mamma",11,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",160,"Dryck"));
+        productRepository.save(new Product("Falun Gong Earl Grey",160,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",7000,"Dryck", true));
+        productRepository.save(new Product("Glass",200,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",200,"Dryck",true));
+        productRepository.save(new Product("Pasta",99,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
+
 
 
  */
 
-        modelAndView.addObject("listCustomers", productRepository.findAll());
+   //productRepository.save(new Product("Choklad",3,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
+        var a = productRepository.findAll();
+        List<Product> productsToShow = new ArrayList<>();
+        for (Product product: a) {
+            if (product.isVisible() && product.getStorage()>0){
+                productsToShow.add(product);
+            }
+        }
 
 
 
 
+        model.addAttribute("listCustomers", productsToShow);
 
-        return modelAndView;
+        return "index.html";
     }
 
+    @RequestMapping("/index.html/add")
+    public String addProductToCart1(@RequestParam("id") Product product){
+
+        Product stock = productRepository.findById(product.getId()).get();
+
+
+        if (stock.getStorage() > 0){
+            stock.setStorage(stock.getStorage()-1);
+            productRepository.save(stock);
+
+
+
+            boolean newItemInCart = false;
+
+            if (proInCart.size() == 0){
+                newItemInCart = true;
+            }else {
+                for (int i = 0; i < proInCart.size(); i++) {
+                    if (proInCart.get(i).getId().equals(product.getId())){
+                        proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
+                        newItemInCart = false;
+                        break;
+                    }else {
+                        newItemInCart = true;
+                    }
+                }
+            }
+
+
+
+            if (newItemInCart) {
+                product.setQuant(product.getQuant()+1);
+                proInCart.add(product);
+            }
+
+        }
+
+        totalpris += product.getPrice();
+
+
+
+
+        return "redirect:/index.html";
+    }
 
 
 
     @GetMapping("Startsida/produktsida")
     public ModelAndView showProduct() throws SQLException {
-        System.out.println("det funkar");
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -130,9 +185,136 @@ public class hej {
 
         modelAndView.addObject("productToShow",productList);
 
-        return modelAndView;
+
+            return modelAndView;
+
+
+
     }
 
+    @RequestMapping("/Startsida/produktsida/add")
+    public String addProduct(@RequestParam("id") Product product){
+
+        Product stock = productRepository.findById(product.getId()).get();
+
+
+        if (stock.getStorage() > 0){
+            stock.setStorage(stock.getStorage()-1);
+            productRepository.save(stock);
+
+
+
+            boolean newItemInCart = false;
+
+            if (proInCart.size() == 0){
+                newItemInCart = true;
+            }else {
+                for (int i = 0; i < proInCart.size(); i++) {
+                    if (proInCart.get(i).getId().equals(product.getId())){
+                        proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
+                        newItemInCart = false;
+                        break;
+                    }else {
+                        newItemInCart = true;
+                    }
+                }
+            }
+
+
+
+            if (newItemInCart) {
+                product.setQuant(product.getQuant()+1);
+                proInCart.add(product);
+            }
+
+        }
+
+        totalpris += product.getPrice();
+
+        String url;
+
+        if (product.getStorage() == 0){
+             url = "redirect:/index.html";
+        }else {
+             url = "redirect:/Startsida/produktsida/?id=" + product.getId();
+        }
+
+
+
+
+
+        return url;
+    }
+
+
+
+
+   @GetMapping("varukorg/groceryCart.html")
+   public String showCart(Model model){
+
+
+
+        model.addAttribute("listProductsInCart", proInCart);
+        model.addAttribute("totalpris", totalpris);
+
+
+
+        return "varukorg/grocerycart.html";
+   }
+
+
+
+    @RequestMapping("/groceryCart/add")
+    public String addProductToGrosCart(@RequestParam("id") Product product){
+
+        Product stock = productRepository.findById(product.getId()).get();
+        if (stock.getStorage() != 0){
+            stock.setStorage(stock.getStorage()-1);
+            productRepository.save(stock);
+
+
+
+
+
+        for (int i = 0; i < proInCart.size(); i++) {
+            if (proInCart.get(i).getId().equals(product.getId())){
+                proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
+            }
+
+        }
+
+        totalpris += product.getPrice();
+    }
+
+        return "redirect:/varukorg/groceryCart.html";
+    }
+
+
+
+    @RequestMapping("/groceryCart/delete")
+    public String deleteProductToGrosCart(@RequestParam("id") Product product){
+
+        Product stock = productRepository.findById(product.getId()).get();
+        stock.setStorage(stock.getStorage()+1);
+        productRepository.save(stock);
+
+
+
+        for (int i = 0; i < proInCart.size(); i++) {
+            if (proInCart.get(i).getId().equals(product.getId())){
+                proInCart.get(i).setQuant(proInCart.get(i).getQuant()-1);
+                if (proInCart.get(i).getQuant() == 0){
+                    proInCart.remove(i);
+                }
+            }
+
+        }
+
+        totalpris -= product.getPrice();
+
+
+        return "redirect:/varukorg/groceryCart.html";
+    }
 
 
 }

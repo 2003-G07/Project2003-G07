@@ -18,16 +18,60 @@
   <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
-    
-    <div id="nav-placeholder">
 
+    <div id="nav-placeholder">
+      <div class="header">
+        <nav class="navbar navbar-custom navbar-expand-md navbar-light  ">
+          <a href="/index.html">
+            <img src="/img/logga_svart.svg"  alt="" width=200px height=100px />
+          </a>
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="form-inline ml-auto">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search">
+              <button class="btn btn-secondary my-sm-0" style="position: center;" type="submit">
+                <ion-icon name="search-outline"></ion-icon>Sök
+              </button>
+              <a onclick="window.location.href = '/inloggning/inloggningsida.html'"class="btn btn-secondary my-sm-0">
+                <ion-icon name="person-outline"></ion-icon>Logga in
+              </a>
+              <a id="amount" onclick="window.location.href = '/varukorg/groceryCart.html'" class="btn btn-secondary my-sm-0">
+                <ion-icon name="cart-outline"></ion-icon>Till kassa
+              </a>
+            </form>
+
+
+          </div>
+        </nav>
+
+      </div>
 
     </div>
        <!--Sidebar-->
        <div class="d-flex wrapper">
         <div class="border-right" id="sidebar-wrapper" >
-      
-      </div>
+          <div class="sidebar-heading">Kategorier</div>
+          <div id="categoryList" class="list-group list-group-flush">
+            <a href="../index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;" >Alla produkter</a>
+
+
+
+
+
+          </div>
+          <div class="sidebar-heading">Lite mer om oss</div>
+          <div class="list-group list-group-flush">
+            <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+            ; color: black;">Om Oss</a>
+          </div>
+
+
+        </div>
 
        <div class="container">
 
@@ -70,8 +114,9 @@
             </div>
 
             <div class="row d-flex justify-content-center"   >
-              <button onclick="addToCart(${productChosen})" type="button" style="width:400px; height: 60px; font-size: 30px;" class="btn btn-info">Lägg till i varukorg</button>
-              <button onclick="clearbutton()">Clear</button>
+
+                <a class="btn btn-info" type="button" onclick="addToCart()" style="width:400px; height: 60px; font-size: 30px;" th:href="@{/Startsida/produktsida/add/(id=${product.id})}">Lägg till i varukorg</a>
+
             </div>
 
             <div class="row d-flex justify-content-start" style="margin-left: 5rem;"  >
@@ -93,11 +138,48 @@
 
        </div>
     <footer id="foot" style="background-color: #007A3D;">
+
+      <div class="container">
+        <div class=" text-center row">
+
+          <div class="col" style="font-size: large;">
+            <h5>Kontaktinformation</h5>
+            <p class="text-center">
+              <b>Address:</b> Lorem, ipsum. <br>
+              <b>Öppetider:</b> TIDER <br>
+              <b>Telefonnummer:</b> XXX-XXXXXX <br>
+              <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+            </p>
+          </div>
+          <div class="col">
+            <h5>Följ oss!</h5>
+            <a href="#"><img src="/img/twitter.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="/img/facebook.svg" alt="" class="footer-logo"></a>
+            <a href="#"><img src="/img/instagram.svg" alt="" class="footer-logo"></a>
+          </div>
+          <div class="col">
+            <h5>Våra samarbetspartners</h5>
+            <img src="/img/klarna.svg" alt="" class="footer-logo">
+            <img src="/img/mastercard.svg" alt="" class="footer-logo">
+            <img src="/img/visa.svg" alt="" class="footer-logo">
+            <img src="/img/budbee.svg" alt="" class="footer-logo">
+            <img src="/img/postnord.svg" alt="" class="footer-logo">
+          </div>
+        </div>
+        <hr>
+        <div class="text-center">
+          <p class="copyright">Copyright 2021 &copy; G07</p>
+        </div>
+      </div>
+
      
     </footer>
        </div>
        
        <script>
+
+
+
 
 
 $(function(){
@@ -119,62 +201,10 @@ if(!productcart.length == 0 ){
   maincart = productcart
 }
 
-function addToCart(värde){
-  maincart.push(värde);
-  localStorage.setItem('cloudcart', JSON.stringify(maincart));
-  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
+function addToCart(){
+alert("Produkt tillagd i varukorg!");
   
 }
-
-
-
-function clearbutton(){
-  
-  maincart.splice(0,maincart.length);
-
-
-localStorage.setItem('cloudcart', JSON.stringify(maincart));
-
-shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-
-
-
-}
-
-
-
-
-
-
-
-
-      const productGen = (response) => {
-
-        var productChosenParse = localStorage.getItem('lastClickedProduct');
-        var productChosen = JSON.parse(productChosenParse);
-
-
-        var findProduct = 0;
-
-        for(i=0; i<response.length; i++){
-          if(response[i].productid == productChosen){
-            findProduct = i;
-            break;
-          }
-        }
-
-
-
-        var generator = document.getElementById("productCard");
-
-        generator.innerHTML = `
-
-     
-        
-        `;
-
-
-      };
 
        </script>
     

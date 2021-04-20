@@ -25,7 +25,7 @@ public class Product {
     protected int price;
     protected String category;
     protected boolean isVisible;
-
+    int quant;
 
     public Product(){}
 
@@ -40,13 +40,17 @@ public class Product {
         setVisible(isVisible);
     }
 
+    public int getQuant() {
+        return quant;
+    }
+
 
     public boolean isVisible() {
         return isVisible;
     }
 
     public void setVisible(boolean visible) {
-        System.out.println("hej");
+
 
         isVisible = visible;
     }
@@ -95,7 +99,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
