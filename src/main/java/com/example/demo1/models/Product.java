@@ -44,6 +44,9 @@ public class Product {
         return quant;
     }
 
+    public void setQuant(int quant) {
+        this.quant = quant;
+    }
 
     public boolean isVisible() {
         return isVisible;
