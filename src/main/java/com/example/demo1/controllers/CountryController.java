@@ -43,8 +43,6 @@ public class CountryController {
 
             return country;
 
-            git checkout Hibernate-Lektion-Test
-            git branch --set-upstream-to=origin/Hibernate-Lektion-Test
         } else {
 
             Country country = new Country(land, existingCapital);
