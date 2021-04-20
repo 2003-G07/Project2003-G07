@@ -18,7 +18,6 @@
 
 </div>
 
-  <button onclick="clearbutton()">Clear</button>
   <!--Sidebar-->
   <div class="d-flex wrapper">
     <div class="border-right" id="sidebar-wrapper">
@@ -46,8 +45,8 @@
                    alt="productimage"
               >
 
-            </a>
-            <a href="#" th:onclick="openProduct([[${product.id}]])" style="text-decoration: none;">
+
+
 
               <div class="d-flex justify-content-center">
 
@@ -56,25 +55,24 @@
               </div>
 
 
-            </a>
+
 
             <div style="height: 84px">
-              <a href="#" th:onclick="openProduct([[${product.id}]])"  style="text-decoration: none;">
+
 
 
                 <p class="card-header text-center border-bottom-0" style="background-color:white; font-size: 20px";>[[${product.name}]]</p>
 
-              </a>
+
             </div>
 
+            </a>
 
 
-<form action="#" th:action="@{/index/add}" >
-  <input type="hidden" th:value="${product.id}" name="id"/>
 
-  <button class="btn btn-primary btn-lg" style="text-align: center;" type="submit"> Köp</button>
 
-</form>
+            <a class="btn btn-primary btn-lg" th:href="@{/index.html/add/(id=${product.id})}">Köp</a>
+
 
 
 
@@ -96,39 +94,14 @@
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
   <script>
 
-
-
-
-    
-
-
-
-
-
-
-
-  
-
   </script>
 
   <footer id="foot" style="background-color: #007A3D;" class="mt-5">
   
   </footer>
   <script>
-
-
-
-
-
-
-
-
 var memoryparse = localStorage.getItem('cloudmemory');
 var memory = JSON.parse(memoryparse);
-
-
-
-
 
 $(function(){
   $("#foot").load("footer.html");
@@ -139,25 +112,9 @@ var maincart = new Array();
 
 var shoppingcart = document.getElementById("amount");
   
-function addToCart(värde){
-  /*
-  maincart.push(värde);
-  localStorage.setItem('cloudcart', JSON.stringify(maincart));
-  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+function addToCart(cartID){
 
-   */
-/*
-  var url = "/index.html/?id="+värde;
-
-  $.ajax({
-    type: "Post",
-    url : url,
-  });
-
- */
-  alert("tillagd")
-
-
+  th:window.location.href = '@{/index.html/add/(id=${cartID})}';
 
 }
 
@@ -170,43 +127,17 @@ if(!productcart.length == 0 ){
   maincart = productcart
 }
 
-function clearbutton(){
-  
-  maincart.splice(0,maincart.length);
-
-
-localStorage.setItem('cloudcart', JSON.stringify(maincart));
-shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-
-
-}
-
-function removeAllItems(){
-var cat = document.getElementById("inputproduct");
-
-
-while(cat.firstChild){
-cat.removeChild(cat.firstChild);
-}
-      }
-
-
-
-
 
 $(function(){
   $("#nav-placeholder").load("../nav.html");
   $("#sidebar-wrapper").load("../sidebar.html");
-
 });
 
-
-
 function openProduct(productID){
-  
+
   location.href="../Startsida/produktsida.html";
   localStorage.setItem('lastClickedProduct', JSON.stringify(productID));
-  
+
   }
 
   </script>
