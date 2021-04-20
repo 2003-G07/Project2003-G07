@@ -71,7 +71,7 @@
 
 
 
-            <a class="btn btn-primary btn-lg" th:href="@{/index.html/add/(id=${product.id})}">Köp</a>
+            <a class="btn btn-primary btn-lg" onclick="addToCart()" th:href="@{/index.html/add/(id=${product.id})}">Köp</a>
 
 
 
@@ -112,9 +112,9 @@ var maincart = new Array();
 
 var shoppingcart = document.getElementById("amount");
   
-function addToCart(cartID){
+function addToCart(){
 
-  th:window.location.href = '@{/index.html/add/(id=${cartID})}';
+ alert("Produkt tillagd i varukorgen");
 
 }
 

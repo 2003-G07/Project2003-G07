@@ -115,7 +115,7 @@
 
             <div class="row d-flex justify-content-center"   >
 
-                <a class="btn btn-info" type="button"   style="width:400px; height: 60px; font-size: 30px;" th:href="@{/Startsida/produktsida/add/(id=${product.id})}">Lägg till i varukorg</a>
+                <a class="btn btn-info" type="button" onclick="addToCart()" style="width:400px; height: 60px; font-size: 30px;" th:href="@{/Startsida/produktsida/add/(id=${product.id})}">Lägg till i varukorg</a>
 
             </div>
 
@@ -201,10 +201,8 @@ if(!productcart.length == 0 ){
   maincart = productcart
 }
 
-function addToCart(värde){
-  maincart.push(värde);
-  localStorage.setItem('cloudcart', JSON.stringify(maincart));
-  shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
+function addToCart(){
+alert("Produkt tillagd i varukorg!");
   
 }
 
