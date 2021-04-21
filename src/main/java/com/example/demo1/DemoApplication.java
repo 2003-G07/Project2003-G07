@@ -16,7 +16,7 @@ public class DemoApplication {
 
 
 
-
+/*
     @Bean
 
     public CommandLineRunner demo(ProductRepository repository) {
@@ -28,5 +28,7 @@ public class DemoApplication {
 
 
     }
+
+ */
 
 }
