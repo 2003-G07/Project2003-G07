@@ -27,27 +27,25 @@ import java.util.List;
 public class hej {
 
 
-
     @Autowired
     private CustomerRepository customerRepository;
 
-   @Autowired
-   private ProductRepository productRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
-   List<CartService> cartServiceList = new ArrayList<>();
+    List<CartService> cartServiceList = new ArrayList<>();
 
-   List<Product> proInCart = new ArrayList<>();
-   int totalpris;
-
+    List<Product> proInCart = new ArrayList<>();
+    int totalpris;
 
 
     @GetMapping("/greeting")
-    public String greetingForm(@RequestParam String firstNa, String lastNa, String teleNr , String emailAd , Model model) throws SQLException {
+    public String greetingForm(@RequestParam String firstNa, String lastNa, String teleNr, String emailAd, Model model) throws SQLException {
 
-        model.addAttribute("firstNa",firstNa);
-        model.addAttribute("lastNa",lastNa);
-        model.addAttribute("teleNr",teleNr);
-        model.addAttribute("emailAd",emailAd);
+        model.addAttribute("firstNa", firstNa);
+        model.addAttribute("lastNa", lastNa);
+        model.addAttribute("teleNr", teleNr);
+        model.addAttribute("emailAd", emailAd);
 
 
         return "customers";
@@ -55,21 +53,18 @@ public class hej {
 
 
     @GetMapping("/register")
-    public String showForm(Model model){
+    public String showForm(Model model) {
         System.out.println("register funkar");
 
 
         return "regiser_form";
     }
 
-   @PostMapping("/register")
-   public String submitForm(@ModelAttribute("customer") Customer customer){
-       System.out.println(customer);
-       return "register_success";
-   }
-
-
-
+    @PostMapping("/register")
+    public String submitForm(@ModelAttribute("customer") Customer customer) {
+        System.out.println(customer);
+        return "register_success";
+    }
 
 
     @GetMapping("admin/addKund.html")
@@ -96,16 +91,14 @@ public class hej {
 
  */
 
-   //productRepository.save(new Product("Choklad",3,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
+        //productRepository.save(new Product("Choklad",3,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
         var a = productRepository.findAll();
         List<Product> productsToShow = new ArrayList<>();
-        for (Product product: a) {
-            if (product.isVisible() && product.getStorage()>0){
+        for (Product product : a) {
+            if (product.isVisible() && product.getStorage() > 0) {
                 productsToShow.add(product);
             }
         }
-
-
 
 
         model.addAttribute("listCustomers", productsToShow);
@@ -114,37 +107,35 @@ public class hej {
     }
 
     @RequestMapping("/index.html/add")
-    public String addProductToCart1(@RequestParam("id") Product product){
+    public String addProductToCart1(@RequestParam("id") Product product) {
 
         Product stock = productRepository.findById(product.getId()).get();
 
 
-        if (stock.getStorage() > 0){
-            stock.setStorage(stock.getStorage()-1);
+        if (stock.getStorage() > 0) {
+            stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
-
 
 
             boolean newItemInCart = false;
 
-            if (proInCart.size() == 0){
+            if (proInCart.size() == 0) {
                 newItemInCart = true;
-            }else {
+            } else {
                 for (int i = 0; i < proInCart.size(); i++) {
-                    if (proInCart.get(i).getId().equals(product.getId())){
-                        proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
+                    if (proInCart.get(i).getId().equals(product.getId())) {
+                        proInCart.get(i).setQuant(proInCart.get(i).getQuant() + 1);
                         newItemInCart = false;
                         break;
-                    }else {
+                    } else {
                         newItemInCart = true;
                     }
                 }
             }
 
 
-
             if (newItemInCart) {
-                product.setQuant(product.getQuant()+1);
+                product.setQuant(product.getQuant() + 1);
                 proInCart.add(product);
             }
 
@@ -153,11 +144,8 @@ public class hej {
         totalpris += product.getPrice();
 
 
-
-
         return "redirect:/index.html";
     }
-
 
 
     @GetMapping("Startsida/produktsida")
@@ -174,7 +162,7 @@ public class hej {
 
 
     @GetMapping("/Startsida/produktsida/")
-    public ModelAndView showProducts(@RequestParam long id){
+    public ModelAndView showProducts(@RequestParam long id) {
         Product product = productRepository.getProductById(id);
 
         List<Product> productList = new ArrayList<>();
@@ -183,47 +171,44 @@ public class hej {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.addObject("productToShow",productList);
+        modelAndView.addObject("productToShow", productList);
 
 
-            return modelAndView;
-
+        return modelAndView;
 
 
     }
 
     @RequestMapping("/Startsida/produktsida/add")
-    public String addProduct(@RequestParam("id") Product product){
+    public String addProduct(@RequestParam("id") Product product) {
 
         Product stock = productRepository.findById(product.getId()).get();
 
 
-        if (stock.getStorage() > 0){
-            stock.setStorage(stock.getStorage()-1);
+        if (stock.getStorage() > 0) {
+            stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
-
 
 
             boolean newItemInCart = false;
 
-            if (proInCart.size() == 0){
+            if (proInCart.size() == 0) {
                 newItemInCart = true;
-            }else {
+            } else {
                 for (int i = 0; i < proInCart.size(); i++) {
-                    if (proInCart.get(i).getId().equals(product.getId())){
-                        proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
+                    if (proInCart.get(i).getId().equals(product.getId())) {
+                        proInCart.get(i).setQuant(proInCart.get(i).getQuant() + 1);
                         newItemInCart = false;
                         break;
-                    }else {
+                    } else {
                         newItemInCart = true;
                     }
                 }
             }
 
 
-
             if (newItemInCart) {
-                product.setQuant(product.getQuant()+1);
+                product.setQuant(product.getQuant() + 1);
                 proInCart.add(product);
             }
 
@@ -233,77 +218,64 @@ public class hej {
 
         String url;
 
-        if (product.getStorage() == 0){
-             url = "redirect:/index.html";
-        }else {
-             url = "redirect:/Startsida/produktsida/?id=" + product.getId();
+        if (product.getStorage() == 0) {
+            url = "redirect:/index.html";
+        } else {
+            url = "redirect:/Startsida/produktsida/?id=" + product.getId();
         }
-
-
-
 
 
         return url;
     }
 
 
-
-
-   @GetMapping("varukorg/groceryCart.html")
-   public String showCart(Model model){
-
+    @GetMapping("varukorg/groceryCart.html")
+    public String showCart(Model model) {
 
 
         model.addAttribute("listProductsInCart", proInCart);
         model.addAttribute("totalpris", totalpris);
 
 
-
         return "varukorg/grocerycart.html";
-   }
-
+    }
 
 
     @RequestMapping("/groceryCart/add")
-    public String addProductToGrosCart(@RequestParam("id") Product product){
+    public String addProductToGrosCart(@RequestParam("id") Product product) {
 
         Product stock = productRepository.findById(product.getId()).get();
-        if (stock.getStorage() != 0){
-            stock.setStorage(stock.getStorage()-1);
+        if (stock.getStorage() != 0) {
+            stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
 
 
+            for (int i = 0; i < proInCart.size(); i++) {
+                if (proInCart.get(i).getId().equals(product.getId())) {
+                    proInCart.get(i).setQuant(proInCart.get(i).getQuant() + 1);
+                }
 
-
-
-        for (int i = 0; i < proInCart.size(); i++) {
-            if (proInCart.get(i).getId().equals(product.getId())){
-                proInCart.get(i).setQuant(proInCart.get(i).getQuant()+1);
             }
 
+            totalpris += product.getPrice();
         }
-
-        totalpris += product.getPrice();
-    }
 
         return "redirect:/varukorg/groceryCart.html";
     }
 
 
-
     @RequestMapping("/groceryCart/delete")
-    public String deleteProductToGrosCart(@RequestParam("id") Product product){
+    public String deleteProductToGrosCart(@RequestParam("id") Product product) {
 
         Product stock = productRepository.findById(product.getId()).get();
-        stock.setStorage(stock.getStorage()+1);
+        stock.setStorage(stock.getStorage() + 1);
         productRepository.save(stock);
 
 
-
         for (int i = 0; i < proInCart.size(); i++) {
-            if (proInCart.get(i).getId().equals(product.getId())){
-                proInCart.get(i).setQuant(proInCart.get(i).getQuant()-1);
-                if (proInCart.get(i).getQuant() == 0){
+            if (proInCart.get(i).getId().equals(product.getId())) {
+                proInCart.get(i).setQuant(proInCart.get(i).getQuant() - 1);
+                if (proInCart.get(i).getQuant() == 0) {
                     proInCart.remove(i);
                 }
             }
@@ -315,6 +287,6 @@ public class hej {
 
         return "redirect:/varukorg/groceryCart.html";
     }
-
-
 }
+
+

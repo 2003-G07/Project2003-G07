@@ -15,6 +15,7 @@ import java.util.Optional;
  * Copyright: MIT
  */
 @RestController
+@RequestMapping(path = "/product/")
 public class ProductController {
 
     @Autowired
@@ -23,21 +24,20 @@ public class ProductController {
     /**
      * Adds product to database, ID is auto-incremented
      * checks to see that there is not already an existing version of the same product
-     * localhost:1234/addProduct
      * @return String
      */
 
-    @PostMapping(path = "/addProduct")
+    @PostMapping(path = "/add")
     public @ResponseBody String addProduct(
-                            @RequestParam String name,
-                            @RequestParam (required = false) int storage,
-                            @RequestParam (required = false) String image,
-                            @RequestParam (required = false) String description,
-                            @RequestParam (required = false) int price,
-                            @RequestParam  String category,
-                            @RequestParam  boolean isVisible ){
+            @RequestParam String name,
+            @RequestParam (required = false) int storage,
+            @RequestParam (required = false) String image,
+            @RequestParam (required = false) String description,
+            @RequestParam (required = false) int price,
+            @RequestParam  String category,
+            @RequestParam  boolean isVisible ){
 
-        System.out.println(name);
+        System.out.println("YO");
 
         Product product = new Product(name,storage, image, description, price,category,isVisible);
 
@@ -54,8 +54,8 @@ public class ProductController {
     }
 
     // Ändra så att produkten bara gömmer sid! Test ATM
-    //localhost:1234/product/deleteProduct?productId=1234
-    @DeleteMapping(path = "/deleteProduct")
+
+    @DeleteMapping(path = "/delete")
     public @ResponseBody String deleteProduct(@RequestParam Long id){
 
 
@@ -78,9 +78,8 @@ public class ProductController {
 
     }
     //localhost:1234/product/showProducts
-    @GetMapping(path = "/showProducts")
+    @GetMapping(path = "/showAll")
     public @ResponseBody Iterable<Product> showProducts(){
-
 
         return productRepository.findAll();
 
@@ -88,7 +87,6 @@ public class ProductController {
 
     /**
      * Shows product from id
-     * localhost:1234/product/showProductById
      * @param id
      * @return
      */
@@ -100,16 +98,16 @@ public class ProductController {
 
     }
 
-    @PutMapping(path = "/updateProductById")
+    @PutMapping(path = "/update")
     public @ResponseBody String updateProduct(
-                            @RequestParam Long id,
-                            @RequestParam (required = false) String name,
-                            @RequestParam (required = false) int storage,
-                            @RequestParam (required = false) String image,
-                            @RequestParam (required = false) String description,
-                            @RequestParam (required = false) int price,
-                            @RequestParam (required = false) String category,
-                            @RequestParam (required = false) boolean isVisible ){
+            @RequestParam Long id,
+            @RequestParam (required = false) String name,
+            @RequestParam (required = false) int storage,
+            @RequestParam (required = false) String image,
+            @RequestParam (required = false) String description,
+            @RequestParam (required = false) int price,
+            @RequestParam (required = false) String category,
+            @RequestParam (required = false) boolean isVisible ){
 
         var putId = productRepository.findById(id);
 
@@ -119,19 +117,19 @@ public class ProductController {
         }
         else {
 
-           var temp =  productRepository.findById(id).get();
+            var temp =  productRepository.findById(id).get();
 
-           temp.setName(name);
-           temp.setStorage(storage);
-           temp.setImage(image);
-           temp.setDescription(description);
-           temp.setPrice(price);
-           temp.setCategory(category);
-           temp.setVisible(isVisible);
+            temp.setName(name);
+            temp.setStorage(storage);
+            temp.setImage(image);
+            temp.setDescription(description);
+            temp.setPrice(price);
+            temp.setCategory(category);
+            temp.setVisible(isVisible);
 
-           productRepository.save(temp);
+            productRepository.save(temp);
 
-           return "Product updated";
+            return "Product updated";
 
         }
     }
