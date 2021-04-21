@@ -168,6 +168,7 @@ public class hej {
 
         modelAndView.addObject("listCustomers", productRepository.findAll());
 
+        System.out.println("hej");
 
         return modelAndView;
     }
