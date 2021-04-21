@@ -13,8 +13,7 @@ import java.util.List;
  * Project: Project2003-G07
  * Copyright: MIT
  */
-public interface
-OrderDetailsRepository extends CrudRepository<OrderDetails, Long> {
+public interface OrderDetailsRepository extends CrudRepository<OrderDetails, Long> {
 
     List<OrderDetails> findById(String id);
 
