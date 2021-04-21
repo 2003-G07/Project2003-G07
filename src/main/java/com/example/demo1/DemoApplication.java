@@ -16,7 +16,7 @@ public class DemoApplication {
 
 
 
-
+/*
     @Bean
 
     public CommandLineRunner demo(ProductRepository repository) {
@@ -25,6 +25,9 @@ public class DemoApplication {
             repository.save(new Product("Prod 2", 11, "https://picsum.photos/500?random=2", "Ett svart te smaksatt med bergamott.", 160, "Dryck", false));
             repository.save(new Product("Prod 3", 11, "https://picsum.photos/500?random=3", "Ett svart te smaksatt med bergamott.", 160, "Dryck", true));
         });
+
+
+ */
 
 
     }
