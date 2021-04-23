@@ -106,6 +106,15 @@ public class hej {
         return "index.html";
     }
 
+
+    @GetMapping("/")
+    public String showIndex(){
+
+        return "index.html";
+    }
+
+
+
     @RequestMapping("/index.html/add")
     public String addProductToCart1(@RequestParam("id") Product product) {
 
