@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Heroku" target="11" />
+      <module name="Heroku" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
