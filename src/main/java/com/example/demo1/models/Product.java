@@ -1,9 +1,6 @@
 package com.example.demo1.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Daniel Bojic
@@ -13,6 +10,8 @@ import javax.persistence.Id;
  * Copyright: MIT
  */
 @Entity
+@Table(name="product", schema = "dd6pinejotoog8")
+
 public class Product {
 
     @Id
