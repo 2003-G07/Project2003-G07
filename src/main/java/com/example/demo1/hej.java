@@ -185,7 +185,6 @@ public class hej {
 
         return modelAndView;
 
-
     }
 
     @RequestMapping("/Startsida/produktsida/add")

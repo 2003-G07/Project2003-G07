@@ -77,6 +77,7 @@ public class ProductController {
          */
 
     }
+
     //localhost:1234/product/showProducts
     @GetMapping(path = "/showAll")
     public @ResponseBody Iterable<Product> showProducts(){
