@@ -107,7 +107,7 @@ public class hej {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/")
     public String showIndex(){
 
         return "index.html";
