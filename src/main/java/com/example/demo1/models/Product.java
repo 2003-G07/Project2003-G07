@@ -10,7 +10,6 @@ import javax.persistence.*;
  * Copyright: MIT
  */
 @Entity
-@Table(name="product", schema = "dd6pinejotoog8")
 
 public class Product {
 
