@@ -246,7 +246,7 @@ public class hej {
         model.addAttribute("totalpris", totalpris);
 
 
-        return "varukorg/grocerycart.html";
+        return "varukorg/groceryCart.html";
     }
 
 
