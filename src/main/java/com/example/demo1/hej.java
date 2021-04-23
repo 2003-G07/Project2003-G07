@@ -249,6 +249,8 @@ public class hej {
     }
 
 
+
+
     @RequestMapping("/groceryCart/add")
     public String addProductToGrosCart(@RequestParam("id") Product product) {
 
