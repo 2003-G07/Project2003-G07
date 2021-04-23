@@ -110,7 +110,7 @@ public class hej {
     @GetMapping("/")
     public String showIndex(){
 
-        return "index.html";
+        return "redirect:/index.html";
     }
 
 
