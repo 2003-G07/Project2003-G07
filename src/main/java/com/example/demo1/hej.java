@@ -25,8 +25,8 @@ public class hej {
     private ProductRepository productRepository;
 
     List<CartService> cartServiceList = new ArrayList<>();
-
     List<Product> proInCart = new ArrayList<>();
+
     int totalpris;
 
     @GetMapping("/greeting")
@@ -42,7 +42,7 @@ public class hej {
 
     @GetMapping("/register")
     public String showForm(Model model) {
-        System.out.println("register funkar");
+        System.out.println("register fungerar");
 
         return "regiser_form";
     }
@@ -155,7 +155,9 @@ public class hej {
         Product product = productRepository.getProductById(id);
 
         List<Product> productList = new ArrayList<>();
+
         productList.clear();
+        //clear eller reset? /Sana
         productList.add(product);
 
         ModelAndView modelAndView = new ModelAndView();
