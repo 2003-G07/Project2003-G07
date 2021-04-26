@@ -99,34 +99,30 @@ public class ProductController {
 
     }
 
-    @PutMapping(path = "/update")
+    @PatchMapping(path = "/update")
     public @ResponseBody String updateProduct(
             @RequestParam Long id,
             @RequestParam (required = false) String name,
-            @RequestParam (required = false) int storage,
+            @RequestParam (required = false) Integer storage,
             @RequestParam (required = false) String image,
             @RequestParam (required = false) String description,
-            @RequestParam (required = false) int price,
+            @RequestParam (required = false) Integer price,
             @RequestParam (required = false) String category,
-            @RequestParam (required = false) boolean isVisible ){
-
-        var putId = productRepository.findById(id);
+            @RequestParam (required = false) Boolean isVisible ){
 
         if (productRepository.findById(id).isEmpty()){
-
             return "There is no product with that ID";
         }
         else {
-
             var temp =  productRepository.findById(id).get();
 
-            temp.setName(name);
-            temp.setStorage(storage);
-            temp.setImage(image);
-            temp.setDescription(description);
-            temp.setPrice(price);
-            temp.setCategory(category);
-            temp.setVisible(isVisible);
+            if (name!=null) temp.setName(name);
+            if (storage!=null) temp.setStorage(storage);
+            if (image!=null) temp.setImage(image);
+            if (description!=null) temp.setDescription(description);
+            if (price!=null) temp.setPrice(price);
+            if (category!=null) temp.setCategory(category);
+            if (isVisible!=null) temp.setVisible(isVisible);
 
             productRepository.save(temp);
 
