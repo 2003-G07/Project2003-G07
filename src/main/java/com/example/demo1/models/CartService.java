@@ -1,21 +1,8 @@
 package com.example.demo1.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by Daniel Bojic
- * Date: 2021-04-19
- * Time: 17:54
- * Project: gr7java
- * Copyright: MIT
- */
 public class CartService {
-
     Product product;
     int quantity;
-
-
 
     public Product getProduct() {
         return product;
@@ -33,14 +20,11 @@ public class CartService {
         this.quantity = quantity;
     }
 
-    public CartService(){
-
+    public CartService() {
     }
 
-    public CartService(Product pro, int kvant){
+    public CartService(Product pro, int kvant) {
         setProduct(pro);
         setQuantity(kvant);
     }
-
-
 }

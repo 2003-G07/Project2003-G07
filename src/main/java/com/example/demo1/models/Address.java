@@ -1,16 +1,10 @@
 package com.example.demo1.models;
 
-/**
- * Created by Henrik Elofsson
- * Date: 2021-04-16
- * Time: 13:54
- * Project: Project2003-G07
- * Copyright: MIT
- */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity
 public class Address {
 
@@ -61,9 +55,8 @@ public class Address {
         this.zip = zip;
     }
 
-    public Address(){
+    public Address() {
     }
-
 
     @Override
     public String toString() {

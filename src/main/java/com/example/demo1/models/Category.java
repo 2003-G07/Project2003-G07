@@ -5,16 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by Henrik Elofsson
- * Date: 2021-04-16
- * Time: 14:40
- * Project: Project2003-G07
- * Copyright: MIT
- */
 @Entity
-public class Category{
-
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,8 +28,6 @@ public class Category{
     public void setNamn(String namn) {
         this.namn = namn;
     }
-
-
 
     public Category() {
     }
