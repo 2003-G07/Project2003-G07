@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/bootstrap.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>Admin - Produkt</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+</head>
+
+<body>
+
+<div id="nav-placeholder">
+
+
+</div>
+
+
+<!--Sidebar-->
+<div class="d-flex wrapper">
+    <div class="border-right" id="sidebar-wrapper">
+
+    </div>
+
+    <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 10rem; color: rgb(158, 206, 166);">
+
+
+        <div id="container" class="row justify-content-center">
+            <h1>Tack för din beställning!</h1>
+
+            <div class="container">
+
+
+                <p style="text-align: center;">Din beställning har tagits emot och skickas omgående!</p>
+                <button type="button" class="btn btn-primary" onclick="location.href='../index.html'" >Startsida</button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+
+    $(function(){
+        $("#nav-placeholder").load("../nav.html");
+        $("#sidebar-wrapper").load("../sidebar.html");
+
+    });
+
+
+
+
+
+</script>
+
+<footer id="foot" style="background-color: #007A3D;" class="mt-5">
+
+</footer>
+<script>
+    $(function(){
+        $("#foot").load("../footer.html");
+
+    });
+
+</script>
+</body>
+
+</html>

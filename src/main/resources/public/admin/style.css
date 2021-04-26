@@ -1,0 +1,10 @@
+.title_heading {
+  font-size: 14px;
+}
+
+.right_section {
+  position: relative;
+  margin-top: 1rem;
+  width: 20rem;
+  float: right;
+}
