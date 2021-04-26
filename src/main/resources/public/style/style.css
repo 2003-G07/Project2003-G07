@@ -1,165 +1,177 @@
 #wrap {
-  background: #a6d2ff;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  margin-bottom: 30px;
-  overflow: hidden;
-  position: relative; /* IE7 needs this */
+    background: #a6d2ff;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative; /* IE7 needs this */
 }
+
 #nav {
-  float: left;
-  position: relative;
-  left: 50%;
+    float: left;
+    position: relative;
+    left: 50%;
 }
+
 #nav ul {
-  float: left; /* IE6 needs this */
-  position: relative;
-  left: -50%;
-  list-style: none;
+    float: left; /* IE6 needs this */
+    position: relative;
+    left: -50%;
+    list-style: none;
 }
+
 #nav li {
-  float: left;
+    float: left;
 }
+
 #nav a {
-  float: left;
-  text-decoration: none;
-  padding: 0 30px; /* variable width */
+    float: left;
+    text-decoration: none;
+    padding: 0 30px; /* variable width */
 }
+
 .footer-logo {
-  height: auto;
-  width: 75px;
-  margin: 2% 2% 2% 2%;
+    height: auto;
+    width: 75px;
+    margin: 2% 2% 2% 2%;
 }
 
 .navbar-custom {
-  background-color: #e7bd42;
+    background-color: #e7bd42;
 }
+
 .btn {
-  margin: 5px;
-  padding: 5px;
+    margin: 5px;
+    padding: 5px;
 }
+
 footer {
-  padding-top: 2%;
-  box-shadow: 0 50vh 0 50vh #007a3d;
+    padding-top: 2%;
+    box-shadow: 0 50vh 0 50vh #007a3d;
 }
+
 .copyright {
-  font-size: 50%;
+    font-size: 50%;
 }
 
 .title_heading {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .right_section {
-  position: relative;
-  margin-top: 1rem;
-  width: 20rem;
-  float: right;
+    position: relative;
+    margin-top: 1rem;
+    width: 20rem;
+    float: right;
 }
 
 #wrapper {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 #sidebar-wrapper {
-  min-height: 100vh;
-  -webkit-transition: margin 0.25s ease-out;
-  -moz-transition: margin 0.25s ease-out;
-  -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out;
+    min-height: 100vh;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
 }
 
 .red-text {
-  color: red;
+    color: red;
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
 }
 
 #sidebar-wrapper .list-group {
-  width: 15rem;
+    width: 15rem;
 }
 
 #page-content-wrapper {
-  min-width: 100vw;
+    min-width: 100vw;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
+    margin-left: 0;
 }
+
 .responsive {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
 }
 
 @media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
 
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
 
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
 }
+
 @media screen and (min-width: 541px) {
-  #product-name-size {
-    font-size: 4rem;
-  }
+    #product-name-size {
+        font-size: 4rem;
+    }
 }
 
 @media screen and (max-width: 540px) {
-  #product-name-size {
-    font-size: 2rem;
-  }
+    #product-name-size {
+        font-size: 2rem;
+    }
 }
+
 @media screen and (min-width: 541px) {
-  #price-size {
-    font-size: 7rem;
-  }
+    #price-size {
+        font-size: 7rem;
+    }
 }
 
 @media screen and (max-width: 540px) {
-  #price-size {
-    font-size: 4rem;
-  }
+    #price-size {
+        font-size: 4rem;
+    }
 }
+
 @media screen and (min-width: 541px) {
-  #button-size {
-    width:400px;
-    height: 60px;
-    font-size: 2rem;
-  }
+    #button-size {
+        width: 400px;
+        height: 60px;
+        font-size: 2rem;
+    }
 }
 
 @media screen and (max-width: 540px) {
-  #button-size {
-    width:400px;
-    height: 40px;
-    font-size: 1rem;
-  }
+    #button-size {
+        width: 400px;
+        height: 40px;
+        font-size: 1rem;
+    }
 }
 
 @media screen and (min-width: 768px) {
-  .navbarpadding{
+    .navbarpadding {
+        padding-top: 120px;
+        padding-left: 242px;
+    }
+}
+
+.navbarpadding {
     padding-top: 120px;
-    padding-left: 242px;
-  }
 }
 
-.navbarpadding{
-  padding-top: 120px;
-}
-
-.sidebar-expanded{
-  padding-top: 120px;
-  z-index: auto;
-  width: 15rem;
+.sidebar-expanded {
+    padding-top: 120px;
+    z-index: auto;
+    width: 15rem;
 }
