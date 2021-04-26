@@ -59,13 +59,11 @@
    */
   function dropDown() {
     document.getElementById("navbarNavDropdown").classList.toggle("show");
-    console.log('clicked category');
   }
 
   // Close the dropdown if the user clicks outside of it
 
   window.onclick = function (e) {
-    console.log(e.target)
     if (!(e.target.matches('.navbar-toggler') || e.target.matches('.navbar-toggler-icon'))) {
       var navbarNavDropdown = document.getElementById("navbarNavDropdown");
       if (navbarNavDropdown.classList.contains('show')) {
