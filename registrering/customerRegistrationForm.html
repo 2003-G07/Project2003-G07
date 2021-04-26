@@ -37,10 +37,14 @@
           <div class="form-row">
               <div class="form-group col-md-5">
                   <label for="firstname">Förnamn:</label>
+                  <!--required säger till html5 valideringen att den inte får vara tom
+                      pattern beskriver för html5 valideringen hur innehållet måste se ut-->
+                  <!--oninvalid körs då html5 ser att innehållet inte stämmer mot required eller pattern-->
+                  <!--onchange körs då innehållet ändrats då fokus lämnar fältet-->
                   <input required pattern="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\- ]*$" type="text" maxlength="30"
                   class="form-control" id="firstname" name="Förnamn" 
                   oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken eller siffror')"
-                  onchange="validateInput(this, 'firstnameError')">
+                  onchange="validateInput(this, 'firstnameError')"> 
                   <label class="red-text" id="firstnameError" hidden for="firstname"></label>
               </div>
               <div class="form-group col-md-7">
