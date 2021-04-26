@@ -1,6 +1,5 @@
 package com.example.demo1;
 
-
 import com.example.demo1.models.CartService;
 import com.example.demo1.models.Customer;
 import com.example.demo1.models.Product;
@@ -16,16 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Daniel Bojic
- * Date: 2021-04-13
- * Time: 15:45
- * Project: Project2003-G07
- * Copyright: MIT
- */
 @Controller
 public class hej {
-
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -38,24 +29,20 @@ public class hej {
     List<Product> proInCart = new ArrayList<>();
     int totalpris;
 
-
     @GetMapping("/greeting")
-    public String greetingForm(@RequestParam String firstNa, String lastNa, String teleNr, String emailAd, Model model) throws SQLException {
-
+    public String greetingForm(@RequestParam String firstNa, String lastNa,
+                               String teleNr, String emailAd, Model model) {
         model.addAttribute("firstNa", firstNa);
         model.addAttribute("lastNa", lastNa);
         model.addAttribute("teleNr", teleNr);
         model.addAttribute("emailAd", emailAd);
 
-
         return "customers";
     }
-
 
     @GetMapping("/register")
     public String showForm(Model model) {
         System.out.println("register funkar");
-
 
         return "regiser_form";
     }
@@ -66,32 +53,24 @@ public class hej {
         return "register_success";
     }
 
-
     @GetMapping("admin/addKund.html")
-    public ModelAndView addCustomer() throws SQLException {
-
+    public ModelAndView addCustomer() {
         ModelAndView modelAndView = new ModelAndView();
-
 
         return modelAndView;
     }
 
     @GetMapping("/index.html")
-    public String listCustomers(Model model) throws SQLException {
-
-
-
+    public String listCustomers(Model model) {
 
 /*
         productRepository.save(new Product("Falun Gong Earl Grey",160,"https://picsum.photos/500?random=1","Ett svart te smaksatt med bergamott.",7000,"Dryck", true));
         productRepository.save(new Product("Glass",200,"https://picsum.photos/500?random=2","Ett svart te smaksatt med bergamott.",200,"Dryck",true));
         productRepository.save(new Product("Pasta",99,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
 
-
+        productRepository.save(new Product("Choklad",3,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
 
  */
-
-        //productRepository.save(new Product("Choklad",3,"https://picsum.photos/500?random=3","Ett svart te smaksatt med bergamott.",99,"Dryck",true));
         var a = productRepository.findAll();
         List<Product> productsToShow = new ArrayList<>();
         for (Product product : a) {
@@ -100,34 +79,43 @@ public class hej {
             }
         }
 
-
         model.addAttribute("listCustomers", productsToShow);
 
         return "index.html";
     }
 
-
     @GetMapping("/")
-    public String showIndex(){
+    public String showIndex() {
 
         return "redirect:/index.html";
     }
 
-
-
     @RequestMapping("/index.html/add")
     public String addProductToCart1(@RequestParam("id") Product product) {
-
         Product stock = productRepository.findById(product.getId()).get();
-
 
         if (stock.getStorage() > 0) {
             stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
 
-
             boolean newItemInCart = false;
 
+            /* REPLACE LOOP BELOW? /SANA
+
+                        if (proInCart.size() == 0) {
+                newItemInCart = true;
+            } else {
+                for (Product value : proInCart) {
+                    if (value.getId().equals(product.getId())) {
+                        value.setQuant(value.getQuant() + 1);
+                        newItemInCart = false;
+                        break;
+                    } else {
+                        newItemInCart = true;
+                    }
+                }
+            }
+             */
             if (proInCart.size() == 0) {
                 newItemInCart = true;
             } else {
@@ -142,33 +130,25 @@ public class hej {
                 }
             }
 
-
             if (newItemInCart) {
                 product.setQuant(product.getQuant() + 1);
                 proInCart.add(product);
             }
-
         }
 
         totalpris += product.getPrice();
 
-
         return "redirect:/index.html";
     }
 
-
     @GetMapping("Startsida/produktsida")
     public ModelAndView showProduct() throws SQLException {
-
         ModelAndView modelAndView = new ModelAndView();
-
 
         modelAndView.addObject("listCustomers", productRepository.findAll());
 
-
         return modelAndView;
     }
-
 
     @GetMapping("/Startsida/produktsida/")
     public ModelAndView showProducts(@RequestParam long id) {
@@ -182,23 +162,35 @@ public class hej {
 
         modelAndView.addObject("productToShow", productList);
 
-
         return modelAndView;
 
     }
 
     @RequestMapping("/Startsida/produktsida/add")
     public String addProduct(@RequestParam("id") Product product) {
-
         Product stock = productRepository.findById(product.getId()).get();
-
 
         if (stock.getStorage() > 0) {
             stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
 
-
             boolean newItemInCart = false;
+
+            /* REPLACE LOOP BELOW? /SANA
+                        if (proInCart.size() == 0) {
+                newItemInCart = true;
+            } else {
+                for (Product value : proInCart) {
+                    if (value.getId().equals(product.getId())) {
+                        value.setQuant(value.getQuant() + 1);
+                        newItemInCart = false;
+                        break;
+                    } else {
+                        newItemInCart = true;
+                    }
+                }
+            }
+             */
 
             if (proInCart.size() == 0) {
                 newItemInCart = true;
@@ -214,12 +206,10 @@ public class hej {
                 }
             }
 
-
             if (newItemInCart) {
                 product.setQuant(product.getQuant() + 1);
                 proInCart.add(product);
             }
-
         }
 
         totalpris += product.getPrice();
@@ -232,24 +222,17 @@ public class hej {
             url = "redirect:/Startsida/produktsida/?id=" + product.getId();
         }
 
-
         return url;
     }
-
 
     @GetMapping("varukorg/groceryCart.html")
     public String showCart(Model model) {
 
-
         model.addAttribute("listProductsInCart", proInCart);
         model.addAttribute("totalpris", totalpris);
 
-
         return "varukorg/groceryCart.html";
     }
-
-
-
 
     @RequestMapping("/groceryCart/add")
     public String addProductToGrosCart(@RequestParam("id") Product product) {
@@ -258,13 +241,20 @@ public class hej {
         if (stock.getStorage() != 0) {
             stock.setStorage(stock.getStorage() - 1);
             productRepository.save(stock);
+/* REPLACE LOOP BELOW? /SANA
 
+            for (Product value : proInCart) {
+                if (value.getId().equals(product.getId())) {
+                    value.setQuant(value.getQuant() + 1);
+                }
 
+            }
+
+ */
             for (int i = 0; i < proInCart.size(); i++) {
                 if (proInCart.get(i).getId().equals(product.getId())) {
                     proInCart.get(i).setQuant(proInCart.get(i).getQuant() + 1);
                 }
-
             }
 
             totalpris += product.getPrice();
@@ -273,14 +263,12 @@ public class hej {
         return "redirect:/varukorg/groceryCart.html";
     }
 
-
     @RequestMapping("/groceryCart/delete")
     public String deleteProductToGrosCart(@RequestParam("id") Product product) {
 
         Product stock = productRepository.findById(product.getId()).get();
         stock.setStorage(stock.getStorage() + 1);
         productRepository.save(stock);
-
 
         for (int i = 0; i < proInCart.size(); i++) {
             if (proInCart.get(i).getId().equals(product.getId())) {
@@ -289,11 +277,9 @@ public class hej {
                     proInCart.remove(i);
                 }
             }
-
         }
 
         totalpris -= product.getPrice();
-
 
         return "redirect:/varukorg/groceryCart.html";
     }
