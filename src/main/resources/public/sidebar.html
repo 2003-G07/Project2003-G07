@@ -1,15 +1,76 @@
+
 <div class="sidebar-heading">Kategorier</div>
-      <div id="categoryList" class="list-group list-group-flush">
-        <a href="../index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
-            ; color: black;" >Alla produkter</a>
+<div id="categoryList" class="list-group list-group-flush">
+    <a href="../index.html" data-toggle="collapse" aria-expanded="false"
+       class="list-group-item list-group-item-action flex-column align-items-start"
+       style="background-color:#e7bd42; color: black;"
+       onclick="itsRewindTime('startsida')">Alla produkter</a>
 
 
+    <!--class="list-group-item list-group-item-action" style="background-color:#e7bd42
+          ; color: black;" -->
 
-
-
-      </div>
-      <div class="sidebar-heading">Lite mer om oss</div>
-      <div class="list-group list-group-flush">
-        <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
+</div>
+<div class="sidebar-heading">Lite mer om oss</div>
+<div class="list-group list-group-flush">
+    <a href="../About/index.html" class="list-group-item list-group-item-action" style="background-color:#e7bd42
             ; color: black;">Om Oss</a>
-      </div>
+</div>
+
+<script>
+
+    var currentCat = "";
+    var unique;
+    var globaldata;
+    var categories = document.getElementById("categoryList");
+    fetch("/testdata/testprodukt.json")
+        .then((response) => response.json())
+        .then((data) => catGen(data));
+
+    const catGen = (response) => {
+        globaldata = response;
+        var catArray = new Array();
+
+        for (i = 0; i < response.length; i++) {
+            catArray.push(response[i].category);
+        }
+
+        unique = catArray.filter(onlyUnique);
+
+        for (i = 0; i < unique.length; i++) {
+            currentCat = unique[i];
+
+            categories.innerHTML += `
+<a href="../index.html" class="list-group-item list-group-item-action" data-toggle="collapse" 
+aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start" style="background-color:#e7bd42
+            ; color: black;" onclick="itsRewindTime('${currentCat}')">${unique[i]}
+            </a>
+`;
+        }
+    };
+
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+
+    function itsRewindTime(remember) {
+
+        localStorage.setItem('cloudmemory', JSON.stringify(remember));
+    }
+
+</script>
+
+<!-- SIDEBAR TEMPLATE FOR HTML-BODY
+
+        <div class="d-flex wrapper">
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+    <div class="border-right" id="sidebar-wrapper">
+
+    </div>
+  </div>
+    <div class="container">
+
+      <div class="d-flex w-100 justify-content-start align-items-center">
+        <div class="container" id="inputorder">
+
+-->

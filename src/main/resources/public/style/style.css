@@ -89,6 +89,11 @@ footer {
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
 }
+.responsive {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
 
 @media (min-width: 768px) {
   #sidebar-wrapper {
@@ -103,4 +108,58 @@ footer {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+@media screen and (min-width: 541px) {
+  #product-name-size {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  #product-name-size {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 541px) {
+  #price-size {
+    font-size: 7rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  #price-size {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 541px) {
+  #button-size {
+    width:400px;
+    height: 60px;
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  #button-size {
+    width:400px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbarpadding{
+    padding-top: 120px;
+    padding-left: 242px;
+  }
+}
+
+.navbarpadding{
+  padding-top: 120px;
+}
+
+.sidebar-expanded{
+  padding-top: 120px;
+  z-index: auto;
+  width: 15rem;
 }
