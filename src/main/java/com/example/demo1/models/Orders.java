@@ -5,15 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-/**
- * Created by Henrik Elofsson
- * Date: 2021-04-16
- * Time: 14:17
- * Project: Project2003-G07
- * Copyright: MIT
- */
 @Entity
 public class Orders {
 
@@ -27,7 +19,6 @@ public class Orders {
     protected int status;
     protected Long addressId;
 
-
     public Orders() {
     }
 
@@ -37,8 +28,6 @@ public class Orders {
         this.cost = cost;
         this.status = status;
     }
-
-
 
     public Long getId() {
         return id;
@@ -95,7 +84,6 @@ public class Orders {
     public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
-
 
     @Override
     public String toString() {
