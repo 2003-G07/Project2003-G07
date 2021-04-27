@@ -8,30 +8,46 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    protected Long categoryId;
-    protected Long productId;
 
-    public ProductCategory() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    protected Category category;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "productId", referencedColumnName = "id")
+    protected Product product;
+
+    public ProductCategory(Category category, Product product) {
+        this.category = category;
+        this.product = product;
     }
 
-    public Long getId() {
-        return id;
+    public ProductCategory(){
+
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public Long getProductId() {
-        return productId;
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
     public String toString() {
         return "ProductCategory{" +
                 "id=" + id +
-                ", categoryId=" + categoryId +
-                ", productId=" + productId +
+                ", category=" + category +
+                ", product=" + product +
                 '}';
     }
 }
