@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style/bootstrap.css" />
-    <link rel="stylesheet" href="/style/style.css" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/style/bootstrap.css"/>
+    <link rel="stylesheet" href="/style/style.css"/>
     <title>Admin - Om oss</title>
 </head>
-<body>
-<div id="nav-placeholder">
+<body class="navbarpadding">
 
+<div id="nav-placeholder" class="fixed-top">
 
 </div>
+
 <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 
 <!--Sidebar-->
 <div class="d-flex wrapper">
-    <div class="border-right" id="sidebar-wrapper">
-
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block fixed-top">
+        <div class="" id="sidebar-wrapper">
+        </div>
     </div>
-    <div
-            class="container lg-3 mb-4"
-            style="justify-content: center;"
-    >
+</div>
+    <div class="container lg-3 mb-4" style="justify-content: center;">
+
         <h1 class="text-center mt-5">Om Hakim Livs</h1>
         <div class="row d-flex justify-content-center mt-4">
 
-
-
             <div class="col-md-6">
-                <p class="text-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus repudiandae, consectetur sed
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus
+                    repudiandae, consectetur sed
                     assumenda suscipit velit ipsa exercitationem quos! Dicta, placeat dolorem. Saepe voluptatem modi,
                     quaerat repudiandae architecto natus minus culpa aliquam eos tempore nesciunt reiciendis commodi
                     harum quasi numquam, maxime exercitationem ducimus sed mollitia maiores id! Laboriosam quos,
@@ -53,7 +53,6 @@
             </div>
         </div>
 
-
         <div class="container mt-5">
 
             <h1 class="text-center">Kontakta oss!</a> </h1>
@@ -63,13 +62,16 @@
                 <div class="col-md-6">
                     <input required type="text" name="name" class="form-control" placeholder="Namn">
                 </div>
+
                 <div class="col-md-6">
                     <input required type="email" name="email" class="form-control" placeholder="E-post">
                 </div>
+
                 <div class="col-md-12">
               <textarea type="text" required name="message" cols="30" rows="5" class="form-control"
                         placeholder="Skriv ett meddelande"></textarea>
                 </div>
+
                 <div class="col align-self-center">
                     <input type="submit" class="form-control mt-2 btn-primary" value="Skicka">
                 </div>
@@ -80,22 +82,17 @@
             <div class="row mt-3">
                 <div class="col" style="font-size: large;">
                     <p class="text-center">
-                        <b>Address:</b> Lorem, ipsum. <br>
-                        <b>Öppetider:</b> TIDER <br>
-                        <b>Telefonnummer:</b> XXX-XXXXXX <br>
-                        <b>Mailadress:</b> XXXXXXXX@XXXXXXX.XXX
+                        <b>Adress:</b> Orten torget 16 <br>
+                        <b>Öppetider:</b> 7-23 <br>
+                        <b>Telefonnummer:</b> 08-522 595 00 <br>
+                        <b>Mailadress:</b> chefen@hakimlivs.se <br>
                     </p>
-
                 </div>
-                <div class="col-md-6 embed-responsive embed-responsive-16by9">
-                    <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26494.87157984487!2d-118.2393201401809!3d33.893286384788354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cb6b7f1d5b4d%3A0x56bce9a915bcb42!2sCompton%2C%20CA%2C%20USA!5e0!3m2!1sen!2sse!4v1617018364662!5m2!1sen!2sse"
-                            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="embed-responsive-item"></iframe>
+                <div class="col-md-7 embed-responsive embed-responsive-16by9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4063.4172364009837!2d17.92420030786749!3d59.3878892336296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9e5ea6d057cd%3A0xaf29fda18b24e3d8!2sRinkeby%20Torg!5e0!3m2!1sen!2sse!4v1619479088955!5m2!1sen!2sse"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </div>
@@ -110,7 +107,7 @@
 
 <script>
 
-    $(function(){
+    $(function () {
         $("#nav-placeholder").load("../nav.html");
         $("#sidebar-wrapper").load("../sidebar.html");
         $("#foot").load("../footer.html");

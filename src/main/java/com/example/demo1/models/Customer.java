@@ -5,13 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by Daniel Bojic
- * Date: 2021-04-13
- * Time: 21:24
- * Project: Project2003-G07
- * Copyright: MIT
- */
 @Entity
 public class Customer {
     @Id
@@ -23,7 +16,8 @@ public class Customer {
     protected String email;
     protected Long addressId;
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(String firstName, String lastName, String tel, String email) {
         this.firstName = firstName;

@@ -2,15 +2,8 @@ package com.example.demo1.models;
 
 import javax.persistence.*;
 
-/**
- * Created by Henrik Elofsson
- * Date: 2021-04-16
- * Time: 14:48
- * Project: Project2003-G07
- * Copyright: MIT
- */
 @Entity
-public class ProductCategory{
+public class ProductCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

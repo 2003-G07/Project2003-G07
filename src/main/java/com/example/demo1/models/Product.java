@@ -2,13 +2,6 @@ package com.example.demo1.models;
 
 import javax.persistence.*;
 
-/**
- * Created by Daniel Bojic
- * Date: 2021-04-15
- * Time: 14:18
- * Project: gr7java
- * Copyright: MIT
- */
 @Entity
 
 public class Product {
@@ -16,20 +9,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-     String name;
+    String name;
     protected int storage;
     protected String image;
     protected String description;
-        int price;
+    int price;
     protected String category;
     boolean isVisible;
 
     int quant;
 
-    public Product(){}
+    public Product() {
+    }
 
-
-    public Product(String name, int storage, String image, String description, int price, String category, boolean isVisible){
+    public Product(String name, int storage, String image, String description, int price, String category, boolean isVisible) {
         setName(name);
         setStorage(storage);
         setImage(image);
@@ -52,7 +45,6 @@ public class Product {
     }
 
     public void setVisible(boolean visible) {
-
 
         isVisible = visible;
     }
