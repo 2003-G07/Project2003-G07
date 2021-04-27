@@ -1,9 +1,6 @@
 package com.example.demo1.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,21 +9,39 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    protected Long customerId;
-    protected LocalDateTime date;
-    protected String image;
+    protected String date;
     protected Long cost;
     protected int status;
-    protected Long addressId;
 
-    public Orders() {
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerId", referencedColumnName = "id")
+    protected Customer customer;
 
-    public Orders(LocalDateTime date, String image, Long cost, int status) {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "addressId", referencedColumnName = "id")
+    protected Address address;
+
+    public Orders(String date, Long cost, int status, Customer customer, Address address) {
         this.date = date;
-        this.image = image;
         this.cost = cost;
         this.status = status;
+        this.customer = customer;
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", date=" + date +
+                ", cost=" + cost +
+                ", status=" + status +
+                ", customer=" + customer +
+                ", address=" + address +
+                '}';
+    }
+
+    public Orders() {
     }
 
     public Long getId() {
@@ -37,28 +52,12 @@ public class Orders {
         this.id = id;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Long getCost() {
@@ -77,24 +76,19 @@ public class Orders {
         this.status = status;
     }
 
-    public Long getAddressId() {
-        return addressId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", customerId=" + customerId +
-                ", date=" + date +
-                ", image='" + image + '\'' +
-                ", cost=" + cost +
-                ", status=" + status +
-                ", addressId=" + addressId +
-                '}';
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
