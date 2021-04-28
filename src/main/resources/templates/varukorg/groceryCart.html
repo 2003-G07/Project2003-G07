@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/style/bootstrap.css"/>
     <link rel="stylesheet" href="/style/style.css"/>
-    <link rel="stylesheet" href="/style/cartStylish.css"/>
+    <link rel="stylesheet" href="../varukorg/cartStyle/cartStylish.css"/>
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
 
@@ -137,13 +137,14 @@
 
             var maincart = new Array();
 
-            var productcartparse = localStorage.getItem('cloudcart');
-            var productcart = JSON.parse(productcartparse);
 
+            if (localStorage.getItem('cloudcart') !== null){
+                var productcartparse = localStorage.getItem('cloudcart');
+                productcart = JSON.parse(productcartparse);
 
-            if (!productcart.length == 0) {
-                maincart = productcart
+                maincart = productcart;
             }
+
 
 
             const cardGen = (response) => {

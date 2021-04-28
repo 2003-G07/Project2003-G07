@@ -77,8 +77,7 @@
                     <div class="row d-flex justify-content-start" style="margin-left: 1rem;">
 
                         <a type="button" id="button-size" class="btn btn-info col-8 col-lg-7"
-                           onclick="addToCart()"
-                           th:href="@{/Startsida/produktsida/add/(id=${product.id})}">Lägg till i varukorg</a>
+                           th:onclick="addToCart([[${product.id}]])">Lägg till i varukorg</a>
 
                     </div>
 
@@ -105,20 +104,25 @@
     });
 
 
-    var productcartparse = localStorage.getItem('cloudcart');
-    var productcart = JSON.parse(productcartparse);
-
-
     var maincart = new Array();
+
+
+    if (localStorage.getItem('cloudcart') !== null){
+        var productcartparse = localStorage.getItem('cloudcart');
+        productcart = JSON.parse(productcartparse);
+
+        maincart = productcart;
+    }
     var shoppingcart = document.getElementById("amount");
 
 
-    if (!productcart.length === 0) {
-        maincart = productcart
-    }
+    function addToCart(värde) {
+        alert("Produkt tillagd i varukorgen");
 
-    function addToCart() {
-        alert("Produkt tillagd i varukorg!");
+        maincart.push(värde);
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+        console.log(maincart);
 
     }
 
