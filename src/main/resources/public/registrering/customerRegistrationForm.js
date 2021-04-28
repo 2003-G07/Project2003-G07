@@ -10,9 +10,11 @@
  */
 function validateInput(inputfield, errorLabelId) {
     let errorElement = document.getElementById(errorLabelId);
+    let errorElementSpringValidation = document.getElementById(errorLabelId+"SpringValidation");
     inputfield.setCustomValidity('');
     inputfield.setAttribute("style", "border: 2px solid #00AA00");
     errorElement.setAttribute('hidden',true);
+    errorElementSpringValidation?.setAttribute('hidden',true);
     inputfield.checkValidity();
     //console.log(inputfield.validity);
 }
@@ -33,6 +35,8 @@ function invalidInput(inputfield, errorLabelId, errorTextMessage) {
     inputfield.setCustomValidity(' ');
     if(inputfield.validity.valueMissing) {
         errorLabel.innerText = inputfield.getAttribute('name') + " måste fyllas i." ;
+    } else if (inputfield.validity.tooShort) {
+        errorLabel.innerText = inputfield.getAttribute('name') + " måste vara minst " + inputfield.getAttribute('minlength') + " tecken." ;
     } else {
         errorLabel.innerText = errorTextMessage;
     }
