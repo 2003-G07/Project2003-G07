@@ -55,7 +55,7 @@
 
                     <div id="inputorder" class="row justify-content-center shopping-cart mt-5 ">
 
-                        <div class="card-header border-bottom-0">
+                        <div th:id="id+${product.id}" class="card-header border-bottom-0">
 
 
                             <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
@@ -76,23 +76,18 @@
 
                                 <div class="row mt-5">
                                     <div class="col-3">
-                                        <a th:href="@{/groceryCart/delete/(id=${product.id})}">
-                                            <button onclick="" class="minus-btnCart" type="button" name="button">
+                                            <button th:onclick="minusItem([[${product.id}]])" class="minus-btnCart" type="button" name="button">
                                                 <img src="/varukorg/cartImages/minus.svg" alt=""/>
                                             </button>
-                                        </a>
-
                                     </div>
                                     <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center"
                                          style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <span class="row">[[${product.quant}]]</span>
+                                        <input disabled th:id="${product.id}" style="width: 2rem;" type="text"  name="name" th:value="${product.quant}">
                                     </div>
                                     <div class="col-3">
-                                        <a th:href="@{/groceryCart/add/(id=${product.id})}">
-                                            <button onclick="" class="plus-btnCart" type="button" name="button">
+                                            <button th:onclick="plusItem([[${product.id}]])" class="plus-btnCart" type="button" name="button">
                                                 <img src="/varukorg/cartImages/plus.svg" alt=""/>
                                             </button>
-                                        </a>
 
                                     </div>
                                 </div>
@@ -145,54 +140,9 @@
                 maincart = productcart;
             }
 
-
-
-            const cardGen = (response) => {
-
-                globalData = response;
-
-
-                var generateItem = false;
-                var totalPriceAllItems = 0;
-                var lastId = 0;
-                var totalPriceSingleItem = 0;
-                var amountSingleItem = 0;
-
-                response.forEach(responseElement => {
-                    maincart.forEach(maincartElement => {
-                        if (maincartElement == responseElement.productid) {
-                            totalPriceAllItems += responseElement.price;
-                            generateItem = true;
-                            if (lastId == maincartElement) {
-                                amountSingleItem++;
-                            } else {
-                                lastId = maincartElement;
-                                amountSingleItem++;
-                            }
-                        }
-                        if (!amountSingleItem == 0) {
-                            totalPriceSingleItem = maincartElement.price * amountSingleItem;
-                        } else {
-                            totalPriceSingleItem = maincartElement.price;
-                        }
-                    })
-                    if (generateItem) {
-                        document.getElementById("inputorder").innerHTML += ` `;
-                    }
-
-                    totalPriceSingleItem = 0;
-                    generateItem = false;
-                    amountSingleItem = 0;
-
-                });
-
-                var priceAll = document.getElementById("totalCartPrice");
-                priceAll.innerHTML += ` ${totalPriceAllItems} kr`;
-            };
-
             function minusItem(buttonid) {
 
-                var buttonName = "field" + buttonid;
+                var buttonName = buttonid;
 
                 var positionInArray = 0;
 
@@ -218,21 +168,23 @@
 
                     document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
-                    lowerPrice(globalData);
+                   // lowerPrice(globalData);
 
                     if (amountInArrayCounter == 0) {
-                        var el = document.getElementById(buttonid);
+                        var el = document.getElementById('id'+buttonid);
                         el.remove();
 
                     }
 
 
-                    shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+                    //shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
 
 
                     amountInArrayCounter = 0;
                 }
 
+
+                localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
             }
 
@@ -257,7 +209,7 @@
 
             function plusItem(buttonid) {
 
-                var buttonName = "field" + buttonid;
+                var buttonName = buttonid;
 
                 var positionInArray = 0;
 
@@ -276,14 +228,16 @@
                 document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
 
-                higherPrice(globalData);
+               // higherPrice(globalData);
 
 
-                shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+               // shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
 
 
                 amountInArrayCounter = 0;
 
+
+                localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
             }
 

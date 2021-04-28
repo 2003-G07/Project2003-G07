@@ -13,7 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class hej {
@@ -26,6 +28,7 @@ public class hej {
 
     List<CartService> cartServiceList = new ArrayList<>();
     List<Product> proInCart = new ArrayList<>();
+
 
     int totalpris;
 
@@ -285,6 +288,38 @@ public class hej {
 
         return "redirect:/varukorg/groceryCart.html";
     }
+
+    @PostMapping(value="/url")
+    public String postCustomer(@RequestBody List<Integer> productIdToCart){
+        System.out.println("java funka");
+
+        Collections.sort(productIdToCart);
+        long prev = 0;
+
+        proInCart.clear();
+
+        for (int i = 0; i < productIdToCart.size(); i++) {
+
+            if (prev == productIdToCart.get(i)){
+                for (int j = 0; j <proInCart.size(); j++) {
+                    if (proInCart.get(j).getId().equals(prev)){
+                        proInCart.get(j).setQuant(proInCart.get(j).getQuant()+1);
+                    }
+                }
+            }else {
+                prev = productIdToCart.get(i);
+                Product temp = productRepository.getProductById(productIdToCart.get(i));
+                temp.setQuant(1);
+                proInCart.add(temp);
+            }
+
+        }
+
+
+
+        return "redirect:/varukorg/groceryCart.html";
+    }
+
 }
 
 
