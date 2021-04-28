@@ -285,6 +285,26 @@ public class hej {
 
         return "redirect:/varukorg/groceryCart.html";
     }
+    @RequestMapping("/groceryCart/deleteAll")
+    public String clearProductToGrosCart(@RequestParam("id") Product product) {
+
+        Product stock = productRepository.findById(product.getId()).get();
+
+        for (int i = 0; i < proInCart.size(); i++) {
+            if (proInCart.get(i).getId().equals(product.getId())) {
+                Product clickedProduct = proInCart.get(i);
+
+                stock.setStorage(stock.getStorage() + clickedProduct.getQuant());
+                productRepository.save(stock);
+
+                proInCart.remove(i);
+
+                totalpris -= product.getPrice()* clickedProduct.getQuant();
+            }
+        }
+
+        return "redirect:/varukorg/groceryCart.html";
+    }
 }
 
 
