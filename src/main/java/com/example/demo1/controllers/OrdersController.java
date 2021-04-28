@@ -1,9 +1,6 @@
 package com.example.demo1.controllers;
 
-import com.example.demo1.models.Address;
-import com.example.demo1.models.Customer;
-import com.example.demo1.models.Orders;
-import com.example.demo1.models.Product;
+import com.example.demo1.models.*;
 import com.example.demo1.repositories.AddressRepository;
 import com.example.demo1.repositories.OrdersRepository;
 import com.example.demo1.repositories.CustomerRepository;
@@ -39,7 +36,7 @@ public class OrdersController {
     public @ResponseBody
     String addOrder(String productName, String customerName, String address) {
 
-        if (productRepository.findByName(productName).isEmpty()){
+        if (productRepository.findByName(productName).isEmpty()) {
             return "There is no product named: " + productName;
         } else {
             Product product = productRepository.findByName(productName).get(0);
@@ -51,34 +48,33 @@ public class OrdersController {
             String formatDateTime = now.format(formatter);
             Address newAdress = new Address();
 
-            if (addressRepository.findByAddress(address).isEmpty()){
+            if (addressRepository.findByAddress(address).isEmpty()) {
 
                 newAdress.setAddress(address);
 
                 addressRepository.save(newAdress);
             } else {
 
-                newAdress =  addressRepository.findByAddress(address).get();
+                newAdress = addressRepository.findByAddress(address).get();
 
             }
 
-            if (customerRepository.findByFirstName(customerName).isEmpty()){
+            if (customerRepository.findByFirstName(customerName).isEmpty()) {
                 Customer customer = new Customer();
 
                 customer.setFirstName(customerName);
                 customerRepository.save(customer);
 
-                Orders orders = new Orders(formatDateTime, (long) product.getPrice(),1,customer, newAdress);
+                Orders orders = new Orders(formatDateTime, (long) product.getPrice(), 1, customer, newAdress);
 
                 ordersRepository.save(orders);
                 return "Order Saved";
 
 
-
             } else {
 
-               var customer = customerRepository.findByFirstName(customerName).get(0);
-               Orders orders = new Orders(formatDateTime, (long) product.getPrice(),1,customer, newAdress);
+                var customer = customerRepository.findByFirstName(customerName).get(0);
+                Orders orders = new Orders(formatDateTime, (long) product.getPrice(), 1, customer, newAdress);
                 ordersRepository.save(orders);
                 return "Order Saved + new Customer";
 
@@ -88,10 +84,27 @@ public class OrdersController {
 
     }
 
+
     @GetMapping(path = "/show")
     public @ResponseBody
-    Iterable<Orders> showProducts() {
+    Iterable<OrderDetails> showProducts() {
 
-        return ordersRepository.findAll();
+        var ordersIterable = ordersRepository.findAll();
+
+
+        return null;
+
+
+    }
+
+    @PatchMapping(path = "/changeStatus")
+    public @ResponseBody
+    String changeStatus() {
+
+        var ordersIterable = ordersRepository.findAll();
+
+
+        return "Status has changed";
+
     }
 }
