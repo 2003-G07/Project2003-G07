@@ -297,6 +297,7 @@ public class hej {
         long prev = 0;
 
         proInCart.clear();
+        totalpris = 0;
 
         for (int i = 0; i < productIdToCart.size(); i++) {
 
@@ -304,6 +305,7 @@ public class hej {
                 for (int j = 0; j <proInCart.size(); j++) {
                     if (proInCart.get(j).getId().equals(prev)){
                         proInCart.get(j).setQuant(proInCart.get(j).getQuant()+1);
+                        totalpris += proInCart.get(j).getPrice();
                     }
                 }
             }else {
@@ -311,6 +313,7 @@ public class hej {
                 Product temp = productRepository.getProductById(productIdToCart.get(i));
                 temp.setQuant(1);
                 proInCart.add(temp);
+                totalpris += temp.getPrice();
             }
 
         }
