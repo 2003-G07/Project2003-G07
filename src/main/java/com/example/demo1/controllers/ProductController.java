@@ -23,20 +23,24 @@ public class ProductController {
     @PostMapping(path = "/add")
     public @ResponseBody String addProduct(
             @RequestParam String name,
-            @RequestParam(required = false) int storage,
+            @RequestParam(required = false) Integer storage,
             @RequestParam(required = false) String image,
             @RequestParam(required = false) String description,
-            @RequestParam(required = false) int price,
+            @RequestParam(required = false) Integer price,
             @RequestParam String category,
             @RequestParam boolean isVisible) {
 
-        System.out.println("YO");
+
+
+        if (storage < 0) return "Storage can't be negative";
+        if (price < 0) return "Price can't be negative";
+
 
         Product product = new Product(name, storage, image, description, price, category, isVisible);
 
         if ((productRepository.findByName(name).size() != 0)) {
 
-            return "product already exists, use put method instead";
+            return "product already exists, use patch method instead";
         } else {
             productRepository.save(product);
         }
@@ -104,6 +108,9 @@ public class ProductController {
             return "There is no product with that ID";
         }
         else {
+            if (price != null && price < 0) return "price must be positive";
+            if (storage != null && storage < 0) return "storage must be positive";
+
             var temp =  productRepository.findById(id).get();
 
             if (name!=null) temp.setName(name);
