@@ -49,6 +49,28 @@ footer {
     padding-top: 2%;
     box-shadow: 0 50vh 0 50vh #007a3d;
 }
+/*
+CSS below for centered footer in desktop, mobile excluded
+ */
+@media only screen and (min-device-width: 480px) {
+    footer#foot {
+
+        padding-right: 15rem;
+    }
+}
+
+@media only screen and (min-device-width: 480px) {
+    div#titleprod {
+
+        padding-right: 16rem;
+    }
+
+}@media only screen and (max-device-width: 480px) {
+    div#titleprod {
+
+        padding-right: 4rem;
+    }
+}
 
 .copyright {
     font-size: 50%;
