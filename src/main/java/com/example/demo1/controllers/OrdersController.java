@@ -1,15 +1,13 @@
 package com.example.demo1.controllers;
 
 import com.example.demo1.models.*;
-import com.example.demo1.repositories.AddressRepository;
-import com.example.demo1.repositories.OrdersRepository;
-import com.example.demo1.repositories.CustomerRepository;
-import com.example.demo1.repositories.ProductRepository;
+import com.example.demo1.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 /**
  * Created by Salah Abdinoor
@@ -30,6 +28,9 @@ public class OrdersController {
     private CustomerRepository customerRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
+;
 
 
     @PostMapping(path = "/add")
@@ -39,6 +40,7 @@ public class OrdersController {
         if (productRepository.findByName(productName).isEmpty()) {
             return "There is no product named: " + productName;
         } else {
+
             Product product = productRepository.findByName(productName).get(0);
 
             LocalDateTime now = LocalDateTime.now();
@@ -47,6 +49,7 @@ public class OrdersController {
 
             String formatDateTime = now.format(formatter);
             Address newAdress = new Address();
+            OrderDetails orderDetails = new OrderDetails();
 
             if (addressRepository.findByAddress(address).isEmpty()) {
 
@@ -68,14 +71,24 @@ public class OrdersController {
                 Orders orders = new Orders(formatDateTime, (long) product.getPrice(), 1, customer, newAdress);
 
                 ordersRepository.save(orders);
-                return "Order Saved";
 
+                orderDetails.setOrders(orders);
+                orderDetails.setProduct(product);
+
+                orderDetailsRepository.save(orderDetails);
+
+                return "Order Saved";
 
             } else {
 
                 var customer = customerRepository.findByFirstName(customerName).get(0);
                 Orders orders = new Orders(formatDateTime, (long) product.getPrice(), 1, customer, newAdress);
                 ordersRepository.save(orders);
+
+                orderDetails.setOrders(orders);
+                orderDetails.setProduct(product);
+
+                orderDetailsRepository.save(orderDetails);
                 return "Order Saved + new Customer";
 
             }
@@ -87,13 +100,18 @@ public class OrdersController {
 
     @GetMapping(path = "/show")
     public @ResponseBody
-    Iterable<OrderDetails> showProducts() {
+    Iterable<OrderDetails> showAllOrder() {
 
-        var ordersIterable = ordersRepository.findAll();
+        var orderDetails = orderDetailsRepository.findAll();
+
+        var product = orderDetails.iterator().next().getProduct();
+        //alltid en order
+        var order = orderDetails.iterator().next().getOrders();
+
+        orderDetails = Collections.singleton(new OrderDetails(order, product));
 
 
-        return null;
-
+        return orderDetails;
 
     }
 
