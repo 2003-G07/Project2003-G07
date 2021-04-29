@@ -4,8 +4,9 @@ import com.example.demo1.models.OrderDetails;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface
 OrderDetailsRepository extends CrudRepository<OrderDetails, Long> {
-    List<OrderDetails> findById(String id);
+    Optional<OrderDetails> findById(Long id);
 }
