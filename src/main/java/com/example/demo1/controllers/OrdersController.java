@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Salah Abdinoor
@@ -42,7 +40,7 @@ public class OrdersController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    String addOrder(@RequestParam Long productId,
+    String addOrder(@RequestParam List<Long> productId,
                     @RequestParam String fName,
                     @RequestParam String lName,
                     @RequestParam String tel,
@@ -51,10 +49,9 @@ public class OrdersController {
                     @RequestParam String street,
                     @RequestParam String zip) {
 
-        OrderDetails orderDetails;
         Customer customer;
         Address address;
-        Product product;
+        List<Product> productList = new ArrayList<>();
 
         // Create the time for the order.
         LocalDateTime now = LocalDateTime.now();
@@ -83,20 +80,30 @@ public class OrdersController {
         }
 
         // third check to see if product exists. if it doesnt send error, if it does proceed.
-        if (productRepository.findById(productId).isEmpty()) {
+        if (productRepository.findById(productId.get(0)).isEmpty()) {
             return "There is no product named: " + productId;
         } else {
 
-            product = productRepository.findById(productId).get();
+            for (int i = 0; i < productId.size(); i++) {
+
+                productList.add(productRepository.findById(productId.get(i)).get());
+
+            }
+
+
 
             // Create Order
-            Orders orders = new Orders(formatDateTime, (long) product.getPrice(), 1, customer, address);
+            Orders orders = new Orders(formatDateTime, (long) totalPrice(productList), 1, customer, address);
             ordersRepository.save(orders);
 
             // add Order to OrderDetails
-            orderDetails = new OrderDetails(orders, product);
+            OrderDetails orderDetails;
+            for (Product product : productList) {
+               orderDetails = new OrderDetails(orders, product);
+                orderDetailsRepository.save(orderDetails);
+                System.out.println("orders = " + orders);
 
-            orderDetailsRepository.save(orderDetails);
+            }
 
             return "Order Saved";
 
@@ -104,20 +111,51 @@ public class OrdersController {
 
     }
 
+    public int totalPrice(List<Product> productList){
+
+        var totalPrice = 0;
+
+        for (int i = 0; i < productList.size() ; i++) {
+
+            totalPrice += productList.get(i).getPrice();
+
+        }
+
+        return totalPrice;
+    }
+
 
     @GetMapping(path = "/OrderById")
     public @ResponseBody
-    Iterable<Present> PresentById(Long orderDetailsId) {
+    List<Iterable> PresentById(Long orderId) {
 
         Present present = new Present();
 
-        var orderDetails = orderDetailsRepository.findById(orderDetailsId).get();
+       // var orderDetails = orderDetailsRepository.findById(ordersRepository.findById(orderId).get().getId()).get();
+        var orders = ordersRepository.findById(orderId).get();
 
-        var orders = orderDetails.getOrders();
-        var product= orderDetails.getProduct();
+        var orderDetails = orderDetailsRepository.findByOrders(orders);
+
+        List<Product> productList = new ArrayList<>();
+        Iterable<Product> presenting = new HashSet<>();
+
+        for (int i = 0; i < orderDetails.size(); i++) {
+
+            var product= orderDetails.get(i).getProduct();
+            productList.add(product);
+
+        }
+
+        List<Iterable> returning = new ArrayList<>();
+        List<Iterable> orderIt = new ArrayList<>();
+
+        orderIt.add(Collections.singleton(ordersRepository.findById(orderId)));
+
+        returning.add(orderIt);
+        returning.add(present.format( productList));
 
 
-       return present.format(product,orders);
+        return returning;
 
     }
 
@@ -148,7 +186,6 @@ public class OrdersController {
 
         for (int i = 0; i < sizeOfProductList; i++) {
 
-            present = Collections.singleton(new Present(order, productList.get(i).getId(), productList.get(i).getName(), productList.get(i).getPrice(), productList.get(i).getQuant(), productList.get(i).getCategory()));
 
         }
 
