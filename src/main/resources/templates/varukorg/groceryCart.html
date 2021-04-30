@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/style/bootstrap.css"/>
     <link rel="stylesheet" href="/style/style.css"/>
-    <link rel="stylesheet" href="../varukorg/cartStyle/cartStylish.css"/>
+    <link rel="stylesheet" href="/style/cartStylish.css"/>
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
 
@@ -35,8 +35,12 @@
 
     <div class="container">
 
-        <div class="d-flex w-100 justify-content-start align-items-center">
-            <div class="container" id="inputorder">
+    <div class="text-center mt-5 justify-content-center" id="titleprod" style="margin-top: 3rem;">
+        <h1>Varukorg</h1>
+    </div>
+
+    <div class="d-flex w-100 justify-content-start align-items-center">
+        <div class="container" id="inputorder">
 
 
                 <!-- LÄGG IN ALLT JS Generat -->
@@ -69,17 +73,17 @@
                                 <img src="/varukorg/cartImages/delete-icn.svg" alt=""/>
                             </div>
 
-                            <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
-                                <img th:src="${product.image}" height="100px" alt=""/>
-                            </div>
+                    <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
 
-                            <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
-                                <span class="row">[[${product.name}]]</span>
+                        <img th:src="${product.image}" height="120px" class="responsive"
+                             alt="product image">
+                    </div>
 
+                    <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
+                        <span class="row d-flex justify-content-center">[[${product.name}]]</span>
 
-                            </div>
-
-                            <div class="row quantityCart  ml-5 mr-5">
+                    </div>
+                    <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
 
                                 <div class="row mt-5">
                                     <div class="col-3">
@@ -111,6 +115,15 @@
 
                 </th:block>
 
+    <th:block th:each="pris : ${totalpris}">
+
+        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
+        ">Att betala: [[${pris}]] kronor
+        </div>
+    </th:block>
+    <button onclick="location.href='checkout.html'" class="btn-outline-info btn"
+            type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
+    </button>
 
                 <!-- Product -->
 

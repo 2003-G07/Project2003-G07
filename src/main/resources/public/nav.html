@@ -52,6 +52,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
+
 <script>
 
 
@@ -61,6 +62,7 @@
      */
     function dropDown() {
         document.getElementById("navbarNavDropdown").classList.toggle("show");
+        console.log('clicked category');
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -80,6 +82,11 @@
 <script>
     //FOR SHOPPINGCART
 
+    function itsRewindTime(remember) {
+
+        localStorage.setItem('cloudmemory', JSON.stringify(remember));
+
+    }
 
     var productcartparse = localStorage.getItem('cloudcart');
     var productcart = JSON.parse(productcartparse);
