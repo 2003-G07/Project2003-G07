@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface OrdersRepository extends CrudRepository<Orders, Long> {
     List<Orders> findById(String id);
+    List<Orders> findByStatus(int status);
 
 }
