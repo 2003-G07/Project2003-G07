@@ -119,7 +119,7 @@
         maincart.push(värde);
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
-        console.log(maincart);
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
     }
 

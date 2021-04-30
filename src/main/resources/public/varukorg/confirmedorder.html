@@ -59,7 +59,6 @@
 
         var productcartparse = localStorage.getItem('cloudcart');
         var productcart = JSON.parse(productcartparse);
-        console.log(productcart)
 
         $.ajax({
             type: 'POST',
@@ -88,7 +87,6 @@
         maincart = [];
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
 
-        console.log("varukorgen har produkter");
     }
 
 

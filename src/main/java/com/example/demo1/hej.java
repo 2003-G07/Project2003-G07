@@ -54,14 +54,12 @@ public class hej {
 
     @GetMapping("/register")
     public String showForm(Model model) {
-        System.out.println("register fungerar");
 
         return "regiser_form";
     }
 
     @PostMapping("/register")
     public String submitForm(@ModelAttribute("customer") Customer customer) {
-        System.out.println(customer);
         return "register_success";
     }
 
@@ -312,6 +310,7 @@ public class hej {
         return "redirect:/varukorg/groceryCart.html";
     }
 
+    //Används vid navbar för att hämta alla produkter till varukorgen
     @PostMapping(value="/url")
     public String postCustomer(@RequestBody List<Integer> productIdToCart){
 
@@ -355,23 +354,61 @@ public class hej {
 
         checkOutFormGlobal = checkOutForm;
 
-        System.out.println("checkOutFormGlobal = " + checkOutFormGlobal);
 
         return "redirect:/varukorg/confirmedorder.html";
     }
 
 
 
+
+    //Avänds vid checkout om allt finns på lagret
     @PostMapping(value="/url2")
     public String postCustomer2(@RequestBody List<Integer> productIdToCart){
 
         Collections.sort(productIdToCart);
-
+        long prev = 0;
         proInCart.clear();
 
+        for (int i = 0; i < productIdToCart.size(); i++) {
+
+            if (prev == productIdToCart.get(i)){
+                for (int j = 0; j <proInCart.size(); j++) {
+                    if (proInCart.get(j).getId().equals(prev)){
+                        proInCart.get(j).setQuant(proInCart.get(j).getQuant()+1);
+                        totalpris += proInCart.get(j).getPrice();
+                    }
+                }
+            }else {
+                prev = productIdToCart.get(i);
+                Product temp = productRepository.getProductById(productIdToCart.get(i));
+                temp.setQuant(1);
+                proInCart.add(temp);
+                totalpris += temp.getPrice();
+            }
+
+        }
 
 
 
+        //ANVÄND PROINCART FÖR ATT HITTA ALLA KÖPTA VAROR
+        //ANVÄND CHECKOUTFORMGLOBAL FÖR ATT HITTA KUNDEN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        proInCart.clear();
         return "redirect:/varukorg/confirmedorder.html";
     }
 
