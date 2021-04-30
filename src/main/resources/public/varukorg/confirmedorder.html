@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="../style/bootstrap.css" />
     <link rel="stylesheet" href="../style/style.css" />
     <title>Admin - Produkt</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 </head>
 
@@ -52,14 +54,42 @@
 
 <script>
 
-    $(function(){
-        $("#nav-placeholder").load("../nav.html");
-        $("#sidebar-wrapper").load("../sidebar.html");
 
-    });
+    function checkcart() {
+
+        var productcartparse = localStorage.getItem('cloudcart');
+        var productcart = JSON.parse(productcartparse);
+        console.log(productcart)
+
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            accept: 'text/plain',
+            url: "/url2",
+            data: JSON.stringify(productcart),
+            dataType: 'text',
+            error: function (xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+
+            }
+        });
+    }
 
 
 
+
+
+
+    if (localStorage.getItem('cloudcart') !== null){
+        checkcart();
+
+        maincart = [];
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+        console.log("varukorgen har produkter");
+    }
 
 
 </script>
@@ -68,7 +98,14 @@
 
 </footer>
 <script>
+
+
+
+
+
     $(function(){
+        $("#nav-placeholder").load("../nav.html");
+        $("#sidebar-wrapper").load("../sidebar.html");
         $("#foot").load("../footer.html");
 
     });

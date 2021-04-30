@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import com.example.demo1.models.CartService;
+import com.example.demo1.models.CheckOutForm;
 import com.example.demo1.models.Customer;
 import com.example.demo1.models.Product;
 import com.example.demo1.repositories.CustomerRepository;
@@ -8,9 +9,13 @@ import com.example.demo1.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,8 +34,12 @@ public class hej {
     List<CartService> cartServiceList = new ArrayList<>();
     List<Product> proInCart = new ArrayList<>();
 
+    CheckOutForm checkOutFormGlobal;
+
 
     int totalpris;
+    List<Product> outOfStock = new ArrayList<>();
+    String url;
 
     @GetMapping("/greeting")
     public String greetingForm(@RequestParam String firstNa, String lastNa,
@@ -230,11 +239,25 @@ public class hej {
         return url;
     }
 
+    boolean sendErrorMessageIfEmptyStorage = false;
     @GetMapping("varukorg/groceryCart.html")
     public String showCart(Model model) {
+        String error = "Slut på lager: ";
+        if (outOfStock != null){
+            for (int i = 0; i < outOfStock.size(); i++) {
+                error += outOfStock.get(i).getName() + ", ";
+            }
+            error = error.substring(0, error.length()-2);
+        }
+
+
 
         model.addAttribute("listProductsInCart", proInCart);
         model.addAttribute("totalpris", totalpris);
+        if (sendErrorMessageIfEmptyStorage){
+            model.addAttribute("errorMessage", error);
+        }
+
 
         return "varukorg/groceryCart.html";
     }
@@ -291,7 +314,6 @@ public class hej {
 
     @PostMapping(value="/url")
     public String postCustomer(@RequestBody List<Integer> productIdToCart){
-        System.out.println("java funka");
 
         Collections.sort(productIdToCart);
         long prev = 0;
@@ -322,6 +344,97 @@ public class hej {
 
         return "redirect:/varukorg/groceryCart.html";
     }
+
+
+    @PostMapping("/varukorg/submitcheckoutform")
+    public String submitCheckOutForm(@Valid CheckOutForm checkOutForm, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "varukorg/checkout.html";
+        }
+
+        checkOutFormGlobal = checkOutForm;
+
+        System.out.println("checkOutFormGlobal = " + checkOutFormGlobal);
+
+        return "redirect:/varukorg/confirmedorder.html";
+    }
+
+
+
+    @PostMapping(value="/url2")
+    public String postCustomer2(@RequestBody List<Integer> productIdToCart){
+
+        Collections.sort(productIdToCart);
+
+        proInCart.clear();
+
+
+
+
+        return "redirect:/varukorg/confirmedorder.html";
+    }
+
+
+    @PostMapping(value="varukorg/groceryCart.html/checkoutItems")
+    public String checkoutCartStorageItems(@RequestBody List<Integer> product, HttpServletResponse response) {
+        long prev = 0;
+
+        proInCart.clear();
+        totalpris = 0;
+        outOfStock.clear();
+
+
+
+        for (int i = 0; i < product.size(); i++) {
+
+            if (prev == product.get(i)){
+                for (int j = 0; j <proInCart.size(); j++) {
+                    if (proInCart.get(j).getId().equals(prev)){
+                        proInCart.get(j).setQuant(proInCart.get(j).getQuant()+1);
+                        totalpris += proInCart.get(j).getPrice();
+                    }
+                }
+            }else {
+                prev = product.get(i);
+                Product temp = productRepository.getProductById(product.get(i));
+                temp.setQuant(1);
+                proInCart.add(temp);
+                totalpris += temp.getPrice();
+            }
+
+        }
+        boolean redirect = true;
+
+        for (int i = 0; i <proInCart.size() ; i++) {
+            if (proInCart.get(i).getQuant() > productRepository.getProductById(proInCart.get(i).getId()).getStorage()){
+                outOfStock.add(proInCart.get(i));
+                redirect = false;
+            }
+        }
+
+        if (redirect) {
+            url = "redirect:/varukorg/checkout.html";
+            sendErrorMessageIfEmptyStorage = false;
+        } else{
+            sendErrorMessageIfEmptyStorage = true;
+            url = "redirect:/varukorg/groceryCart.html";
+        }
+
+        return url;
+    }
+
+
+    @GetMapping("/direct")
+    public String direction(){
+
+        return url;
+    }
+
+
+
+
+
 
 }
 

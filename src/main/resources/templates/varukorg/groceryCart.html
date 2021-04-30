@@ -31,6 +31,7 @@
 
         </div>
     </div>
+</div>
 
     <div class="container">
 
@@ -39,17 +40,23 @@
 
 
                 <!-- LÄGG IN ALLT JS Generat -->
-
+<div class="col text-center">
                 <div class="row mt-5 justify-content-center ">
                     <h1>Varukorg</h1>
                 </div>
 
+    <th:block th:each="error : ${errorMessage}">
+                    [[${error}]]
+
+    </th:block>
+
+            </div>
                 <th:block th:each="pris : ${totalpris}">
 
 
                     <div  id="totalCartPrice">Totalpris: [[${pris}]] :-</div>
                 </th:block>
-                <button onclick="location.href='checkout.html'" class="btn btn-primary" type="button">Checkout</button>
+                <button onclick="checkcart3()" class="btn btn-primary" type="button">Checkout</button>
 
                 <th:block th:each="product : ${listProductsInCart}">
 
@@ -114,6 +121,10 @@
             </div>
 
         </div>
+
+        </div>
+
+
 
         <!-- Footer -->
         <footer id="foot" style="background-color: #007A3D;" class="mt-5 justify-content-center">
@@ -190,7 +201,7 @@
 
             var thymtex = "[[${totalpris}]]";
 
-            var sum = thymtex;
+            var sum = parseInt(thymtex);
 
             function lowerPrice(price) {
 
@@ -246,16 +257,40 @@
             function higherPrice(price) {
                 sum = sum + price;
 
-
-
-
-
-
                 console.log(sum);
 
                 document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${sum} :-`;
 
                 localStorage.setItem('cloudcart', JSON.stringify(maincart));
+            }
+
+
+            function checkcart3(){
+
+                var productcartparse = localStorage.getItem('cloudcart');
+                var productcart = JSON.parse(productcartparse);
+
+                $.ajax({
+                    type: 'POST',
+                    contentType : "application/json",
+                    accept : 'text/plain',
+                    url : "/varukorg/groceryCart.html/checkoutItems",
+                    data : JSON.stringify(productcart),
+                    dataType : 'text',
+                    error : function(xhr, textStatus, error) {
+                        console.log(xhr.statusText);
+                        console.log(textStatus);
+                        console.log(error);
+
+                    },
+                    success: function () {
+                        location.href = "/direct"
+                    }
+                });
+
+
+                console.log("det funka")
+
             }
 
 
