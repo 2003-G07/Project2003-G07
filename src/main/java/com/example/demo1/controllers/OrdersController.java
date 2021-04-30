@@ -127,36 +127,24 @@ public class OrdersController {
 
     @GetMapping(path = "/OrderById")
     public @ResponseBody
-    List<Iterable> PresentById(Long orderId) {
+    Object[] PresentById(Long orderId) {
 
         Present present = new Present();
-
-       // var orderDetails = orderDetailsRepository.findById(ordersRepository.findById(orderId).get().getId()).get();
         var orders = ordersRepository.findById(orderId).get();
-
         var orderDetails = orderDetailsRepository.findByOrders(orders);
-
         List<Product> productList = new ArrayList<>();
-        Iterable<Product> presenting = new HashSet<>();
 
         for (int i = 0; i < orderDetails.size(); i++) {
 
             var product= orderDetails.get(i).getProduct();
             productList.add(product);
-
         }
 
-        List<Iterable> returning = new ArrayList<>();
-        List<Iterable> orderIt = new ArrayList<>();
+        Object[] ret = new Object[2];
+        ret[0] = ordersRepository.findById(orderId);
+        ret[1] = present.format(productList);
 
-        orderIt.add(Collections.singleton(ordersRepository.findById(orderId)));
-
-        returning.add(orderIt);
-        returning.add(present.format( productList));
-
-
-        return returning;
-
+        return ret;
     }
 
 
