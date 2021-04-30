@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/style/bootstrap.css"/>
     <link rel="stylesheet" href="/style/style.css"/>
-    <link rel="stylesheet" href="/style/cartStylish.css"/>
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
+    <link rel="stylesheet" href="/varukorg/cartStyle/cartStylish.css"/>
 
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
@@ -28,286 +28,279 @@
 <div class="d-flex wrapper">
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block fixed-top">
         <div class="" id="sidebar-wrapper">
+        </div>
+    </div>
+</div>
 
+
+<div class="container">
+
+    <div class="text-center mt-5 justify-content-center" id="titleprod" style="margin-top: 3rem;">
+        <h1>Varukorg</h1>
+    </div>
+
+    <div class="d-flex w-100 justify-content-start align-items-center">
+        <div class="container" id="inputorder">
+
+
+            <!-- LÄGG IN ALLT JS Generat -->
+
+            <th:block th:each="product : ${listProductsInCart}">
+
+                <div class="row mt-5">
+                    <div class="col-0 d-flex justify-content-center">
+                        <a th:href="@{/groceryCart/deleteAll/(id=${product.id})}">
+                            <button onclick="" class="delete-btnCart" name="button">
+                        <img src="cartImages/delete-icn.svg" alt="" width="15px;"
+                             class=".d-sm-none .d-md-block">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div id="inputorder" class="row d-flex justify-content-start itemCart mt-2">
+
+                    <!--div class="row itemCart mt-sm-5" style="width: 15rem; margin-left: 2rem;"-->
+
+                    <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
+
+                        <img th:src="${product.image}" height="120px" class="responsive"
+                             alt="product image">
+                    </div>
+
+                    <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
+                        <span class="row d-flex justify-content-center">[[${product.name}]]</span>
+
+                    </div>
+                    <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
+
+                        <div class="row mt-5">
+                            <div class="col-3 d-flex justify-content-center">
+                                <a th:href="@{/groceryCart/delete/(id=${product.id})}">
+                                    <button onclick="" class="minus-btnCart" type="button" name="button">
+                                        <img src="/varukorg/cartImages/minus.svg" alt=""/>
+                                    </button>
+                                </a>
+
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+
+                                <span class="row d-flex justify-content-center">[[${product.quant}]]</span>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+                                <a th:href="@{/groceryCart/add/(id=${product.id})}">
+                                    <button onclick="" class="plus-btnCart " type="button" name="button">
+                                        <img src="cartImages/plus.svg" alt="">
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">
+                        [[${product.price}]] kr
+                    </div>
+                </div>
+            </th:block>
         </div>
     </div>
 
-    <div class="container">
+    <th:block th:each="pris : ${totalpris}">
 
-        <div class="d-flex w-100 justify-content-start align-items-center">
-            <div class="container" id="inputorder">
-
-
-                <!-- LÄGG IN ALLT JS Generat -->
-
-                <div class="row mt-5 justify-content-center ">
-                    <h1>Varukorg</h1>
-                </div>
-
-                <th:block th:each="pris : ${totalpris}">
-
-
-                    <div id="totalCartPrice">Totalpris: [[${pris}]] :-</div>
-                </th:block>
-                <button onclick="location.href='checkout.html'" class="btn btn-primary" type="button">Checkout</button>
-
-                <th:block th:each="product : ${listProductsInCart}">
-
-                    <div id="inputorder" class="row justify-content-center shopping-cart mt-5 ">
-
-                        <div class="card-header border-bottom-0">
-
-
-                            <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
-                                <img src="/varukorg/cartImages/delete-icn.svg" alt=""/>
-                            </div>
-
-                            <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
-                                <img th:src="${product.image}" height="100px" alt=""/>
-                            </div>
-
-                            <div class="col descriptionCart justify-content-center  mt-4  mr-5 ml-5">
-                                <span class="row">[[${product.name}]]</span>
-
-
-                            </div>
-
-                            <div class="row quantityCart  ml-5 mr-5">
-
-                                <div class="row mt-5">
-                                    <div class="col-3">
-                                        <a th:href="@{/groceryCart/delete/(id=${product.id})}">
-                                            <button onclick="" class="minus-btnCart" type="button" name="button">
-                                                <img src="/varukorg/cartImages/minus.svg" alt=""/>
-                                            </button>
-                                        </a>
-
-                                    </div>
-                                    <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center"
-                                         style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <span class="row">[[${product.quant}]]</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <a th:href="@{/groceryCart/add/(id=${product.id})}">
-                                            <button onclick="" class="plus-btnCart" type="button" name="button">
-                                                <img src="/varukorg/cartImages/plus.svg" alt=""/>
-                                            </button>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row total-priceCart  mt-5  mr-1 ml-1">[[${product.price}]] kr</div>
-
-                        </div>
-
-
-                    </div>
-
-
-                </th:block>
-
-
-                <!-- Product -->
-
-
-                <!-- SLUTA LÄGGA IN HÄR -->
-
-
-            </div>
-
+        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
+        ">Att betala: [[${pris}]] kronor
         </div>
+    </th:block>
+    <button onclick="location.href='checkout.html'" class="btn-outline-info btn"
+            type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
+    </button>
 
-        <!-- Footer -->
-        <footer id="foot" style="background-color: #007A3D;" class="mt-5 justify-content-center">
+    <!-- Product -->
 
-        </footer>
-
-        <script>
-
-            var globalData;
-            //SKRIV IN DIN JAVASCRIPT KOD HÄR
-            $(function () {
-                $("#nav-placeholder").load("../nav.html");
-                $("#sidebar-wrapper").load("../sidebar.html");
-                $("#foot").load("../footer.html");
-            });
-
-            var maincart = new Array();
-
-            var productcartparse = localStorage.getItem('cloudcart');
-            var productcart = JSON.parse(productcartparse);
+    <!-- SLUTA LÄGGA IN HÄR -->
 
 
-            if (!productcart.length == 0) {
-                maincart = productcart
-            }
+</div>
 
 
-            const cardGen = (response) => {
+<!-- Footer -->
+<footer id="foot" style="background-color: #007A3D;">
 
-                globalData = response;
+</footer>
 
+<script>
 
-                var generateItem = false;
-                var totalPriceAllItems = 0;
-                var lastId = 0;
-                var totalPriceSingleItem = 0;
-                var amountSingleItem = 0;
+    var globalData;
+    //SKRIV IN DIN JAVASCRIPT KOD HÄR
+    $(function () {
+        $("#nav-placeholder").load("../nav.html");
+        $("#sidebar-wrapper").load("../sidebar.html");
+        $("#foot").load("../footer.html");
+    });
 
-                response.forEach(responseElement => {
-                    maincart.forEach(maincartElement => {
-                        if (maincartElement == responseElement.productid) {
-                            totalPriceAllItems += responseElement.price;
-                            generateItem = true;
-                            if (lastId == maincartElement) {
-                                amountSingleItem++;
-                            } else {
-                                lastId = maincartElement;
-                                amountSingleItem++;
-                            }
-                        }
-                        if (!amountSingleItem == 0) {
-                            totalPriceSingleItem = maincartElement.price * amountSingleItem;
-                        } else {
-                            totalPriceSingleItem = maincartElement.price;
-                        }
-                    })
-                    if (generateItem) {
-                        document.getElementById("inputorder").innerHTML += ` `;
-                    }
+    var maincart = new Array();
 
-                    totalPriceSingleItem = 0;
-                    generateItem = false;
-                    amountSingleItem = 0;
-
-                });
-
-                var priceAll = document.getElementById("totalCartPrice");
-                priceAll.innerHTML += ` ${totalPriceAllItems} kr`;
-            };
-
-            function minusItem(buttonid) {
-
-                var buttonName = "field" + buttonid;
-
-                var positionInArray = 0;
-
-                if (document.getElementById(buttonName).value > 0) {
-
-                    for (i = 0; i < maincart.length; i++) {
-                        if (maincart[i] == buttonid) {
-                            positionInArray = i;
-                            break;
-                        }
-                    }
-
-                    maincart.splice(positionInArray, 1);
-
-                    var amountInArrayCounter = 0;
-
-                    for (i = 0; i < maincart.length; i++) {
-                        if (maincart[i] == buttonid) {
-                            amountInArrayCounter++;
-                        }
-                    }
+    var productcartparse = localStorage.getItem('cloudcart');
+    var productcart = JSON.parse(productcartparse);
 
 
-                    document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+    if (!productcart.length == 0) {
+        maincart = productcart
+    }
 
-                    lowerPrice(globalData);
+    const cardGen = (response) => {
 
-                    if (amountInArrayCounter == 0) {
-                        var el = document.getElementById(buttonid);
-                        el.remove();
+        globalData = response;
 
-                    }
+        var generateItem = false;
+        var totalPriceAllItems = 0;
+        var lastId = 0;
+        var totalPriceSingleItem = 0;
+        var amountSingleItem = 0;
 
-
-                    shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
-
-
-                    amountInArrayCounter = 0;
-                }
-
-
-            }
-
-
-            function lowerPrice(data) {
-                var totalPriceInCart = 0;
-                for (i = 0; i < maincart.length; i++) {
-                    for (y = 0; y < data.length; y++) {
-                        if (maincart[i] == data[y].productid) {
-                            totalPriceInCart += data[y].price;
-                        }
-
-                    }
-
-                }
-
-                document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
-
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
-            }
-
-
-            function plusItem(buttonid) {
-
-                var buttonName = "field" + buttonid;
-
-                var positionInArray = 0;
-
-
-                maincart.push(buttonid);
-
-                var amountInArrayCounter = 0;
-
-                for (i = 0; i < maincart.length; i++) {
-                    if (maincart[i] == buttonid) {
-                        amountInArrayCounter++;
+        response.forEach(responseElement => {
+            maincart.forEach(maincartElement => {
+                if (maincartElement == responseElement.productid) {
+                    totalPriceAllItems += responseElement.price;
+                    generateItem = true;
+                    if (lastId == maincartElement) {
+                        amountSingleItem++;
+                    } else {
+                        lastId = maincartElement;
+                        amountSingleItem++;
                     }
                 }
+                if (!amountSingleItem == 0) {
+                    totalPriceSingleItem = maincartElement.price * amountSingleItem;
+                } else {
+                    totalPriceSingleItem = maincartElement.price;
+                }
+            })
+            if (generateItem) {
+                document.getElementById("inputorder").innerHTML += ` `;
+            }
+
+            totalPriceSingleItem = 0;
+            generateItem = false;
+            amountSingleItem = 0;
+
+        });
+
+        var priceAll = document.getElementById("totalCartPrice");
+        priceAll.innerHTML += ` ${totalPriceAllItems} kr`;
+    };
+
+    function minusItem(buttonid) {
+
+        var buttonName = "field" + buttonid;
+
+        var positionInArray = 0;
+
+        if (document.getElementById(buttonName).value > 0) {
+
+            for (i = 0; i < maincart.length; i++) {
+                if (maincart[i] == buttonid) {
+                    positionInArray = i;
+                    break;
+                }
+            }
+
+            maincart.splice(positionInArray, 1);
+
+            var amountInArrayCounter = 0;
+
+            for (i = 0; i < maincart.length; i++) {
+                if (maincart[i] == buttonid) {
+                    amountInArrayCounter++;
+                }
+            }
 
 
-                document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+            document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
+            lowerPrice(globalData);
 
-                higherPrice(globalData);
-
-
-                shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
-
-
-                amountInArrayCounter = 0;
-
+            if (amountInArrayCounter == 0) {
+                var el = document.getElementById(buttonid);
+                el.remove();
 
             }
 
-            function higherPrice(data) {
-                var totalPriceInCart = 0;
-                for (i = 0; i < maincart.length; i++) {
-                    for (y = 0; y < data.length; y++) {
-                        if (maincart[i] == data[y].productid) {
-                            totalPriceInCart += data[y].price;
-                        }
-                    }
+            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
 
+            amountInArrayCounter = 0;
+        }
+
+
+    }
+
+    function lowerPrice(data) {
+        var totalPriceInCart = 0;
+        for (i = 0; i < maincart.length; i++) {
+            for (y = 0; y < data.length; y++) {
+                if (maincart[i] == data[y].productid) {
+                    totalPriceInCart += data[y].price;
                 }
 
-                document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
-
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
             }
 
+        }
 
-            //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
-        </script>
+        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
 
-        <script src="https://code.jquery.com/jquery-3.6.0.js"
-                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    }
+
+    function plusItem(buttonid) {
+
+        var buttonName = "field" + buttonid;
+
+        var positionInArray = 0;
+
+
+        maincart.push(buttonid);
+
+        var amountInArrayCounter = 0;
+
+        for (i = 0; i < maincart.length; i++) {
+            if (maincart[i] == buttonid) {
+                amountInArrayCounter++;
+            }
+        }
+
+        document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+
+        higherPrice(globalData);
+
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+
+        amountInArrayCounter = 0;
+
+
+    }
+
+    function higherPrice(data) {
+        var totalPriceInCart = 0;
+        for (i = 0; i < maincart.length; i++) {
+            for (y = 0; y < data.length; y++) {
+                if (maincart[i] == data[y].productid) {
+                    totalPriceInCart += data[y].price;
+                }
+            }
+
+        }
+
+        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    }
+
+    //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </body>
 
 </html>
