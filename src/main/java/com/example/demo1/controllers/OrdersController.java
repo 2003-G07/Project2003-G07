@@ -140,9 +140,11 @@ public class OrdersController {
             productList.add(product);
         }
 
-        Object[] ret = new Object[2];
-        ret[0] = ordersRepository.findById(orderId);
-        ret[1] = present.format(productList);
+        Object[] ret = new Object[4];
+        ret[0] = "Orderinfo: ";
+        ret[1] = ordersRepository.findById(orderId);
+        ret[2] = "Produkter: ";
+        ret[3] = present.format(productList);
 
         return ret;
     }
@@ -211,6 +213,22 @@ public class OrdersController {
             ret.add(PresentById(activeOrderList.get(i).getId()));
         }
 
+        return ret;
+
+    }
+
+
+
+    @GetMapping(path = "/showAllComplete")
+    public @ResponseBody
+    List<Object> showAllComplete() {
+
+        List<Object> ret = new ArrayList<>();
+        List<Orders> activeOrderList = ordersRepository.findByStatus(2);
+
+        for (int i = 0; i < activeOrderList.size(); i++) {
+            ret.add(PresentById(activeOrderList.get(i).getId()));
+        }
 
         return ret;
 
