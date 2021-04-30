@@ -140,9 +140,11 @@ public class OrdersController {
             productList.add(product);
         }
 
-        Object[] ret = new Object[2];
-        ret[0] = ordersRepository.findById(orderId);
-        ret[1] = present.format(productList);
+        Object[] ret = new Object[4];
+        ret[0] = "Order:";
+        ret[1] = ordersRepository.findById(orderId);
+        ret[2] = "Produkter:";
+        ret[3] = present.format(productList);
 
         return ret;
     }
