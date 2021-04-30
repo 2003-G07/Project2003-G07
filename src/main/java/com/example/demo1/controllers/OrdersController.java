@@ -185,12 +185,27 @@ public class OrdersController {
 
     @PatchMapping(path = "/changeStatus")
     public @ResponseBody
-    String changeStatus() {
+    String changeStatus(long orderId, int newStatus) {
 
-        var ordersIterable = ordersRepository.findAll();
+        if (!ordersRepository.existsById(orderId)){
+            return "Ingen order finns med detta OrderID";
+        }
+
+        Orders orderToUpdate = ordersRepository.findById(orderId).get();
+
+        if (orderToUpdate.getStatus() == newStatus){
+            return "Ordern har redan denna status";
+        }
+
+        if (newStatus == 0 || newStatus == 1 || newStatus == 2){
+            orderToUpdate.setStatus(newStatus);
+            ordersRepository.save(orderToUpdate);
+            return "Status ändrad på order: " + orderId + ", status: " + newStatus;
+        }else {
+            return "Felaktig status";
+        }
 
 
-        return "Status has changed";
 
     }
 
