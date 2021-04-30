@@ -50,7 +50,7 @@
                 <div class="row mt-5">
                     <div class="col-0 d-flex justify-content-center">
                         <a th:href="@{/groceryCart/deleteAll/(id=${product.id})}">
-                            <button onclick="" type="" name="button">
+                            <button onclick="" class="delete-btnCart" name="button">
                         <img src="cartImages/delete-icn.svg" alt="" width="15px;"
                              class=".d-sm-none .d-md-block">
                             </button>
@@ -113,8 +113,7 @@
         </div>
     </th:block>
     <button onclick="location.href='checkout.html'" class="btn-outline-info btn"
-            type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Betalning och
-        leveransalternativ
+            type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
     </button>
 
     <!-- Product -->
