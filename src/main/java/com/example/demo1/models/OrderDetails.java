@@ -1,6 +1,7 @@
 package com.example.demo1.models;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 public class OrderDetails {
@@ -23,6 +24,9 @@ public class OrderDetails {
     }
 
     public OrderDetails(){
+    }
+
+    public OrderDetails(Orders orders, Optional<Product> product) {
     }
 
     public Long getId() {

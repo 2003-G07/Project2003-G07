@@ -22,15 +22,13 @@ import java.util.List;
  */
 public class Present {
 
-    public Orders orders;
     public Long id;
     public String name;
     public int price;
     public int quantity;
     public String category;
 
-    public Present(Orders orders, Long id, String name, int price, int quantity, String category) {
-        this.orders = orders;
+    public Present(Long id, String name, int price, int quantity, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -42,13 +40,14 @@ public class Present {
 
     }
 
-
-    public Iterable<Present> format(Product product, Orders orders){
+    public Iterable<Present> format(List<Product> productList){
 
         List<Present> presentList = new ArrayList<>();
-        Present presents = new Present(orders, product.getId(),product.getName(), product.getPrice(), product.getQuant(), product.getCategory());
 
-        presentList.add(presents);
+        for (int i = 0; i < productList.size(); i++) {
+            presentList.add(new Present(productList.get(i).getId(), productList.get(i).getName(),
+                    productList.get(i).getPrice(), productList.get(i).getQuant(), productList.get(i).getCategory()));
+        }
 
         return presentList;
 
