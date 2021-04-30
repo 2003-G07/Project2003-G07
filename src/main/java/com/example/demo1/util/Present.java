@@ -8,12 +8,9 @@ package com.example.demo1.util;
  * Copyright: MIT
  */
 
-import com.example.demo1.models.Orders;
 import com.example.demo1.models.Product;
-import org.apache.catalina.LifecycleState;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -25,14 +22,12 @@ public class Present {
     public Long id;
     public String name;
     public int price;
-    public int quantity;
     public String category;
 
-    public Present(Long id, String name, int price, int quantity, String category) {
+    public Present(Long id, String name, int price, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.category = category;
     }
 
@@ -46,7 +41,7 @@ public class Present {
 
         for (int i = 0; i < productList.size(); i++) {
             presentList.add(new Present(productList.get(i).getId(), productList.get(i).getName(),
-                    productList.get(i).getPrice(), productList.get(i).getQuant(), productList.get(i).getCategory()));
+                    productList.get(i).getPrice(), productList.get(i).getCategory()));
         }
 
         return presentList;
