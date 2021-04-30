@@ -140,11 +140,9 @@ public class OrdersController {
             productList.add(product);
         }
 
-        Object[] ret = new Object[4];
-        ret[0] = "Order:";
-        ret[1] = ordersRepository.findById(orderId);
-        ret[2] = "Produkter:";
-        ret[3] = present.format(productList);
+        Object[] ret = new Object[2];
+        ret[0] = ordersRepository.findById(orderId);
+        ret[1] = present.format(productList);
 
         return ret;
     }
@@ -157,7 +155,7 @@ public class OrdersController {
 
         var orderDetails = orderDetailsRepository.findAll();
 
-        var sizeOfProductList =ordersRepository.count();
+        var sizeOfProductList = ordersRepository.count();
 
         List<Product> productList = null;
 
@@ -201,4 +199,21 @@ public class OrdersController {
         return orderDetailsRepository.findAll();
 
     }
+
+    @GetMapping(path = "/showAllNew")
+    public @ResponseBody
+    List<Object> showAllActive() {
+
+        List<Object> ret = new ArrayList<>();
+        List<Orders> activeOrderList = ordersRepository.findByStatus(1);
+
+        for (int i = 0; i < activeOrderList.size(); i++) {
+            ret.add(PresentById(activeOrderList.get(i).getId()));
+        }
+
+
+        return ret;
+
+    }
+
 }
