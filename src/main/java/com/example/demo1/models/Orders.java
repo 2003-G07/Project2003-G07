@@ -1,9 +1,6 @@
 package com.example.demo1.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -26,7 +23,6 @@ public class Orders {
     protected Long cost;
     protected int status;
     protected Long addressId;
-
 
     public Orders() {
     }
@@ -109,4 +105,5 @@ public class Orders {
                 ", addressId=" + addressId +
                 '}';
     }
+
 }

@@ -22,7 +22,6 @@ public class OrderDetails {
     protected Long ordersId;
     protected Long productId;
 
-
     public OrderDetails() {
     }
 
