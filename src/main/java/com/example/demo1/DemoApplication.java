@@ -40,7 +40,7 @@ public class DemoApplication {
     }
 
      */
-
+/*
     @Bean
     public CommandLineRunner demo(CustomerRepository repository) {
         return (args -> {
@@ -48,6 +48,8 @@ public class DemoApplication {
             repository.save(new Customer("hej","hje","hek","he"));
         });
         }
+
+ */
 
 
 }

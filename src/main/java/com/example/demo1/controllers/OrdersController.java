@@ -84,7 +84,7 @@ public class OrdersController {
         // third check to see if product exists. if it doesnt send error, if it does proceed.
 
             // Create Order
-            Orders orders = new Orders(formatDateTime, (long) totalPrice(productList), 1, customer, address);
+            Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
             ordersRepository.save(orders);
 
             // add Order to OrderDetails
