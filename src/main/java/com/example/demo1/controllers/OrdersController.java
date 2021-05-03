@@ -72,10 +72,6 @@ public class OrdersController {
             customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
         }
 
-        if (addressRepository == null){
-            address = new Address(city, street, zip);
-            addressRepository.save(address);
-        }
         // Second check to see if address exists. If it doesn't create a new and save to repo, if it does use the same.
         if (addressRepository.findByCityAndAddressAndZip(city, street, zip).isEmpty()) {
             address = new Address(city, street, zip);
@@ -86,8 +82,6 @@ public class OrdersController {
         }
 
         // third check to see if product exists. if it doesnt send error, if it does proceed.
-
-
 
             // Create Order
             Orders orders = new Orders(formatDateTime, (long) totalPrice(productList), 1, customer, address);
