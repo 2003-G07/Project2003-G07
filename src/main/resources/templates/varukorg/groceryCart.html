@@ -57,14 +57,22 @@
 
                 <th:block th:each="product : ${listProductsInCart}">
 
-                    <div id="" class="row justify-content-center shopping-cart mt-5 ">
+
 
                         <div th:id="id+${product.id}" class="card-header border-bottom-0">
 
-
+                            <div class="row mt-5">
+                                <div class="col-0 d-flex justify-content-center">
                             <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
                                 <img src="/varukorg/cartImages/delete-icn.svg" alt=""/>
                             </div>
+
+                                </div>
+                            </div>
+
+
+                            <div id="" class="row d-flex justify-content-start itemCart mt-2">
+
 
                     <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
 
@@ -79,26 +87,32 @@
                     <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
 
                                 <div class="row mt-5">
-                                    <div class="col-3">
+                                    <div class="col-3 d-flex justify-content-center">
                                             <button th:onclick="minusItem([[${product.id}]],[[${product.price}]])" class="minus-btnCart" type="button" name="button">
                                                 <img src="/varukorg/cartImages/minus.svg" alt=""/>
                                             </button>
                                     </div>
-                                    <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center"
-                                         style="padding-left: 1px;padding-right: 1px; padding-top: 2px; padding-bottom: 2px;">
-                                        <input disabled th:id="${product.id}" style="width: 2rem;" type="text"  name="name" th:value="${product.quant}">
+
+
+
+
+                                    <div class="col-3 d-flex justify-content-center">
+                                        <input class="row d-flex justify-content-center" disabled th:id="${product.id}" style="width: 2rem;" type="text"  name="name" th:value="${product.quant}">
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3 d-flex justify-content-center">
                                             <button th:onclick="plusItem([[${product.id}]],[[${product.price}]])" class="plus-btnCart" type="button" name="button">
                                                 <img src="/varukorg/cartImages/plus.svg" alt=""/>
                                             </button>
 
                                     </div>
+
                                 </div>
                             </div>
 
 
-                            <div th:id="pris+${product.id}" th:value="${product.price}"  class="row total-priceCart  mt-5  mr-1 ml-1">[[${product.price}]] kr</div>
+                            <div th:id="pris+${product.id}" th:value="${product.price}"
+                                 class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">[[${product.price}]] kr
+                            </div>
 
                         </div>
 
@@ -107,11 +121,15 @@
 
 
                 </th:block>
+        </div>
+
+    </div>
+
 
     <th:block th:each="pris : ${totalpris}">
 
-        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
-        ">Att betala: [[${pris}]] :-
+        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;">
+            Att betala: [[${pris}]] :-
         </div>
     </th:block>
     <button onclick="checkcart3()" class="btn-outline-info btn"
@@ -126,9 +144,7 @@
 
             </div>
 
-        </div>
 
-        </div>
 
 
 
