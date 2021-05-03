@@ -23,12 +23,14 @@ public class Present {
     public String name;
     public int price;
     public String category;
+    public int quant;
 
-    public Present(Long id, String name, int price, String category) {
+    public Present(Long id, String name, int price, String category, int quant) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
+        this.quant = quant;
     }
 
     public Present(){
@@ -41,7 +43,7 @@ public class Present {
 
         for (int i = 0; i < productList.size(); i++) {
             presentList.add(new Present(productList.get(i).getId(), productList.get(i).getName(),
-                    productList.get(i).getPrice(), productList.get(i).getCategory()));
+                    productList.get(i).getPrice(), productList.get(i).getCategory(), productList.get(i).getQuant()));
         }
 
         return presentList;

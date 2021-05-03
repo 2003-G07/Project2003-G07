@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.example.demo1.controllers.OrdersController;
 import com.example.demo1.models.CartService;
 import com.example.demo1.models.CheckOutForm;
 import com.example.demo1.models.Customer;
@@ -393,7 +394,9 @@ public class hej {
         //ANVÄND PROINCART FÖR ATT HITTA ALLA KÖPTA VAROR
         //ANVÄND CHECKOUTFORMGLOBAL FÖR ATT HITTA KUNDEN
 
+        OrdersController ordersController = new OrdersController();
 
+        ordersController.addOrder(proInCart,checkOutFormGlobal.getFirstName(),checkOutFormGlobal.getLastName(),checkOutFormGlobal.getPhoneNumber(),checkOutFormGlobal.getEmail(),checkOutFormGlobal.getCity(),checkOutFormGlobal.getAddress(),checkOutFormGlobal.getZipCode());
 
 
 
