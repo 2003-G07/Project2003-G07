@@ -1,11 +1,8 @@
 package com.example.demo1;
 
-import com.example.demo1.models.CartService;
-import com.example.demo1.models.CheckOutForm;
-import com.example.demo1.models.Customer;
-import com.example.demo1.models.Product;
-import com.example.demo1.repositories.CustomerRepository;
-import com.example.demo1.repositories.ProductRepository;
+import com.example.demo1.controllers.OrdersController;
+import com.example.demo1.models.*;
+import com.example.demo1.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +29,15 @@ public class hej {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     List<CartService> cartServiceList = new ArrayList<>();
     List<Product> proInCart = new ArrayList<>();
@@ -388,23 +396,63 @@ public class hej {
 
         }
 
-
-
         //ANVÄND PROINCART FÖR ATT HITTA ALLA KÖPTA VAROR
         //ANVÄND CHECKOUTFORMGLOBAL FÖR ATT HITTA KUNDEN
 
+        Customer customer;
+        Address address;
+
+        // Create the time for the order.
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
 
 
+        if (customerRepository == null){
+            customer = new Customer(checkOutFormGlobal.getFirstName(), checkOutFormGlobal.getLastName(),checkOutFormGlobal.getPhoneNumber() , checkOutFormGlobal.getEmail());
+            customerRepository.save(customer);
+        }
+        // First check to see if customer exists. If they don't create a new and save to repo, if they do use the same one.
+        else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(checkOutFormGlobal.getFirstName(), checkOutFormGlobal.getLastName(),checkOutFormGlobal.getPhoneNumber() , checkOutFormGlobal.getEmail()).isEmpty()) {
+            customer = new Customer(checkOutFormGlobal.getFirstName(), checkOutFormGlobal.getLastName(),checkOutFormGlobal.getPhoneNumber() , checkOutFormGlobal.getEmail());
+            customerRepository.save(customer);
 
+        } else {
+            customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(checkOutFormGlobal.getFirstName(), checkOutFormGlobal.getLastName(),checkOutFormGlobal.getPhoneNumber() , checkOutFormGlobal.getEmail()).get(0);
+        }
 
+        // Second check to see if address exists. If it doesn't create a new and save to repo, if it does use the same.
+        if (addressRepository.findByCityAndAddressAndZip(checkOutFormGlobal.getCity(), checkOutFormGlobal.getAddress(), checkOutFormGlobal.getZipCode()).isEmpty()) {
+            address = new Address(checkOutFormGlobal.getCity(), checkOutFormGlobal.getAddress(), checkOutFormGlobal.getZipCode());
+            addressRepository.save(address);
 
+        } else {
+            address = addressRepository.findByCityAndAddressAndZip(checkOutFormGlobal.getCity(), checkOutFormGlobal.getAddress(), checkOutFormGlobal.getZipCode()).get(0);
+        }
 
+        // third check to see if product exists. if it doesnt send error, if it does proceed.
 
+        // Create Order
+        Orders orders = new Orders(formatDateTime, (long)totalpris, 1, customer, address);
+        ordersRepository.save(orders);
 
+        // add Order to OrderDetails
+        OrderDetails orderDetails;
+        for (Product product : proInCart) {
+            orderDetails = new OrderDetails(orders, product);
+            orderDetailsRepository.save(orderDetails);
+            System.out.println("orders = " + orders);
 
+           var b = productRepository.findById(product.getId()).get();
 
+           int c = productRepository.findById(product.getId()).get().getStorage()-product.getQuant();
+           b.setStorage(c);
 
+           productRepository.save(b);
 
+        }
 
 
 

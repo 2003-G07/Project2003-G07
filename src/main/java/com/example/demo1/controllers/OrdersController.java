@@ -1,18 +1,14 @@
 package com.example.demo1.controllers;
 
-import com.example.demo1.models.Address;
-import com.example.demo1.models.Customer;
-import com.example.demo1.models.Orders;
-import com.example.demo1.models.Product;
-import com.example.demo1.repositories.AddressRepository;
-import com.example.demo1.repositories.OrdersRepository;
-import com.example.demo1.repositories.CustomerRepository;
-import com.example.demo1.repositories.ProductRepository;
+import com.example.demo1.models.*;
+import com.example.demo1.repositories.*;
+import com.example.demo1.util.Present;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * Created by Salah Abdinoor
@@ -33,65 +29,225 @@ public class OrdersController {
     private CustomerRepository customerRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private OrderDetailsRepository orderDetailsRepository;
 
+    /**
+     * This method creates a new order based on some inputs
+     * if address and customer don't exist in the system then it creates new once.
+     *
+     */
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    String addOrder(String productName, String customerName, String address) {
+    String addOrder(@RequestParam List<Product> productList,
+                    @RequestParam String fName,
+                    @RequestParam String lName,
+                    @RequestParam String tel,
+                    @RequestParam String email,
+                    @RequestParam String city,
+                    @RequestParam String street,
+                    @RequestParam String zip) {
 
-        if (productRepository.findByName(productName).isEmpty()){
-            return "There is no product named: " + productName;
+        Customer customer;
+        Address address;
+
+        // Create the time for the order.
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
+
+        if (customerRepository == null){
+            customer = new Customer(fName, lName, tel, email);
+            customerRepository.save(customer);
+        }
+        // First check to see if customer exists. If they don't create a new and save to repo, if they do use the same one.
+       else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
+            customer = new Customer(fName, lName, tel, email);
+            customerRepository.save(customer);
+
         } else {
-            Product product = productRepository.findByName(productName).get(0);
+            customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
+        }
 
-            LocalDateTime now = LocalDateTime.now();
+        // Second check to see if address exists. If it doesn't create a new and save to repo, if it does use the same.
+        if (addressRepository.findByCityAndAddressAndZip(city, street, zip).isEmpty()) {
+            address = new Address(city, street, zip);
+            addressRepository.save(address);
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        } else {
+            address = addressRepository.findByCityAndAddressAndZip(city, street, zip).get(0);
+        }
 
-            String formatDateTime = now.format(formatter);
-            Address newAdress = new Address();
+        // third check to see if product exists. if it doesnt send error, if it does proceed.
 
-            if (addressRepository.findByAddress(address).isEmpty()){
+            // Create Order
+            Orders orders = new Orders(formatDateTime, (long) totalPrice(productList), 1, customer, address);
+            ordersRepository.save(orders);
 
-                newAdress.setAddress(address);
-
-                addressRepository.save(newAdress);
-            } else {
-
-                newAdress =  addressRepository.findByAddress(address).get();
-
-            }
-
-            if (customerRepository.findByFirstName(customerName).isEmpty()){
-                Customer customer = new Customer();
-
-                customer.setFirstName(customerName);
-                customerRepository.save(customer);
-
-                Orders orders = new Orders(formatDateTime, (long) product.getPrice(),1,customer, newAdress);
-
-                ordersRepository.save(orders);
-                return "Order Saved";
-
-
-
-            } else {
-
-               var customer = customerRepository.findByFirstName(customerName).get(0);
-               Orders orders = new Orders(formatDateTime, (long) product.getPrice(),1,customer, newAdress);
-                ordersRepository.save(orders);
-                return "Order Saved + new Customer";
+            // add Order to OrderDetails
+            OrderDetails orderDetails;
+            for (Product product : productList) {
+               orderDetails = new OrderDetails(orders, product);
+                orderDetailsRepository.save(orderDetails);
+                System.out.println("orders = " + orders);
 
             }
+
+            return "Order Saved";
+
+    }
+
+    public int totalPrice(List<Product> productList){
+
+        var totalPrice = 0;
+
+        for (int i = 0; i < productList.size() ; i++) {
+
+            totalPrice += productList.get(i).getPrice();
 
         }
 
+        return totalPrice;
     }
+
+
+    @GetMapping(path = "/OrderById")
+    public @ResponseBody
+    Object[] PresentById(Long orderId) {
+
+        Present present = new Present();
+        var orders = ordersRepository.findById(orderId).get();
+        var orderDetails = orderDetailsRepository.findByOrders(orders);
+        List<Product> productList = new ArrayList<>();
+
+        for (int i = 0; i < orderDetails.size(); i++) {
+
+            var product= orderDetails.get(i).getProduct();
+            productList.add(product);
+        }
+
+        Object[] ret = new Object[4];
+        ret[0] = "Orderinfo: ";
+        ret[1] = ordersRepository.findById(orderId);
+        ret[2] = "Produkter: ";
+        ret[3] = present.format(productList);
+
+        return ret;
+    }
+
+
 
     @GetMapping(path = "/show")
     public @ResponseBody
-    Iterable<Orders> showProducts() {
+    Set<Present> showOneOrderById() {
 
-        return ordersRepository.findAll();
+        var orderDetails = orderDetailsRepository.findAll();
+
+        var sizeOfProductList = ordersRepository.count();
+
+        List<Product> productList = null;
+
+        for (int j = 0; j < sizeOfProductList; j++) {
+
+            var product = orderDetails.iterator().next().getProduct();
+
+            productList.add(product);
+
+        }
+
+        //alltid en order
+        var order = orderDetails.iterator().next().getOrders();
+
+        Set<Present> present = null;
+
+        for (int i = 0; i < sizeOfProductList; i++) {
+
+
+        }
+
+        return present;
+
     }
+
+    @PatchMapping(path = "/changeStatus")
+    public @ResponseBody
+    String changeStatus(long orderId, int newStatus) {
+
+        if (!ordersRepository.existsById(orderId)){
+            return "Ingen order finns med detta OrderID";
+        }
+
+        Orders orderToUpdate = ordersRepository.findById(orderId).get();
+
+        if (orderToUpdate.getStatus() == newStatus){
+            return "Ordern har redan denna status";
+        }
+
+        if (newStatus == 0 || newStatus == 1 || newStatus == 2){
+            orderToUpdate.setStatus(newStatus);
+            ordersRepository.save(orderToUpdate);
+            return "Status ändrad på order: " + orderId + ", status: " + newStatus;
+        }else {
+            return "Felaktig status";
+        }
+
+
+
+    }
+
+    @GetMapping(path = "/showAll")
+    public @ResponseBody
+    Iterable<OrderDetails> showAll() {
+
+        return orderDetailsRepository.findAll();
+
+    }
+
+    @GetMapping(path = "/showAllNew")
+    public @ResponseBody
+    List<Object> showAllActive() {
+
+        List<Object> ret = new ArrayList<>();
+        List<Orders> activeOrderList = ordersRepository.findByStatus(1);
+
+        for (int i = 0; i < activeOrderList.size(); i++) {
+            ret.add(PresentById(activeOrderList.get(i).getId()));
+        }
+
+        return ret;
+
+    }
+
+    // För test syfte!
+    @DeleteMapping(path = "/deleteAll")
+    public @ResponseBody
+    String deleteAll() {
+
+        ordersRepository.deleteAll();
+
+        return "All orders are deleted!";
+
+    }
+
+
+
+
+    @GetMapping(path = "/showAllComplete")
+    public @ResponseBody
+    List<Object> showAllComplete() {
+
+        List<Object> ret = new ArrayList<>();
+        List<Orders> activeOrderList = ordersRepository.findByStatus(2);
+
+        for (int i = 0; i < activeOrderList.size(); i++) {
+            ret.add(PresentById(activeOrderList.get(i).getId()));
+        }
+
+        return ret;
+
+    }
+
 }
