@@ -40,7 +40,7 @@ public class OrdersController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    String addOrder(@RequestParam List<Long> productId,
+    String addOrder(@RequestParam List<Product> productList,
                     @RequestParam String fName,
                     @RequestParam String lName,
                     @RequestParam String tel,
@@ -51,7 +51,6 @@ public class OrdersController {
 
         Customer customer;
         Address address;
-        List<Product> productList = new ArrayList<>();
 
         // Create the time for the order.
         LocalDateTime now = LocalDateTime.now();
@@ -60,9 +59,12 @@ public class OrdersController {
 
         String formatDateTime = now.format(formatter);
 
-
+        if (customerRepository == null){
+            customer = new Customer(fName, lName, tel, email);
+            customerRepository.save(customer);
+        }
         // First check to see if customer exists. If they don't create a new and save to repo, if they do use the same one.
-        if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
+       else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
 
@@ -70,6 +72,10 @@ public class OrdersController {
             customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
         }
 
+        if (addressRepository == null){
+            address = new Address(city, street, zip);
+            addressRepository.save(address);
+        }
         // Second check to see if address exists. If it doesn't create a new and save to repo, if it does use the same.
         if (addressRepository.findByCityAndAddressAndZip(city, street, zip).isEmpty()) {
             address = new Address(city, street, zip);
@@ -80,15 +86,6 @@ public class OrdersController {
         }
 
         // third check to see if product exists. if it doesnt send error, if it does proceed.
-        if (productRepository.findById(productId.get(0)).isEmpty()) {
-            return "There is no product named: " + productId;
-        } else {
-
-            for (int i = 0; i < productId.size(); i++) {
-
-                productList.add(productRepository.findById(productId.get(i)).get());
-
-            }
 
 
 
@@ -106,8 +103,6 @@ public class OrdersController {
             }
 
             return "Order Saved";
-
-        }
 
     }
 
@@ -231,6 +226,18 @@ public class OrdersController {
         return ret;
 
     }
+
+    // För test syfte!
+    @DeleteMapping(path = "/deleteAll")
+    public @ResponseBody
+    String deleteAll() {
+
+        ordersRepository.deleteAll();
+
+        return "All orders are deleted!";
+
+    }
+
 
 
 
