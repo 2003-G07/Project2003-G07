@@ -12,7 +12,6 @@ public class CheckOutForm {
     public static final String EMAIL_PATTERN= "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+$";
     public static final String ADDRESS_PATTERN= "^([A-Za-z0-9ôíèÔÍÈåäöÅÄÖ.\\- ,])+$";
     public static final String ZIPCODE_PATTERN="^\\d{5}$|^\\d{3} \\d{2}$";
-    public static final String ORT_PATTERN="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\\- ]*$";
     public static final String CITY_PATTERN="^[a-zA-ZôíèÔÍÈåäöÅÄÖ\\- ]*$";
     public static final int MAXLENGTH_SIZE=30;
     public static final int MAXLENGTHPHONE_SIZE=11;
@@ -44,11 +43,6 @@ public class CheckOutForm {
     @NotNull
     @Pattern(regexp = ZIPCODE_PATTERN)
     private String zipCode;
-
-    @NotNull
-    @Size(max= MAXLENGTH_SIZE)
-    @Pattern(regexp = ORT_PATTERN)
-    private String ort;
 
     @NotNull
     @Pattern(regexp = CITY_PATTERN)
@@ -102,14 +96,6 @@ public class CheckOutForm {
         this.zipCode = zipCode;
     }
 
-    public String getOrt() {
-        return ort;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
     public String getCity() {
         return city;
     }
@@ -127,7 +113,6 @@ public class CheckOutForm {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", ort='" + ort + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }
