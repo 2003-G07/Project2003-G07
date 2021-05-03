@@ -23,6 +23,7 @@ public class DemoApplication {
     public CommandLineRunner demo(ProductRepository repository) {
         return (args -> {
 
+
             repository.save(new Product("Gurka", 11, "https://assets.icanet.se/t_product_large_2x_v1,f_auto/2092459500000.jpg", "Gurka styck ca 320g.", 21, "Grönsäker", true));
              repository.save(new Product("Broccoli", 11, "https://assets.icanet.se/t_product_large_v1,f_auto/7330671127168.jpg", "Broccoli 250g Klass 1 ICA", 16, "Grönsäker", true));
             repository.save(new Product("Tomat", 11, "https://assets.icanet.se/t_product_large_v1,f_auto/2092480700004.jpg", "Tomat kvist röd Svensk ca 120g", 34, "Grönsaker", false));
