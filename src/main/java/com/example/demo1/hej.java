@@ -396,6 +396,9 @@ public class hej {
 
         }
 
+
+
+
         //ANVÄND PROINCART FÖR ATT HITTA ALLA KÖPTA VAROR
         //ANVÄND CHECKOUTFORMGLOBAL FÖR ATT HITTA KUNDEN
 
