@@ -5,11 +5,11 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/style/bootstrap.css"/>
-    <link rel="stylesheet" href="/style/style.css"/>
-    <link rel="stylesheet" href="/style/cartStylish.css"/>
+    <link rel="stylesheet" href="../style/bootstrap.css"/>
+    <link rel="stylesheet" href="../style/style.css"/>
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
+    <link rel="stylesheet" href="../varukorg/cartStyle/cartStylish.css"/>
 
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
@@ -28,297 +28,280 @@
 <div class="d-flex wrapper">
     <div id="sidebar-container" class="sidebar-expanded d-none d-md-block fixed-top">
         <div class="" id="sidebar-wrapper">
-
         </div>
     </div>
 </div>
 
-    <div class="container">
 
-        <div class="col text-center">
+<div class="container">
 
     <div class="text-center mt-5 justify-content-center" id="titleprod" style="margin-top: 3rem;">
         <h1>Varukorg</h1>
     </div>
 
-            <th:block th:each="error : ${errorMessage}">
-                [[${error}]]
+    <th:block th:each="error : ${errorMessage}">
+        [[${error}]]
+    </th:block>
 
-            </th:block>
-
-        </div>
 
     <div class="d-flex w-100 justify-content-start align-items-center">
         <div class="container" id="inputorder">
 
 
-                <!-- LÄGG IN ALLT JS Generat -->
+            <!-- LÄGG IN ALLT JS Generat -->
 
+            <th:block th:each="product : ${listProductsInCart}">
 
-                <th:block th:each="product : ${listProductsInCart}">
+                <div th:id="id+${product.id}">
 
+                    <div class="row mt-5">
+                        <div class="col-0 d-flex justify-content-center">
 
-
-                        <div th:id="id+${product.id}">
-
-                            <div class="row mt-5">
-                                <div class="col-0 d-flex justify-content-center">
-                            <div class="col buttonsCart mt-5 mr-1 ml-1 justify-content-center">
-                                <img src="/varukorg/cartImages/delete-icn.svg" alt=""/>
-                            </div>
-
-                                </div>
-                            </div>
-
-
-                            <div id="" class="row d-flex justify-content-start itemCart mt-2">
-
-
-                    <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
-
-                        <img th:src="${product.image}" height="120px" class="responsive"
-                             alt="product image">
+                            <button th:onclick="deleteAll([[${product.id}]],[[${product.price}]])"
+                                    class="delete-btnCart"
+                                    name="button">
+                                <img src="cartImages/delete-icn.svg" alt="" width="15px;"
+                                     class=".d-sm-none .d-md-block">
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
-                        <span class="row d-flex justify-content-center">[[${product.name}]]</span>
 
-                    </div>
-                    <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
+                    <div id="inputorder" class="row d-flex justify-content-start itemCart mt-2">
 
-                                <div class="row mt-5">
-                                    <div class="col-3 d-flex justify-content-center">
-                                            <button th:onclick="minusItem([[${product.id}]],[[${product.price}]])" class="minus-btnCart" type="button" name="button">
-                                                <img src="/varukorg/cartImages/minus.svg" alt=""/>
-                                            </button>
-                                    </div>
+                        <!--div class="row itemCart mt-sm-5" style="width: 15rem; margin-left: 2rem;"-->
 
+                        <div class="col-sm-1 col-lg-2 imageCart d-flex justify-content-center">
 
-
-
-                                    <div class="col-3 d-flex justify-content-center">
-                                        <input class="row d-flex justify-content-center" disabled th:id="${product.id}" style="width: 2rem;" type="text"  name="name" th:value="${product.quant}">
-                                    </div>
-                                    <div class="col-3 d-flex justify-content-center">
-                                            <button th:onclick="plusItem([[${product.id}]],[[${product.price}]])" class="plus-btnCart" type="button" name="button">
-                                                <img src="/varukorg/cartImages/plus.svg" alt=""/>
-                                            </button>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div th:id="pris+${product.id}" th:value="${product.price}"
-                                 class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">[[${product.price}]] kr
-                            </div>
-
+                            <img th:src="${product.image}" height="120px" class="responsive"
+                                 alt="product image">
                         </div>
 
+                        <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
+                            <span class="row d-flex justify-content-center">[[${product.name}]]</span>
+                        </div>
+
+                        <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
+
+                            <div class="row mt-5">
+                                <div class="col-3 d-flex justify-content-center">
+
+                                    <button th:onclick="minusItem([[${product.id}]],[[${product.price}]])"
+                                            class="minus-btnCart" type="button" name="button" style="height: 30px">
+                                        <img src="/varukorg/cartImages/minus.svg" alt=""/>
+                                    </button>
+                                </div>
+
+                                <div class="col-3 d-flex justify-content-center">
+                                   
+                                    <span class="row d-flex justify-content-center" th:id="${product.id}"
+                                          type="text"  name="name" th:value="${product.quant}">[[${product.quant}]]
+                                    </span>
+                                </div>
+
+                                <div class="col-3 d-flex justify-content-center">
+                                    <button th:onclick="plusItem([[${product.id}]],[[${product.price}]])"
+                                            class="plus-btnCart" type="button" name="button" style="height: 30px">
+                                        <img src="/varukorg/cartImages/plus.svg" alt=""/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:id="pris+${product.id}" th:value="${product.price}"
+                             class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">
+                            [[${product.price}]] kr
+                        </div>
 
                     </div>
-
-
-                </th:block>
+                </div>
+            </th:block>
         </div>
-
     </div>
-
 
     <th:block th:each="pris : ${totalpris}">
 
-        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;">
-            Att betala: [[${pris}]] :-
+        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
+        ">Att betala: [[${pris}]] kronor
         </div>
     </th:block>
-    <button onclick="checkcart3()" class="btn-outline-info btn"
+     <button onclick="checkcart3()" class="btn-outline-info btn"
             type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
     </button>
 
-                <!-- Product -->
+    <!-- Product -->
+
+    <!-- SLUTA LÄGGA IN HÄR -->
 
 
-                <!-- SLUTA LÄGGA IN HÄR -->
+</div>
 
 
-            </div>
+<!-- Footer -->
+<footer id="foot" style="background-color: #007A3D;">
+
+</footer>
+
+<script>
+
+    var globalData;
+    //SKRIV IN DIN JAVASCRIPT KOD HÄR
+    $(function () {
+        $("#nav-placeholder").load("../nav.html");
+        $("#sidebar-wrapper").load("../sidebar.html");
+        $("#foot").load("../footer.html");
+    });
+
+    var maincart = new Array();
+
+    var productcartparse = localStorage.getItem('cloudcart');
+    var productcart = JSON.parse(productcartparse);
 
 
+    if (!productcart.length == 0) {
+        maincart = productcart
+    }
 
+    const cardGen = (response) => {
 
+        globalData = response;
 
-        <!-- Footer -->
-        <footer id="foot" style="background-color: #007A3D;" class="mt-5 justify-content-center">
+        var generateItem = false;
+        var totalPriceAllItems = 0;
+        var lastId = 0;
+        var totalPriceSingleItem = 0;
+        var amountSingleItem = 0;
 
-        </footer>
-
-        <script>
-
-            //SKRIV IN DIN JAVASCRIPT KOD HÄR
-            $(function () {
-                $("#nav-placeholder").load("../nav.html");
-                $("#sidebar-wrapper").load("../sidebar.html");
-                $("#foot").load("../footer.html");
-            });
-
-            var maincart = new Array();
-
-
-            if (localStorage.getItem('cloudcart') !== null){
-                var productcartparse = localStorage.getItem('cloudcart');
-                productcart = JSON.parse(productcartparse);
-
-                maincart = productcart;
-            }
-
-            function minusItem(buttonid, priceforProdukt) {
-
-
-                var buttonName = buttonid;
-
-                var positionInArray = 0;
-
-                if (document.getElementById(buttonName).value > 0) {
-
-                    for (i = 0; i < maincart.length; i++) {
-                        if (maincart[i] == buttonid) {
-                            positionInArray = i;
-                            break;
-                        }
-                    }
-
-                    maincart.splice(positionInArray, 1);
-
-                    var amountInArrayCounter = 0;
-
-                    for (i = 0; i < maincart.length; i++) {
-                        if (maincart[i] == buttonid) {
-                            amountInArrayCounter++;
-                        }
-                    }
-
-
-                    document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
-
-                    lowerPrice(priceforProdukt);
-
-                    if (amountInArrayCounter == 0) {
-                        var el = document.getElementById('id'+buttonid);
-                        el.remove();
-
-                    }
-
-
-                    shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
-
-
-                    amountInArrayCounter = 0;
-                }
-
-
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
-
-            }
-
-            var thymtex = "[[${totalpris}]]";
-
-            var sum = parseInt(thymtex);
-
-            function lowerPrice(price) {
-
-                sum = sum - price;
-
-
-
-
-
-
-                console.log(sum);
-
-                document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} :-`;
-
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
-            }
-
-
-            function plusItem(buttonid, priceforProdukt) {
-
-                var buttonName = buttonid;
-
-                var positionInArray = 0;
-
-
-                maincart.push(buttonid);
-
-                var amountInArrayCounter = 0;
-
-                for (i = 0; i < maincart.length; i++) {
-                    if (maincart[i] == buttonid) {
-                        amountInArrayCounter++;
+        response.forEach(responseElement => {
+            maincart.forEach(maincartElement => {
+                if (maincartElement == responseElement.productid) {
+                    totalPriceAllItems += responseElement.price;
+                    generateItem = true;
+                    if (lastId == maincartElement) {
+                        amountSingleItem++;
+                    } else {
+                        lastId = maincartElement;
+                        amountSingleItem++;
                     }
                 }
-
-
-                document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
-
-
-               higherPrice(priceforProdukt);
-
-
-                shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
-
-
-                amountInArrayCounter = 0;
-
-
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
-
+                if (!amountSingleItem == 0) {
+                    totalPriceSingleItem = maincartElement.price * amountSingleItem;
+                } else {
+                    totalPriceSingleItem = maincartElement.price;
+                }
+            })
+            if (generateItem) {
+                document.getElementById("inputorder").innerHTML += ` `;
             }
 
-            function higherPrice(price) {
-                sum = sum + price;
+            totalPriceSingleItem = 0;
+            generateItem = false;
+            amountSingleItem = 0;
 
-                console.log(sum);
+        });
 
-                document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} :-`;
+        var priceAll = document.getElementById("totalCartPrice");
+        priceAll.innerHTML += ` ${totalPriceAllItems} kr`;
+    };
 
-                localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    function minusItem(buttonid) {
+
+        var buttonName = "field" + buttonid;
+
+        var positionInArray = 0;
+
+        if (document.getElementById(buttonName).value > 0) {
+
+            for (i = 0; i < maincart.length; i++) {
+                if (maincart[i] == buttonid) {
+                    positionInArray = i;
+                    break;
+                }
             }
 
+            maincart.splice(positionInArray, 1);
 
-            function checkcart3(){
+            var amountInArrayCounter = 0;
 
-                var productcartparse = localStorage.getItem('cloudcart');
-                var productcart = JSON.parse(productcartparse);
-
-                $.ajax({
-                    type: 'POST',
-                    contentType : "application/json",
-                    accept : 'text/plain',
-                    url : "/varukorg/groceryCart.html/checkoutItems",
-                    data : JSON.stringify(productcart),
-                    dataType : 'text',
-                    error : function(xhr, textStatus, error) {
-                        console.log(xhr.statusText);
-                        console.log(textStatus);
-                        console.log(error);
-
-                    },
-                    success: function () {
-                        location.href = "/direct"
-                    }
-                });
-
-
+            for (i = 0; i < maincart.length; i++) {
+                if (maincart[i] == buttonid) {
+                    amountInArrayCounter++;
+                }
             }
 
+            document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
-            //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
-        </script>
+            lowerPrice(globalData);
 
-        <script src="https://code.jquery.com/jquery-3.6.0.js"
-                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+            if (amountInArrayCounter == 0) {
+                var el = document.getElementById(buttonid);
+                el.remove();
+            }
+            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+
+            amountInArrayCounter = 0;
+        }
+    }
+
+    function lowerPrice(data) {
+        var totalPriceInCart = 0;
+        for (i = 0; i < maincart.length; i++) {
+            for (y = 0; y < data.length; y++) {
+                if (maincart[i] == data[y].productid) {
+                    totalPriceInCart += data[y].price;
+                }
+            }
+        }
+
+        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    }
+
+    function plusItem(buttonid) {
+
+        var buttonName = "field" + buttonid;
+        var positionInArray = 0;
+
+        maincart.push(buttonid);
+
+        var amountInArrayCounter = 0;
+
+        for (i = 0; i < maincart.length; i++) {
+            if (maincart[i] == buttonid) {
+                amountInArrayCounter++;
+            }
+        }
+
+        document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
+
+        higherPrice(globalData);
+
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+
+        amountInArrayCounter = 0;
+    }
+
+    function higherPrice(data) {
+        var totalPriceInCart = 0;
+        for (i = 0; i < maincart.length; i++) {
+            for (y = 0; y < data.length; y++) {
+                if (maincart[i] == data[y].productid) {
+                    totalPriceInCart += data[y].price;
+                }
+            }
+        }
+
+        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    }
+
+    //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </body>
 
 </html>
