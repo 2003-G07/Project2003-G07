@@ -83,8 +83,7 @@
 
                     </a>
 
-                    <a class="btn btn-primary btn-lg" onclick="addToCart()"
-                       th:href="@{/index.html/add/(id=${product.id})}">Köp</a>
+                    <a class="btn btn-primary btn-lg" th:onclick="addToCart([[${product.id}]])">Köp</a>
 
                 </div>
 
@@ -102,21 +101,35 @@
 </footer>
 
 <script>
-    var memoryparse = localStorage.getItem('cloudmemory');
-    var memory = JSON.parse(memoryparse);
+    var maincart = new Array();
+
+
+    if (localStorage.getItem('cloudcart') !== null){
+        var productcartparse = localStorage.getItem('cloudcart');
+        productcart = JSON.parse(productcartparse);
+
+        maincart = productcart;
+    }
+
+
+
 
     $(function () {
         $("#foot").load("footer.html");
 
     });
 
-    var maincart = new Array();
+
 
     var shoppingcart = document.getElementById("amount");
 
-    function addToCart() {
+    function addToCart(värde) {
 
-        alert("Produkt tillagd i varukorgen");
+
+        maincart.push(värde);
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
     }
 

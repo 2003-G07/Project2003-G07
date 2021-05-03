@@ -17,6 +17,8 @@ public class CheckOutController {
         return "varukorg/checkout.html";
     }
 
+
+/*
     @PostMapping("/varukorg/submitcheckoutform")
     public String submitCheckOutForm(@Valid CheckOutForm checkOutForm, BindingResult bindingResult) {
 
@@ -26,5 +28,9 @@ public class CheckOutController {
 
         return "redirect:/varukorg/confirmedorder.html";
     }
+
+
+ */
+
 
 }

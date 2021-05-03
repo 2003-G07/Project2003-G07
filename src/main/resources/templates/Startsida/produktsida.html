@@ -69,8 +69,7 @@
                     <div class="row d-flex justify-content-start" style="margin-left: 1rem;">
 
                         <a type="button" id="button-size" class="btn btn-info col-8 col-lg-7"
-                           onclick="addToCart()"
-                           th:href="@{/Startsida/produktsida/add/(id=${product.id})}">Lägg till i varukorg</a>
+                           th:onclick="addToCart([[${product.id}]])">Lägg till i varukorg</a>
 
                     </div>
 
@@ -101,112 +100,26 @@
     });
 
 
-    var productcartparse = localStorage.getItem('cloudcart');
-    var productcart = JSON.parse(productcartparse);
-
-
     var maincart = new Array();
-    var shoppingcart = document.getElementById("amount");
 
 
-    if (!productcart.length === 0) {
-        maincart = productcart
+    if (localStorage.getItem('cloudcart') !== null){
+        var productcartparse = localStorage.getItem('cloudcart');
+        productcart = JSON.parse(productcartparse);
+
+        maincart = productcart;
     }
 
-    function addToCart() {
-        alert("Produkt tillagd i varukorg!");
+    function addToCart(värde) {
+
+
+        maincart.push(värde);
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
     }
 
-    /*
-        function addToCart(värde) {
-            maincart.push(värde);
-            localStorage.setItem('cloudcart', JSON.stringify(maincart));
-            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-
-            if (!productcart.length == 0) {
-                maincart = productcart
-            }
-        }
-
-
-        function clearbutton() {
-
-            maincart.splice(0, maincart.length);
-
-
-            localStorage.setItem('cloudcart', JSON.stringify(maincart));
-
-            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter `;
-
-
-        }
-
-
-        fetch("/testdata/testprodukt.json")
-            .then((response) => response.json())
-            .then((data) => productGen(data));
-
-
-        const productGen = (response) => {
-
-            var productChosenParse = localStorage.getItem('lastClickedProduct');
-            var productChosen = JSON.parse(productChosenParse);
-
-
-            var findProduct = 0;
-
-            for (i = 0; i < response.length; i++) {
-                if (response[i].productid == productChosen) {
-                    findProduct = i;
-                    break;
-                }
-            }
-
-
-            var generator = document.getElementById("productCard");
-
-            generator.innerHTML = `
-            <div class="col col-lg-6 mt-4" style="text-align: left; width: max-content;" >
-
-              <img id="image" src="${response[findProduct].image}" alt="product image" class = "responsive" width="800 px" height= 800 px" >
-
-            </div>
-
-            <div class="col col-lg-6 mt-4" style="width: max-content;">
-
-              <div class="row" style="margin-left: 1rem; margin-top: 1rem;" >
-                <h1 id = "product-name-size">${response[findProduct].name}</h1>
-              </div>
-
-              <div class="row" style="margin-left: 1rem;" >
-                <h2 >${response[findProduct].category}</h2>
-              </div>
-
-              <div class="row" style="margin-left: 1rem;" >
-                <p>${response[findProduct].description}</p>
-              </div>
-
-              <div class="row justify-content-start" style="margin-left: 1rem;"   >
-                <h2 id="price-size" style="color: red;">${response[findProduct].price}:-</h2>
-              </div>
-
-              <div class="row d-flex justify-content-start"  style="margin-left: 1rem;" >
-                <button onclick="addToCart(${productChosen})" type="button" id ="button-size" class="btn btn-info col-8 col-lg-7">Lägg till i varukorg</button>
-                <button onclick="clearbutton()" id ="button-size" class="btn btn-outline-warning col-2 col-lg-3">Clear</button>
-              </div>
-
-              <div class="row d-flex justify-content-start" style="margin-left: 1rem; margin-top: 1rem;"  >
-                <p >Antal kvar i lager: ${response[findProduct].storage} </p>
-              </div>
-            </div>
-
-
-            `;
-
-
-        };
-    */
 </script>
 
 </body>

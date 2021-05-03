@@ -110,21 +110,6 @@
                 <label id="zipCodeSpringValidation" class="red-text" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></label>
             </div>
 
-
-            <br>
-            <div class="adress-form">
-                <label>Ort</label>
-                <input required th:pattern="${checkOutForm.ORT_PATTERN}" type="text" th:maxlength="${checkOutForm.MAXLENGTH_SIZE}" class="form-control"
-                 placeholder="Ort" th:field="*{Ort}"
-                 oninvalid="invalidInput(this, 'ortError', 'Postorten ska inte innehålla specialtecken eller siffror')"
-                 onchange="validateInput(this, 'ortError')">
-                <label class="red-text" id="ortError" hidden></label>
-                <label id="ortErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('Ort')}" th:errors="*{Ort}"></label>
-
-
-            </div>
-
-
             <br>
 
             <div class="adress-form">
@@ -137,23 +122,23 @@
                 <label id="cityErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></label>
             </div>
 
-
             <br>
 
-            <button id="submit" class="btn btn-primary" >Lägg beställning</button>
+            <button id="submit" class="btn btn-primary">Lägg beställning</button>
 
         </form>
-
-
 
     </div>
 
 </div>
 
-
-
-
 <script>
+
+
+
+
+
+
 
     $(function(){
         $("#nav-placeholder").load("../nav.html");
