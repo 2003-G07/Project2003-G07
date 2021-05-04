@@ -48,8 +48,8 @@ public class Address {
         this.zip = zip;
     }
 
-    public Address(Long id, String city, String address, String zip) {
-        this.id = id;
+    public Address(String city, String address, String zip) {
+
         this.city = city;
         this.address = address;
         this.zip = zip;

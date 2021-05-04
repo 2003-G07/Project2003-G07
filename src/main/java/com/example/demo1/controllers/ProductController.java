@@ -32,6 +32,8 @@ public class ProductController {
 
 
 
+        if (image == null)
+            image = "https://www.translationvalley.com/wp-content/uploads/2020/03/no-iamge-placeholder.jpg";
         if (storage < 0) return "Storage can't be negative";
         if (price < 0) return "Price can't be negative";
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/style/bootstrap.css" />
     <link rel="stylesheet" href="/style/style.css" />
 
-    <title>Admin - Produkt</title>
+    <title>Leveransinformation - Hakim Livs</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
             crossorigin="anonymous"></script>
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
@@ -110,21 +110,6 @@
                 <label id="zipCodeSpringValidation" class="red-text" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></label>
             </div>
 
-
-            <br>
-            <div class="adress-form">
-                <label>Ort</label>
-                <input required th:pattern="${checkOutForm.ORT_PATTERN}" type="text" th:maxlength="${checkOutForm.MAXLENGTH_SIZE}" class="form-control"
-                 placeholder="Ort" th:field="*{Ort}"
-                 oninvalid="invalidInput(this, 'ortError', 'Postorten ska inte innehålla specialtecken eller siffror')"
-                 onchange="validateInput(this, 'ortError')">
-                <label class="red-text" id="ortError" hidden></label>
-                <label id="ortErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('Ort')}" th:errors="*{Ort}"></label>
-
-
-            </div>
-
-
             <br>
 
             <div class="adress-form">
@@ -137,23 +122,23 @@
                 <label id="cityErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></label>
             </div>
 
-
             <br>
 
-            <button id="submit" class="btn btn-primary" >Lägg beställning</button>
+            <button id="submit" class="btn btn-primary">Lägg beställning</button>
 
         </form>
-
-
 
     </div>
 
 </div>
 
-
-
-
 <script>
+
+
+
+
+
+
 
     $(function(){
         $("#nav-placeholder").load("../nav.html");
@@ -162,7 +147,9 @@
     });
 
 
-
+    /**
+     * This method is not currently being used.
+     */
     function clearCart(){
         var maincart = new Array();
         location.href='confirmedorder.html'

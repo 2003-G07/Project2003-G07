@@ -9,7 +9,7 @@
         </button>
 
         <a href="/index.html">
-            <img src="/img/logga_svart.svg" onclick="itsRewindTime('startsida')" alt="" width=200px height=100px/>
+            <img src="/img/logga_svart.svg" alt="" width=200px height=100px/>
         </a>
         <a class="navbar-brand" href="#"></a>
 
@@ -24,8 +24,8 @@
                  </button>
                  <a href="" class="btn btn-secondary my-sm-0">
                    <ion-icon name="person-outline"></ion-icon>Logga in-->
-                <a id="amount" href="../varukorg/groceryCart.html" class="btn btn-secondary my-sm-0">
-                    <ion-icon name="cart-outline"></ion-icon>  Varukorg
+                <a id="amount" onclick="checkcart()"  class="btn btn-secondary my-sm-0">
+                    <ion-icon name="cart-outline"></ion-icon>  Varukorg [0]
                 </a>
             </form>
 
@@ -54,6 +54,8 @@
         crossorigin="anonymous"></script>
 
 <script>
+
+
     /**
      * visar navbaren i small devices
 
@@ -78,8 +80,12 @@
 
 
 <script>
-    //FOR SHOPPINGCART
 
+
+    /**
+     * This method is not currently being used.
+     * @param remember
+     */
     function itsRewindTime(remember) {
 
         localStorage.setItem('cloudmemory', JSON.stringify(remember));
@@ -90,6 +96,40 @@
     var productcart = JSON.parse(productcartparse);
 
     var shoppingcart = document.getElementById("amount");
+
+
+    shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${productcart.length}]`;
+
+
+    /**
+     * Adds items in shopping cart to show in next page.
+     */
+    function checkcart(){
+
+        var productcartparse = localStorage.getItem('cloudcart');
+        var productcart = JSON.parse(productcartparse);
+
+        $.ajax({
+            type: 'POST',
+           contentType : "application/json",
+            accept : 'text/plain',
+            url : "/url",
+            data : JSON.stringify(productcart),
+            dataType : 'text',
+            error : function(xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+
+            },
+            success: function () {
+                location.href = "/varukorg/groceryCart.html"
+            }
+        });
+
+
+
+    }
 
    // shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Varukorg ${productcart.length} produkter`;
 

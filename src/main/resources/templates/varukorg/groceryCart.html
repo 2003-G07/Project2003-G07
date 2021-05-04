@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/style/bootstrap.css"/>
     <link rel="stylesheet" href="/style/style.css"/>
+    <link rel="stylesheet" href="/style/cartStylish.css"/>
     <!-- LÄGG DIN EGNA STYLESHEET I STYLE.CSS-->
 
-    <link rel="stylesheet" href="/varukorg/cartStyle/cartStylish.css"/>
 
     <!-- Nedan script är nödvändigt för plus/minus knappar -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 
-    <title>Hakim Livs</title>
+    <title>Varukorg - Hakim Livs</title>
 </head>
 
 <body class="navbarpadding">
@@ -39,27 +39,36 @@
         <h1>Varukorg</h1>
     </div>
 
-    <div class="d-flex w-100 justify-content-start align-items-center">
-        <div class="container" id="inputorder">
+    <th:block th:each="error : ${errorMessage}">
+        [[${error}]]
+    </th:block>
+
+</div>
+
+<div class="d-flex w-100 justify-content-start align-items-center">
+    <div class="container" id="inputorder">
 
 
-            <!-- LÄGG IN ALLT JS Generat -->
+        <!-- LÄGG IN ALLT JS Generat -->
 
-            <th:block th:each="product : ${listProductsInCart}">
+        <th:block th:each="product : ${listProductsInCart}">
+
+            <div th:id="id+${product.id}">
 
                 <div class="row mt-5">
                     <div class="col-0 d-flex justify-content-center">
-                        <a th:href="@{/groceryCart/deleteAll/(id=${product.id})}">
-                            <button onclick="" class="delete-btnCart" name="button">
-                        <img src="cartImages/delete-icn.svg" alt="" width="15px;"
-                             class=".d-sm-none .d-md-block">
-                            </button>
-                        </a>
+
+                        <button th:onclick="deleteAll([[${product.id}]],[[${product.price}]])"
+                                class="delete-btnCart"
+                                name="button">
+                            <img src="cartImages/delete-icn.svg" alt="" width="15px;"
+                                 class=".d-sm-none .d-md-block">
+                        </button>
                     </div>
                 </div>
 
 
-                <div id="inputorder" class="row d-flex justify-content-start itemCart mt-2">
+                <div id="" class="row d-flex justify-content-start itemCart mt-2">
 
                     <!--div class="row itemCart mt-sm-5" style="width: 15rem; margin-left: 2rem;"-->
 
@@ -71,54 +80,59 @@
 
                     <div class="col-sm-1 col-lg-2 descriptionCart justify-content-center mt-4 mr-5 ml-5 ">
                         <span class="row d-flex justify-content-center">[[${product.name}]]</span>
-
                     </div>
+
                     <div class="col-sm-1 col-lg-2 quantityCart ml-5 mr-5 d-flex justify-content-center">
 
                         <div class="row mt-5">
                             <div class="col-3 d-flex justify-content-center">
-                                <a th:href="@{/groceryCart/delete/(id=${product.id})}">
-                                    <button onclick="" class="minus-btnCart" type="button" name="button">
-                                        <img src="/varukorg/cartImages/minus.svg" alt=""/>
-                                    </button>
-                                </a>
 
+                                <button th:onclick="minusItem([[${product.id}]],[[${product.price}]])"
+                                        class="minus-btnCart" type="button" name="button" style="height: 30px">
+                                    <img src="/varukorg/cartImages/minus.svg" alt=""/>
+                                </button>
                             </div>
+
                             <div class="col-3 d-flex justify-content-center">
 
-                                <span class="row d-flex justify-content-center">[[${product.quant}]]</span>
+                                <input class="row d-flex justify-content-center" disabled th:id="${product.id}"
+                                       style="width: 2rem;height: 30px" type="text" name="name"
+                                       th:value="${product.quant}">
                             </div>
+
                             <div class="col-3 d-flex justify-content-center">
-                                <a th:href="@{/groceryCart/add/(id=${product.id})}">
-                                    <button onclick="" class="plus-btnCart " type="button" name="button">
-                                        <img src="cartImages/plus.svg" alt="">
-                                    </button>
-                                </a>
+                                <button th:onclick="plusItem([[${product.id}]],[[${product.price}]])"
+                                        class="plus-btnCart" type="button" name="button" style="height: 30px">
+                                    <img src="/varukorg/cartImages/plus.svg" alt=""/>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">
+                    <div th:id="pris+${product.id}" th:value="${product.price}"
+                         class="col-sm-1 col-lg- total-priceCart  mt-5 mr-1 ml-1 d-flex justify-content-center">
                         [[${product.price}]] kr
                     </div>
+
                 </div>
-            </th:block>
-        </div>
+            </div>
+        </th:block>
     </div>
+</div>
 
-    <th:block th:each="pris : ${totalpris}">
+<th:block th:each="pris : ${totalpris}">
 
-        <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
+    <div id="totalCartPrice" style="font-size: 30px; margin-bottom: 1rem; margin-top: 5rem;
         ">Att betala: [[${pris}]] kronor
-        </div>
-    </th:block>
-    <button onclick="location.href='checkout.html'" class="btn-outline-info btn"
-            type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
-    </button>
+    </div>
+</th:block>
+<button onclick="checkcart3()" class="btn-outline-info btn"
+        type="button" style="margin-top: 1rem; margin-bottom: 5rem; justify-content: center"> Gå vidare till kassan
+</button>
 
-    <!-- Product -->
+<!-- Product -->
 
-    <!-- SLUTA LÄGGA IN HÄR -->
+<!-- SLUTA LÄGGA IN HÄR -->
 
 
 </div>
@@ -130,7 +144,6 @@
 </footer>
 
 <script>
-
     var globalData;
     //SKRIV IN DIN JAVASCRIPT KOD HÄR
     $(function () {
@@ -141,60 +154,59 @@
 
     var maincart = new Array();
 
-    var productcartparse = localStorage.getItem('cloudcart');
-    var productcart = JSON.parse(productcartparse);
 
+    /**
+     * Find shopping cart array.
+     */
+    if (localStorage.getItem('cloudcart') !== null) {
+        var productcartparse = localStorage.getItem('cloudcart');
+        productcart = JSON.parse(productcartparse);
 
-    if (!productcart.length == 0) {
-        maincart = productcart
+        maincart = productcart;
     }
 
-    const cardGen = (response) => {
+    /**
+     * Removes item from grocery cart
+     * @param buttonid
+     * @param priceforProdukt
+     */
+    function deleteAll(buttonid, priceforProdukt) {
 
-        globalData = response;
+        var buttonName = buttonid;
+        var amountInArrayCounter = 0;
 
-        var generateItem = false;
-        var totalPriceAllItems = 0;
-        var lastId = 0;
-        var totalPriceSingleItem = 0;
-        var amountSingleItem = 0;
+        var positionInArray = 0;
 
-        response.forEach(responseElement => {
-            maincart.forEach(maincartElement => {
-                if (maincartElement == responseElement.productid) {
-                    totalPriceAllItems += responseElement.price;
-                    generateItem = true;
-                    if (lastId == maincartElement) {
-                        amountSingleItem++;
-                    } else {
-                        lastId = maincartElement;
-                        amountSingleItem++;
-                    }
+        if (document.getElementById(buttonName).value > 0) {
+
+            for (i = 0; i < maincart.length; i++) {
+                if (maincart[i] == buttonid) {
+                    positionInArray = i;
+                    maincart.splice(i, 1)
+                    amountInArrayCounter++;
+                    console.log("loop");
                 }
-                if (!amountSingleItem == 0) {
-                    totalPriceSingleItem = maincartElement.price * amountSingleItem;
-                } else {
-                    totalPriceSingleItem = maincartElement.price;
-                }
-            })
-            if (generateItem) {
-                document.getElementById("inputorder").innerHTML += ` `;
             }
 
-            totalPriceSingleItem = 0;
-            generateItem = false;
-            amountSingleItem = 0;
+            lowerPrice(priceforProdukt * amountInArrayCounter);
+            console.log("lower price for" + amountInArrayCounter);
 
-        });
+            var el = document.getElementById('id' + buttonid);
+            el.remove();
 
-        var priceAll = document.getElementById("totalCartPrice");
-        priceAll.innerHTML += ` ${totalPriceAllItems} kr`;
-    };
+            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
-    function minusItem(buttonid) {
+        }
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+    }
 
-        var buttonName = "field" + buttonid;
-
+    /**
+     * Removes item from shopping cart.
+     * @param buttonid
+     * @param priceforProdukt
+     */
+    function minusItem(buttonid, priceforProdukt) {
+        var buttonName = buttonid;
         var positionInArray = 0;
 
         if (document.getElementById(buttonName).value > 0) {
@@ -205,7 +217,6 @@
                     break;
                 }
             }
-
             maincart.splice(positionInArray, 1);
 
             var amountInArrayCounter = 0;
@@ -216,46 +227,47 @@
                 }
             }
 
-
             document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
-            lowerPrice(globalData);
+            lowerPrice(priceforProdukt);
 
             if (amountInArrayCounter == 0) {
-                var el = document.getElementById(buttonid);
+                var el = document.getElementById('id' + buttonid);
                 el.remove();
 
             }
+            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
-            shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
-
-            amountInArrayCounter = 0;
         }
-
-
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
 
-    function lowerPrice(data) {
-        var totalPriceInCart = 0;
-        for (i = 0; i < maincart.length; i++) {
-            for (y = 0; y < data.length; y++) {
-                if (maincart[i] == data[y].productid) {
-                    totalPriceInCart += data[y].price;
-                }
+    var thymtex = "[[${totalpris}]]";
 
-            }
+    var sum = parseInt(thymtex);
 
-        }
+    /**
+     * Lower price from total amount shown.
+     * @param price
+     */
+    function lowerPrice(price) {
 
-        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+        sum = sum - price;
+
+        console.log(sum);
+
+        document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} Kr`;
 
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
 
-    function plusItem(buttonid) {
-
-        var buttonName = "field" + buttonid;
-
+    /**
+     * Adds item to shopping cart.
+     * @param buttonid
+     * @param priceforProdukt
+     */
+    function plusItem(buttonid, priceforProdukt) {
+        var buttonName = buttonid;
         var positionInArray = 0;
 
 
@@ -271,30 +283,57 @@
 
         document.getElementById(buttonName).setAttribute('value', amountInArrayCounter);
 
-        higherPrice(globalData);
+        higherPrice(priceforProdukt);
 
-        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Till kassa ${maincart.length} produkter`;
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
         amountInArrayCounter = 0;
 
-
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
 
-    function higherPrice(data) {
-        var totalPriceInCart = 0;
-        for (i = 0; i < maincart.length; i++) {
-            for (y = 0; y < data.length; y++) {
-                if (maincart[i] == data[y].productid) {
-                    totalPriceInCart += data[y].price;
-                }
-            }
+    /**
+     * Adds amount to total price shown.
+     * @param price
+     */
+    function higherPrice(price) {
+        sum = sum + price;
 
-        }
+        console.log(sum);
 
-        document.getElementById("totalCartPrice").innerHTML = `Totalpris: ${totalPriceInCart} kr`;
+        document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} Kr`;
 
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
+
+
+    /**
+     * Sending all items in shopping cart to back end.
+     */
+    function checkcart3() {
+
+        var productcartparse = localStorage.getItem('cloudcart');
+        var productcart = JSON.parse(productcartparse);
+
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            accept: 'text/plain',
+            url: "/varukorg/groceryCart.html/checkoutItems",
+            data: JSON.stringify(productcart),
+            dataType: 'text',
+            error: function (xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+
+            },
+            success: function () {
+                location.href = "/direct"
+            }
+        });
+    }
+
 
     //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
 </script>

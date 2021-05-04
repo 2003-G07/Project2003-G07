@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/style/bootstrap.css"/>
-    <link rel="stylesheet" href="/style/style.css"/>
-    <title>Bekräftelse på beställning - Hakims Livs</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/bootstrap.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>Beställningbekräftelse - Hakim Livs</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 </head>
 <body class="navbarpadding">
 
@@ -14,9 +20,20 @@
 
 </div>
 
-<script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 
 <!--Sidebar-->
+
+
+<div class="d-flex wrapper">
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block fixed-top">
+        <div class="" id="sidebar-wrapper">
+
+        </div>
+    </div>
+
+</div>
+
+
 <div class="container">
 
     <div class="d-flex w-100 justify-content-start align-items-center">
@@ -29,11 +46,16 @@
                 <p style="text-align: center; padding-top: 2rem; padding-bottom: 3rem;">
                     Din beställning har tagits emot och skickas omgående!</p>
                 <button type="button" class="btn btn-primary justify-content-center" style="margin-bottom: 5rem;"
-                        onclick="location.href='../index.html'">Tillbaka till tartsidan
+                        onclick="location.href='../index.html'">Tillbaka till Startsidan
                 </button>
             </div>
+
+
+
+
         </div>
     </div>
+
 </div>
 <footer id="foot" style="background-color: #007A3D;" class="mt-5">
 
@@ -44,10 +66,56 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(function () {
+
+
+    function checkcart() {
+
+        var productcartparse = localStorage.getItem('cloudcart');
+        var productcart = JSON.parse(productcartparse);
+
+        $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            accept: 'text/plain',
+            url: "/url2",
+            data: JSON.stringify(productcart),
+            dataType: 'text',
+            error: function (xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+
+            }
+        });
+    }
+
+
+
+
+
+
+    if (localStorage.getItem('cloudcart') !== null){
+        checkcart();
+
+        maincart = [];
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+    }
+
+
+</script>
+
+<script>
+
+
+
+
+
+    $(function(){
         $("#nav-placeholder").load("../nav.html");
         $("#sidebar-wrapper").load("../sidebar.html");
         $("#foot").load("../footer.html");
+
     });
 
 

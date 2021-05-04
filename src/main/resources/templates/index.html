@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/style/bootstrap.css"/>
     <link rel="stylesheet" href="/style/style.css"/>
-    <title>Admin - Produkt</title>
+    <title>Startsida - Hakim Livs</title>
 
     <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
 
@@ -49,7 +49,7 @@
 
             <!-- Här skapas main-->
             <th:block th:each="product : ${listCustomers}">
-                <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 2rem;">
+                <div class="card lg-3 mb-4" style="width: 15rem; margin-left: 3rem;">
 
                     <a th:href="@{/Startsida/produktsida/(id=${product.id})}" name="id"
                        style="text-decoration: none;">
@@ -83,8 +83,7 @@
 
                     </a>
 
-                    <a class="btn btn-primary btn-lg" onclick="addToCart()"
-                       th:href="@{/index.html/add/(id=${product.id})}">Köp</a>
+                    <a class="btn btn-primary btn-lg" th:onclick="addToCart([[${product.id}]])">Köp</a>
 
                 </div>
 
@@ -102,21 +101,43 @@
 </footer>
 
 <script>
-    var memoryparse = localStorage.getItem('cloudmemory');
-    var memory = JSON.parse(memoryparse);
+    var maincart = new Array();
+
+
+
+    /**
+     * Find shopping cart array.
+     */
+    if (localStorage.getItem('cloudcart') !== null){
+        var productcartparse = localStorage.getItem('cloudcart');
+        productcart = JSON.parse(productcartparse);
+
+        maincart = productcart;
+    }
+
+
+
 
     $(function () {
         $("#foot").load("footer.html");
-
     });
 
-    var maincart = new Array();
+
 
     var shoppingcart = document.getElementById("amount");
 
-    function addToCart() {
 
-        alert("Produkt tillagd i varukorgen");
+    /**
+     * Add selected item to shopping cart.
+     * @param värde
+     */
+    function addToCart(värde) {
+
+
+        maincart.push(värde);
+        localStorage.setItem('cloudcart', JSON.stringify(maincart));
+
+        shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
 
     }
 
@@ -126,6 +147,10 @@
         $("#sidebar-wrapper").load("../sidebar.html");
     });
 
+    /**
+     * This method is not being used currently.
+     * @param productID
+     */
     function openProduct(productID) {
 
         location.href = "../Startsida/produktsida.html";

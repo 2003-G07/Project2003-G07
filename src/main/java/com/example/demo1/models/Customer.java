@@ -14,7 +14,6 @@ public class Customer {
     protected String lastName;
     protected String tel;
     protected String email;
-    protected Long addressId;
 
     public Customer() {
     }
@@ -66,14 +65,6 @@ public class Customer {
         this.email = email;
     }
 
-    public Long getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
@@ -82,7 +73,6 @@ public class Customer {
                 ", lastName='" + lastName + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
-                ", addressId=" + addressId +
                 '}';
     }
 }
