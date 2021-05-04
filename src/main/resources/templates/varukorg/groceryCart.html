@@ -166,7 +166,9 @@
 
 
 
-
+            /**
+             * Find shopping cart array.
+             */
             if (localStorage.getItem('cloudcart') !== null){
                 var productcartparse = localStorage.getItem('cloudcart');
                 productcart = JSON.parse(productcartparse);
@@ -174,6 +176,11 @@
                 maincart = productcart;
             }
 
+            /**
+             * Removes item from shopping cart.
+             * @param buttonid
+             * @param priceforProdukt
+             */
             function minusItem(buttonid, priceforProdukt) {
 
 
@@ -227,6 +234,10 @@
 
             var sum = parseInt(thymtex);
 
+            /**
+             * Lower price from total amount shown.
+             * @param price
+             */
             function lowerPrice(price) {
 
                 sum = sum - price;
@@ -244,6 +255,11 @@
             }
 
 
+            /**
+             * Adds item to shopping cart.
+             * @param buttonid
+             * @param priceforProdukt
+             */
             function plusItem(buttonid, priceforProdukt) {
 
                 var buttonName = buttonid;
@@ -278,6 +294,10 @@
 
             }
 
+            /**
+             * Adds amount to total price shown.
+             * @param price
+             */
             function higherPrice(price) {
                 sum = sum + price;
 
@@ -289,6 +309,9 @@
             }
 
 
+            /**
+             * Sending all items in shopping cart to back end.
+             */
             function checkcart3(){
 
                 var productcartparse = localStorage.getItem('cloudcart');

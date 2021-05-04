@@ -80,8 +80,12 @@
 
 
 <script>
-    //FOR SHOPPINGCART
 
+
+    /**
+     * This method is not currently being used.
+     * @param remember
+     */
     function itsRewindTime(remember) {
 
         localStorage.setItem('cloudmemory', JSON.stringify(remember));
@@ -97,6 +101,9 @@
     shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${productcart.length}]`;
 
 
+    /**
+     * Adds items in shopping cart to show in next page.
+     */
     function checkcart(){
 
         var productcartparse = localStorage.getItem('cloudcart');

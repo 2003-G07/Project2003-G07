@@ -103,6 +103,9 @@
     var maincart = new Array();
 
 
+    /**
+     * Find shopping cart array.
+     */
     if (localStorage.getItem('cloudcart') !== null){
         var productcartparse = localStorage.getItem('cloudcart');
         productcart = JSON.parse(productcartparse);
@@ -110,6 +113,10 @@
         maincart = productcart;
     }
 
+    /**
+     * Adds item to shopping cart.
+     * @param värde
+     */
     function addToCart(värde) {
 
 

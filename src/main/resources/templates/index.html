@@ -104,6 +104,10 @@
     var maincart = new Array();
 
 
+
+    /**
+     * Find shopping cart array.
+     */
     if (localStorage.getItem('cloudcart') !== null){
         var productcartparse = localStorage.getItem('cloudcart');
         productcart = JSON.parse(productcartparse);
@@ -116,13 +120,17 @@
 
     $(function () {
         $("#foot").load("footer.html");
-
     });
 
 
 
     var shoppingcart = document.getElementById("amount");
 
+
+    /**
+     * Add selected item to shopping cart.
+     * @param värde
+     */
     function addToCart(värde) {
 
 
@@ -139,6 +147,10 @@
         $("#sidebar-wrapper").load("../sidebar.html");
     });
 
+    /**
+     * This method is not being used currently.
+     * @param productID
+     */
     function openProduct(productID) {
 
         location.href = "../Startsida/produktsida.html";

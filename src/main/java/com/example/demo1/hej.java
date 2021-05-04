@@ -49,6 +49,15 @@ public class hej {
     List<Product> outOfStock = new ArrayList<>();
     String url;
 
+    /**
+     * This method is not being used currently
+     * @param firstNa
+     * @param lastNa
+     * @param teleNr
+     * @param emailAd
+     * @param model
+     * @return
+     */
     @GetMapping("/greeting")
     public String greetingForm(@RequestParam String firstNa, String lastNa,
                                String teleNr, String emailAd, Model model) {
@@ -60,17 +69,31 @@ public class hej {
         return "customers";
     }
 
+    /**
+     * This method is not being used currently
+     * @param model
+     * @return
+     */
     @GetMapping("/register")
     public String showForm(Model model) {
 
         return "regiser_form";
     }
 
+    /**
+     * This method is not being used currently
+     * @param customer
+     * @return
+     */
     @PostMapping("/register")
     public String submitForm(@ModelAttribute("customer") Customer customer) {
         return "register_success";
     }
 
+    /**
+     * This method is not being used currently
+     * @return
+     */
     @GetMapping("admin/addKund.html")
     public ModelAndView addCustomer() {
         ModelAndView modelAndView = new ModelAndView();
@@ -78,6 +101,12 @@ public class hej {
         return modelAndView;
     }
 
+    /**
+     * Generating all products when entering index page.
+     * Check if product is visible and has storage.
+     * @param model
+     * @return
+     */
     @GetMapping("/index.html")
     public String listCustomers(Model model) {
 
@@ -102,12 +131,21 @@ public class hej {
         return "index.html";
     }
 
+    /**
+     * Simple redirect to index when entering webpage
+     * @return
+     */
     @GetMapping("/")
     public String showIndex() {
 
         return "redirect:/index.html";
     }
 
+    /**
+     * This method is not being used currently.
+     * @param product
+     * @return
+     */
     @RequestMapping("/index.html/add")
     public String addProductToCart1(@RequestParam("id") Product product) {
         Product stock = productRepository.findById(product.getId()).get();
@@ -159,6 +197,11 @@ public class hej {
         return "redirect:/index.html";
     }
 
+    /**
+     * This method is not being used currently.
+     * @return
+     * @throws SQLException
+     */
     @GetMapping("Startsida/produktsida")
     public ModelAndView showProduct() throws SQLException {
         ModelAndView modelAndView = new ModelAndView();
@@ -168,6 +211,11 @@ public class hej {
         return modelAndView;
     }
 
+    /**
+     * Return selected product to show all info in page.
+     * @param id
+     * @return
+     */
     @GetMapping("/Startsida/produktsida/")
     public ModelAndView showProducts(@RequestParam long id) {
         Product product = productRepository.getProductById(id);
@@ -186,6 +234,11 @@ public class hej {
 
     }
 
+    /**
+     * This method is not being used currently.
+     * @param product
+     * @return
+     */
     @RequestMapping("/Startsida/produktsida/add")
     public String addProduct(@RequestParam("id") Product product) {
         Product stock = productRepository.findById(product.getId()).get();
@@ -246,6 +299,12 @@ public class hej {
     }
 
     boolean sendErrorMessageIfEmptyStorage = false;
+
+    /**
+     * Returns error message if trying to buy a product out of stock.
+     * @param model
+     * @return
+     */
     @GetMapping("varukorg/groceryCart.html")
     public String showCart(Model model) {
         String error = "Slut på lager: ";
@@ -268,6 +327,11 @@ public class hej {
         return "varukorg/groceryCart.html";
     }
 
+    /**
+     * This method is not being used currently.
+     * @param product
+     * @return
+     */
     @RequestMapping("/groceryCart/add")
     public String addProductToGrosCart(@RequestParam("id") Product product) {
 
@@ -297,6 +361,11 @@ public class hej {
         return "redirect:/varukorg/groceryCart.html";
     }
 
+    /**
+     * This method is not being used currently.
+     * @param product
+     * @return
+     */
     @RequestMapping("/groceryCart/delete")
     public String deleteProductToGrosCart(@RequestParam("id") Product product) {
 
@@ -318,7 +387,11 @@ public class hej {
         return "redirect:/varukorg/groceryCart.html";
     }
 
-    //Används vid navbar för att hämta alla produkter till varukorgen
+    /**
+     * Show all products user has in shopping cart.
+     * @param productIdToCart
+     * @return
+     */
     @PostMapping(value="/url")
     public String postCustomer(@RequestBody List<Integer> productIdToCart){
 
@@ -352,7 +425,12 @@ public class hej {
         return "redirect:/varukorg/groceryCart.html";
     }
 
-
+    /**
+     * Store customer information from the checkout form.
+     * @param checkOutForm
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/varukorg/submitcheckoutform")
     public String submitCheckOutForm(@Valid CheckOutForm checkOutForm, BindingResult bindingResult) {
 
@@ -367,9 +445,12 @@ public class hej {
     }
 
 
-
-
-    //Avänds vid checkout om allt finns på lagret
+    /**
+     * Store customer, shopping cart information in database.
+     * Set storage to new amount.
+     * @param productIdToCart
+     * @return
+     */
     @PostMapping(value="/url2")
     public String postCustomer2(@RequestBody List<Integer> productIdToCart){
 
@@ -461,6 +542,14 @@ public class hej {
     }
 
 
+    /**
+     * Check if all products in shopping cart has stock.
+     * Redirect user back to shopping cart if stock is to low.
+     * Redirect user to checkout if stock has enough.
+     * @param product
+     * @param response
+     * @return
+     */
     @PostMapping(value="varukorg/groceryCart.html/checkoutItems")
     public String checkoutCartStorageItems(@RequestBody List<Integer> product, HttpServletResponse response) {
         long prev = 0;
@@ -509,7 +598,10 @@ public class hej {
         return url;
     }
 
-
+    /**
+     * Simple redirect to right url.
+     * @return
+     */
     @GetMapping("/direct")
     public String direction(){
 
