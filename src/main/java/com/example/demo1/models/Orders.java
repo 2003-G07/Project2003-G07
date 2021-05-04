@@ -1,7 +1,9 @@
 package com.example.demo1.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Orders {
@@ -9,7 +11,10 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    protected String date;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    protected Date createDate;
     protected Long cost;
     protected int status;
 
@@ -21,8 +26,7 @@ public class Orders {
     @JoinColumn(name = "addressId", referencedColumnName = "id")
     protected Address address;
 
-    public Orders(String date, Long cost, int status, Customer customer, Address address) {
-        this.date = date;
+    public Orders( Long cost, int status, Customer customer, Address address) {
         this.cost = cost;
         this.status = status;
         this.customer = customer;
@@ -33,7 +37,7 @@ public class Orders {
     public String toString() {
         return "Orders{" +
                 "id=" + id +
-                ", date=" + date +
+                ", date=" + createDate +
                 ", cost=" + cost +
                 ", status=" + status +
                 ", customer=" + customer +
@@ -52,12 +56,12 @@ public class Orders {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCreateDate(Date date) {
+        this.createDate = date;
     }
 
     public Long getCost() {
