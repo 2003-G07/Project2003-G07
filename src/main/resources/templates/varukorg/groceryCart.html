@@ -68,7 +68,7 @@
                 </div>
 
 
-                            <div id="" class="row d-flex justify-content-start itemCart mt-2">
+                <div id="" class="row d-flex justify-content-start itemCart mt-2">
 
                     <!--div class="row itemCart mt-sm-5" style="width: 15rem; margin-left: 2rem;"-->
 
@@ -95,9 +95,8 @@
 
                             <div class="col-3 d-flex justify-content-center">
 
-                                    <span class="row d-flex justify-content-center" th:id="${product.id}"
-                                          type="text" name="name" th:value="${product.quant}">[[${product.quant}]]
-                                    </span>
+                                <input class="row d-flex justify-content-center" disabled th:id="${product.id}"
+                                       style="width: 2rem;height: 30px" type="text"  name="name" th:value="${product.quant}">
                             </div>
 
                             <div class="col-3 d-flex justify-content-center">
@@ -279,7 +278,7 @@
 
         console.log(sum);
 
-        document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} :-`;
+        document.getElementById("totalCartPrice").innerHTML = `Att betala: ${sum} Kr`;
 
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
@@ -310,8 +309,6 @@
                 location.href = "/direct"
             }
         });
-
-
     }
 
 
