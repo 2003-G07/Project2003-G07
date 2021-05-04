@@ -171,31 +171,23 @@
      * @param priceforProdukt
      */
     function deleteAll(buttonid, priceforProdukt) {
-
         var buttonName = buttonid;
-        var amountInArrayCounter = 0;
-
-        var positionInArray = 0;
+        var removedItemsCount = 0;
 
         if (document.getElementById(buttonName).value > 0) {
+            var initialSize = maincart.length;
+            var newCart = maincart.filter(item => item !== buttonid);
+            var newSize = newCart.length;
 
-            for (i = 0; i < maincart.length; i++) {
-                if (maincart[i] == buttonid) {
-                    positionInArray = i;
-                    maincart.splice(i, 1)
-                    amountInArrayCounter++;
-                    console.log("loop");
-                }
-            }
+            removedItemsCount = initialSize - newSize;
 
-            lowerPrice(priceforProdukt * amountInArrayCounter);
-            console.log("lower price for" + amountInArrayCounter);
+            lowerPrice(priceforProdukt * removedItemsCount);
+
+            maincart = newCart;
 
             var el = document.getElementById('id' + buttonid);
             el.remove();
-
             shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon> Varukorg [${maincart.length}]`;
-
         }
         localStorage.setItem('cloudcart', JSON.stringify(maincart));
     }
