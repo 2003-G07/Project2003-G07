@@ -3,6 +3,7 @@ package com.example.demo1.models;
 import javax.persistence.*;
 import java.util.Optional;
 
+
 @Entity
 public class OrderDetails {
 
@@ -23,7 +24,7 @@ public class OrderDetails {
         this.product = product;
     }
 
-    public OrderDetails(){
+    public OrderDetails() {
     }
 
     public OrderDetails(Orders orders, Optional<Product> product) {

@@ -5,6 +5,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Generates a unique id for each order automatically
+ */
+
+
 @Entity
 public class Orders {
 

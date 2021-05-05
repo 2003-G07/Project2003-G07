@@ -11,11 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- * Created by Salah Abdinoor
- * 4/27/2021
- * 12:31 PM
- * Heroku
- * Copyright: MIT
+ *
  */
 @RestController
 @RequestMapping(path = "/orders/")
@@ -35,7 +31,6 @@ public class OrdersController {
     /**
      * This method creates a new order based on some inputs
      * if address and customer don't exist in the system then it creates new once.
-     *
      */
 
     @PostMapping(path = "/add")
@@ -59,12 +54,12 @@ public class OrdersController {
 
         String formatDateTime = now.format(formatter);
 
-        if (customerRepository == null){
+        if (customerRepository == null) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
         }
         // First check to see if customer exists. If they don't create a new and save to repo, if they do use the same one.
-       else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
+        else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
 
@@ -83,29 +78,33 @@ public class OrdersController {
 
         // third check to see if product exists. if it doesnt send error, if it does proceed.
 
-            // Create Order
-            Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
-            ordersRepository.save(orders);
+        // Create Order
+        Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
+        ordersRepository.save(orders);
 
-            // add Order to OrderDetails
-            OrderDetails orderDetails;
-            for (Product product : productList) {
-               orderDetails = new OrderDetails(orders, product);
-                orderDetailsRepository.save(orderDetails);
-                System.out.println("orders = " + orders);
+        // add Order to OrderDetails
+        OrderDetails orderDetails;
+        for (Product product : productList) {
+            orderDetails = new OrderDetails(orders, product);
+            orderDetailsRepository.save(orderDetails);
+            System.out.println("orders = " + orders);
 
-            }
+        }
 
-            return "Order Saved";
+        return "Order Saved";
 
     }
 
-    public int totalPrice(List<Product> productList){
+    /**
+     * Takes in a product list and their prices and returns the total price
+     * for products in list.
+     */
+
+    public int totalPrice(List<Product> productList) {
 
         var totalPrice = 0;
 
-        for (int i = 0; i < productList.size() ; i++) {
-
+        for (int i = 0; i < productList.size(); i++) {
             totalPrice += productList.get(i).getPrice();
 
         }
@@ -113,6 +112,9 @@ public class OrdersController {
         return totalPrice;
     }
 
+    /**
+     * Takes in order id and returns the order information from id
+     */
 
     @GetMapping(path = "/OrderById")
     public @ResponseBody
@@ -125,7 +127,7 @@ public class OrdersController {
 
         for (int i = 0; i < orderDetails.size(); i++) {
 
-            var product= orderDetails.get(i).getProduct();
+            var product = orderDetails.get(i).getProduct();
             productList.add(product);
         }
 
@@ -138,73 +140,52 @@ public class OrdersController {
         return ret;
     }
 
-
-
-    @GetMapping(path = "/show")
-    public @ResponseBody
-    Set<Present> showOneOrderById() {
-
-        var orderDetails = orderDetailsRepository.findAll();
-
-        var sizeOfProductList = ordersRepository.count();
-
-        List<Product> productList = null;
-
-        for (int j = 0; j < sizeOfProductList; j++) {
-
-            var product = orderDetails.iterator().next().getProduct();
-
-            productList.add(product);
-
-        }
-
-        //alltid en order
-        var order = orderDetails.iterator().next().getOrders();
-
-        Set<Present> present = null;
-
-        for (int i = 0; i < sizeOfProductList; i++) {
-
-
-        }
-
-        return present;
-
-    }
+    /**
+     * Takes in the order id to patches(changes) the status from "new" to
+     * "completed", status 1(one) is for new order and status 2(two)
+     * is for completed order
+     */
 
     @PatchMapping(path = "/changeStatus")
     public @ResponseBody
     String changeStatus(long orderId, int newStatus) {
 
-        if (!ordersRepository.existsById(orderId)){
+        if (!ordersRepository.existsById(orderId)) {
             return "Ingen order finns med detta OrderID";
         }
 
         Orders orderToUpdate = ordersRepository.findById(orderId).get();
 
-        if (orderToUpdate.getStatus() == newStatus){
+        if (orderToUpdate.getStatus() == newStatus) {
             return "Ordern har redan denna status";
         }
 
-        if (newStatus == 0 || newStatus == 1 || newStatus == 2){
+        if (newStatus == 0 || newStatus == 1 || newStatus == 2) {
             orderToUpdate.setStatus(newStatus);
             ordersRepository.save(orderToUpdate);
             return "Status ändrad på order: " + orderId + ", status: " + newStatus;
-        }else {
+        } else {
             return "Felaktig status";
         }
 
-
-
     }
+
+    /**
+     * Method shows all order details (order, product and customer)
+     * information
+     */
 
     @GetMapping(path = "/showAll")
     public @ResponseBody
     Iterable<OrderDetails> showAll() {
 
         return orderDetailsRepository.findAll();
-
     }
+
+    /**
+     * Method is showing all order details for a specific status
+     * where status is new = 1
+     */
 
     @GetMapping(path = "/showAllNew")
     public @ResponseBody
@@ -221,19 +202,10 @@ public class OrdersController {
 
     }
 
-    // För test syfte!
-    @DeleteMapping(path = "/deleteAll")
-    public @ResponseBody
-    String deleteAll() {
-
-        ordersRepository.deleteAll();
-
-        return "All orders are deleted!";
-
-    }
-
-
-
+    /**
+     * Method is showing all order details for a specific status
+     * where status is completed = 2
+     */
 
     @GetMapping(path = "/showAllComplete")
     public @ResponseBody

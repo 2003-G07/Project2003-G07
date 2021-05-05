@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Not in use atm
+ */
+
 @RestController
 @RequestMapping(path = "/customer")
 public class Controller {

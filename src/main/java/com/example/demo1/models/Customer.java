@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Generates a unique id for each customer automatically
+ */
+
 @Entity
 public class Customer {
     @Id

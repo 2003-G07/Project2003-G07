@@ -22,7 +22,7 @@ public class ProductCategory {
         this.product = product;
     }
 
-    public ProductCategory(){
+    public ProductCategory() {
 
     }
 

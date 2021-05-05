@@ -1,21 +1,12 @@
 package com.example.demo1.util;
 
-/**
- * Created by Salah Abdinoor
- * 4/28/2021
- * 2:04 PM
- * Heroku
- * Copyright: MIT
- */
-
 import com.example.demo1.models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class for the Order API to present the JSON file to Hakim in proper format..
- *
+ * This class is to show specific information from the API in proper JSON format
  */
 public class Present {
 
@@ -33,11 +24,11 @@ public class Present {
         this.quant = quant;
     }
 
-    public Present(){
+    public Present() {
 
     }
 
-    public Iterable<Present> format(List<Product> productList){
+    public Iterable<Present> format(List<Product> productList) {
 
         List<Present> presentList = new ArrayList<>();
 

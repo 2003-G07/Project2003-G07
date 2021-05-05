@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface
 OrderDetailsRepository extends CrudRepository<OrderDetails, Long> {
     Optional<OrderDetails> findById(Long id);
+
     List<OrderDetails> findByOrders(Orders orders);
 
 
