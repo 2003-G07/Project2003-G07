@@ -21,18 +21,22 @@
                 <!--  <input class="form-control mr-sm-2" type="search" placeholder="Search">
                 <button class="btn btn-secondary my-sm-0" style="position: center;" type="submit">
                    <ion-icon name="search-outline"></ion-icon>Sök
-                 </button>
-                 <a href="" class="btn btn-secondary my-sm-0">
-                   <ion-icon name="person-outline"></ion-icon>Logga in-->
-                <a id="amount" onclick="checkcart()"  class="btn btn-secondary my-sm-0">
-                    <ion-icon name="cart-outline"></ion-icon>  Varukorg [0]
+                 </button>-->
+                <a href="../inloggning/inloggningsida.html" onclick="" class="btn btn-secondary my-sm-0">
+                    <ion-icon name="person-outline"></ion-icon>
+                    Logga in
                 </a>
+                    <a id="amount" onclick="checkcart()" class="btn btn-secondary my-sm-0">
+                        <ion-icon name="cart-outline"></ion-icon>
+                        Varukorg [0]
+                    </a>
             </form>
 
             <div class="nav-item dropdown d-sm-block d-md-none">
 
                 <a href="/index.html" class="btn btn-secondary my-sm-0">
-                <ion-icon name="search-outline"></ion-icon> Alla produkter </a>
+                    <ion-icon name="search-outline"></ion-icon>
+                    Alla produkter </a>
 
                 <!--  <div class="dropdown-content" aria-labelledby="smallerscreenmenu">
                    <a class="dropdown-item" href="../inloggning/inloggningsida.html">Kategori 1</a>
@@ -104,19 +108,19 @@
     /**
      * Adds items in shopping cart to show in next page.
      */
-    function checkcart(){
+    function checkcart() {
 
         var productcartparse = localStorage.getItem('cloudcart');
         var productcart = JSON.parse(productcartparse);
 
         $.ajax({
             type: 'POST',
-           contentType : "application/json",
-            accept : 'text/plain',
-            url : "/url",
-            data : JSON.stringify(productcart),
-            dataType : 'text',
-            error : function(xhr, textStatus, error) {
+            contentType: "application/json",
+            accept: 'text/plain',
+            url: "/url",
+            data: JSON.stringify(productcart),
+            dataType: 'text',
+            error: function (xhr, textStatus, error) {
                 console.log(xhr.statusText);
                 console.log(textStatus);
                 console.log(error);
@@ -128,9 +132,8 @@
         });
 
 
-
     }
 
-   // shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Varukorg ${productcart.length} produkter`;
+    // shoppingcart.innerHTML = `<ion-icon name="cart-outline"></ion-icon>Varukorg ${productcart.length} produkter`;
 
 </script>

@@ -86,13 +86,10 @@ public class ProductController {
     /**
      * Shows product from its unique id
      */
-
     @GetMapping(path = "/showProductById")
     public @ResponseBody
     Optional<Product> showProductById(Long id) {
-
         return productRepository.findById(id);
-
     }
 
     /**
