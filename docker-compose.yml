@@ -9,7 +9,7 @@ services:
         image: gr07/hakim:0.0.1
         environment:
             - MYSQL_HOST=mysql
-            - payment_host=payment:8080
+            - payment_host=payment-gw:8080
         ports:
             - "8080:8080"
         links:

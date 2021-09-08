@@ -1,6 +1,8 @@
 package com.example.demo1.util;
 
-public class PaymentDto {
+import java.io.Serializable;
+
+public class PaymentDto implements Serializable {
     private String reference;
     private long amount;
 
