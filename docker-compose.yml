@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+    mysql:
+        image: mysql:8.0.26
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=lab1
+    lab2:
+        image: gr07/hakim:0.0.1
+        environment:
+            - MYSQL_HOST=mysql
+            - payment_host=payment:8080
+        ports:
+            - "8080:8080"
+        links:
+            - mysql
+    mysql-payment:
+        image: mysql:8.0.26
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=payments
+    payment-gw:
+        image: payment-gw:0.0.1
+        environment:
+            - MYSQL_HOST=mysql-payment
+            - SPRING_RABBITMQ_HOST=rabbit
+            - SPRING_RABBITMQ_PORT=5672
+        ports:
+            - "8083:8080"
+        depends_on:
+            - rabbit
+    rabbit:
+        image: rabbitmq:3.9.5
+        ports:
+            - "5672:5672"
+            - "15672:15672"

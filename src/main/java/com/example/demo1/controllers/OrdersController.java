@@ -1,10 +1,13 @@
 package com.example.demo1.controllers;
 
+import com.example.demo1.ApplicationConfiguration;
 import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
 import com.example.demo1.util.Present;
+import com.example.demo1.util.Serialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,11 +30,19 @@ public class OrdersController {
     private AddressRepository addressRepository;
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
+    @Autowired
+    ApplicationConfiguration applicationConfiguration;
+    @Autowired
+    RestTemplate restTemplate;
+
 
     /**
      * This method creates a new order based on some inputs
      * if address and customer don't exist in the system then it creates new once.
      */
+
+
+
 
     @PostMapping(path = "/add")
     public @ResponseBody
@@ -77,6 +88,8 @@ public class OrdersController {
         }
 
         // third check to see if product exists. if it doesnt send error, if it does proceed.
+
+
 
         // Create Order
         Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
