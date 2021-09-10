@@ -35,7 +35,7 @@ public class MailService {
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
 
         Email from = new Email("henke_e_96@hotmail.com");
         String subject = "Sending with SendGrid is Fun";
@@ -60,6 +60,7 @@ public class MailService {
         }
 
     }
+     */
 
     public void sendGreeting(Customer customer) throws IOException {
 
@@ -96,8 +97,6 @@ public class MailService {
         List<Product> productList = new ArrayList<>();
         var customer = orders.getCustomer();
         Present present = new Present();
-
-
 
 
         Email sender = new Email("hakimslivs@outlook.com");
