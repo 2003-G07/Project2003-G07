@@ -6,6 +6,7 @@ import com.example.demo1.models.OrderDetails;
 import com.example.demo1.models.Orders;
 import com.example.demo1.models.Product;
 import com.example.demo1.repositories.*;
+import com.example.demo1.util.Present;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
@@ -14,12 +15,14 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Example {
+@Service
+public class MailService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -64,7 +67,7 @@ public class Example {
         Email recipient = new Email(customer.getEmail());
         String subject = "Hej " + customer.getFirstName() +" " + customer.getLastName()+"! Välkommen till Hakims Livs";
 
-        Content content = new Content("text/plain", "mall för välkomstmail");
+        Content content = new Content("text/plain", "Du är nu registrerad kund hos Hakims Livs");
         Mail mail = new Mail(sender, subject, recipient, content);
 
         SendGrid sg = new SendGrid("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");
@@ -77,6 +80,7 @@ public class Example {
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+            System.out.println("greeting sent");
 
         } catch (IOException ex) {
 
@@ -84,23 +88,33 @@ public class Example {
         }
 
     }
-    public void sendOrderConfirmation(int orderId) throws IOException {
+    public void sendOrderConfirmation(long orderId) throws IOException {
 
-        var orders = ordersRepository.findById((long)orderId).get();
+        var orders = ordersRepository.findById(orderId).get();
         var orderDetails = orderDetailsRepository.findByOrders(orders);
         var recipient = orders.getCustomer().getEmail();
         List<Product> productList = new ArrayList<>();
         var customer = orders.getCustomer();
+        Present present = new Present();
+
+
+
 
         Email sender = new Email("hakimslivs@outlook.com");
         Email recipientEmail = new Email(recipient);
 
+        String subject = "Din orderbekräftelse för order: " + orderId;
+        String orderConfirmationBody = "Din beställning har tagits emot" + "\n" +
+                "produkter: \n";
 
+        for (int i = 0; i < orderDetails.size(); i++) {
+            var product = orderDetails.get(i).getProduct();
+            orderConfirmationBody += product.getName() + " " + product.getPrice() + " kr " + "\n";
+        }
 
+        orderConfirmationBody += "Totalpris: " + orders.getCost() + " kr";
 
-        String subject = "Hej " + customer.getFirstName() +" " + customer.getLastName()+"! Välkommen till Hakims Livs";
-
-        Content content = new Content("text/plain", "mall för välkomstmail");
+        Content content = new Content("text/plain", orderConfirmationBody);
         Mail mail = new Mail(sender, subject, recipientEmail, content);
 
         SendGrid sg = new SendGrid("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");
@@ -113,6 +127,9 @@ public class Example {
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+            System.out.println("order confirmation sent");
+            System.out.println(subject + "\n" + orderConfirmationBody);
+
 
         } catch (IOException ex) {
 
