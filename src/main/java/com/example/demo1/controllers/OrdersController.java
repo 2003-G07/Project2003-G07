@@ -3,11 +3,14 @@ package com.example.demo1.controllers;
 import com.example.demo1.ApplicationConfiguration;
 import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
+import com.example.demo1.twilioSendGrid.MailService;
 import com.example.demo1.util.Present;
+import com.example.demo1.util.Serialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -33,6 +36,9 @@ public class OrdersController {
     ApplicationConfiguration applicationConfiguration;
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    MailService mailService = new MailService();
+
 
 
     /**
@@ -52,7 +58,7 @@ public class OrdersController {
                     @RequestParam String email,
                     @RequestParam String city,
                     @RequestParam String street,
-                    @RequestParam String zip) {
+                    @RequestParam String zip) throws IOException {
 
         Customer customer;
         Address address;
@@ -72,6 +78,7 @@ public class OrdersController {
         else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
+            mailService.sendGreeting(customer);
 
         } else {
             customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
@@ -94,11 +101,9 @@ public class OrdersController {
         Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
         ordersRepository.save(orders);
 
-
-
-
-
         // add Order to OrderDetails
+        System.out.println("ordersRepository.findAll() = " + ordersRepository.findAll());
+        System.out.println("orders.getId() = " + orders.getId());
         OrderDetails orderDetails;
         for (Product product : productList) {
             orderDetails = new OrderDetails(orders, product);
@@ -107,6 +112,8 @@ public class OrdersController {
 
         }
 
+
+        mailService.sendOrderConfirmation(orders.getId());
 
         return "Order Saved";
 
