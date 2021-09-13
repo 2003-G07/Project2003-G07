@@ -12,11 +12,11 @@ import java.util.*;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class User implements UserDetails {
+    @OneToOne
     Customer customer;
     @Id @GeneratedValue
     protected Long id;
-    @OneToOne
-    @JoinColumn(name = "id", nullable = false)
+
     public Customer getCustomer() {
         return customer;
     }
