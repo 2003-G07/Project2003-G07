@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -16,10 +17,9 @@ public class User implements UserDetails {
     Customer customer;
     @Id @GeneratedValue
     protected Long id;
+    protected String username;
 
-    public Customer getCustomer() {
-        return customer;
-    }
+
 
 
 
@@ -27,44 +27,45 @@ public class User implements UserDetails {
     @ManyToMany
     protected List<Role> roles= new ArrayList<>();
 
-  /*  @Override
+   @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> setAuths = new HashSet<>();
-        for (String userRole : roles) {
+        for (Role userRole : roles) {
             setAuths.add(new SimpleGrantedAuthority("ROLE_" + userRole));
         }
 
         return Collections.unmodifiableSet(setAuths);
-    }*/
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+    public Customer getCustomer() {
+        return customer;
+    }
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 

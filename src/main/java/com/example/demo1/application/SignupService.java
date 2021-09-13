@@ -1,5 +1,6 @@
 package com.example.demo1.application;
 
+import com.example.demo1.models.Customer;
 import com.example.demo1.models.Role;
 import com.example.demo1.models.User;
 import com.example.demo1.repositories.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service @Slf4j
 public class SignupService {
@@ -22,9 +24,9 @@ public class SignupService {
 
 
 
-   /* public void signup(final String name,final String username, final String password, final Collection<Role> roles) {
+    public void signup(final Customer customer,final String username, final String password, final List<Role> roles) {
         log.info("Signing up user {}", username);
-        final User user = new User(null, name,username, password, null, roles);
-        UserRepository.save(user);
-    }*/
+        final User user = new User(customer, null,username, password, roles);
+        userRepository.save(user);
+    }
 }
