@@ -78,7 +78,7 @@ public class OrdersController {
         else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
-            mailService.sendGreeting(customer);
+
 
         } else {
             customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
@@ -113,7 +113,7 @@ public class OrdersController {
         }
 
 
-        mailService.sendOrderConfirmation(orders.getId());
+
 
         return "Order Saved";
 
