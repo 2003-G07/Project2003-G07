@@ -4,7 +4,6 @@ import com.example.demo1.ApplicationConfiguration;
 import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
 import com.example.demo1.util.Present;
-import com.example.demo1.util.Serialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -95,6 +94,10 @@ public class OrdersController {
         Orders orders = new Orders((long) totalPrice(productList), 1, customer, address);
         ordersRepository.save(orders);
 
+
+
+
+
         // add Order to OrderDetails
         OrderDetails orderDetails;
         for (Product product : productList) {
@@ -103,6 +106,7 @@ public class OrdersController {
             System.out.println("orders = " + orders);
 
         }
+
 
         return "Order Saved";
 
@@ -193,6 +197,13 @@ public class OrdersController {
     Iterable<OrderDetails> showAll() {
 
         return orderDetailsRepository.findAll();
+    }
+
+    @GetMapping(path = "/showOrder")
+    public @ResponseBody
+    Iterable<Orders> showOrder() {
+
+        return ordersRepository.findAll();
     }
 
     /**

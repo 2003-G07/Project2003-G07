@@ -9,6 +9,11 @@ public class PaymentDto implements Serializable {
     public PaymentDto() {
     }
 
+    public PaymentDto(String reference, long amount) {
+        this.reference = reference;
+        this.amount = amount;
+    }
+
     public String getReference() {
         return reference;
     }

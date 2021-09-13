@@ -9,11 +9,15 @@ services:
         image: gr07/hakim:0.0.1
         environment:
             - MYSQL_HOST=mysql
+            - SPRING_RABBITMQ_HOST=rabbit
+            - SPRING_RABBITMQ_PORT=5672
             - payment_host=payment-gw:8080
         ports:
             - "8080:8080"
         links:
             - mysql
+        depends_on:
+            -   rabbit
     mysql-payment:
         image: mysql:8.0.26
         environment:
