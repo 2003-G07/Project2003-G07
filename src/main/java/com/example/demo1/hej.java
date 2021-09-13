@@ -2,6 +2,7 @@ package com.example.demo1;
 
 import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
+import com.example.demo1.util.PaymentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class hej {
@@ -35,6 +38,9 @@ public class hej {
 
     @Autowired
     private OrdersRepository ordersRepository;
+
+    @Autowired
+    AuditLogger auditLogger;
 
     List<CartService> cartServiceList = new ArrayList<>();
     List<Product> proInCart = new ArrayList<>();
@@ -553,6 +559,11 @@ public class hej {
             productRepository.save(b);
 
         }
+
+        Iterable<Orders> orderToFindThisBitch = ordersRepository.findAll();
+        List<Orders> result = StreamSupport.stream(orderToFindThisBitch.spliterator(), false).collect(Collectors.toList());
+        var lastID = result.get(result.size()-1).getId();
+        auditLogger.notify(new PaymentDto(lastID.toString(), 0));
 
         proInCart.clear();
         return "redirect:/varukorg/confirmedorder.html";

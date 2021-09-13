@@ -5,6 +5,7 @@ import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
 import com.example.demo1.twilioSendGrid.MailService;
 import com.example.demo1.util.Present;
+import com.example.demo1.util.Serialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -37,7 +38,7 @@ public class OrdersController {
     RestTemplate restTemplate;
     @Autowired
     MailService mailService = new MailService();
-    
+
 
 
     /**
@@ -203,6 +204,13 @@ public class OrdersController {
     Iterable<OrderDetails> showAll() {
 
         return orderDetailsRepository.findAll();
+    }
+
+    @GetMapping(path = "/showOrder")
+    public @ResponseBody
+    Iterable<Orders> showOrder() {
+
+        return ordersRepository.findAll();
     }
 
     /**

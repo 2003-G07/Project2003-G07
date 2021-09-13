@@ -12,8 +12,10 @@ import springfox.documentation.service.Header;
 import springfox.documentation.spring.web.json.Json;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +26,9 @@ import java.util.Map;
  * Project: gr7java
  * Copyright: MIT
  */
-public class Serialize {
+public class Serialize implements Serializable {
 
+    @Autowired
     RestTemplate restTemplate = new RestTemplate();
 
     PaymentDto paymentDto = new PaymentDto();
@@ -33,28 +36,32 @@ public class Serialize {
     HttpHeaders headers = new HttpHeaders();
 
 
+
+
     public void sendDTO(String url) throws IOException {
 
        headers.setContentType(MediaType.APPLICATION_JSON);
        PaymentDto paymentDto = new PaymentDto();
+       headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
- 
-
-       //HttpEntity<String> entity = new HttpEntity<String>(paymentDto.toString(), headers);
-
-       //ResponseEntity<String> response = restTemplate.postForEntity("http://"+ url+"/payment", entity, String.class);
+       String urlPost = "http://"+ url+"/payment";
 
 
 
+       Map<String, Object> map = new HashMap<>();
+       map.put("reference", "12");
+       map.put("amount", "1");
 
-        //PaymentDto paymentDto1 = new PaymentDto();
+       HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 
-        //ResponseEntity<PaymentDto> responseEntity = restTemplate.postForEntity(http,paymentDto1, PaymentDto.class);
+       ResponseEntity<PaymentDto> response = this.restTemplate.postForEntity(urlPost,entity,PaymentDto.class);
 
 
     }
 
     public void receiveDTO(String url){
+        String urlPost = "http://"+ url+"/payment";
+
         restTemplate.getForEntity("http://"+url, PaymentDto.class).getBody().getAmount();
     }
    // return Boolean.parseBoolean(restTemplate.getForEntity("http://"+url+"/risk/"+ userId, Pass.class).getBody().getPass());
