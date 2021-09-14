@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/bootstrap.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <script src="./customerRegistrationForm.js"></script>
+    <title>Produktsida</title>
+    <script src=https://unpkg.com/ionicons@5.4.0/dist/ionicons.js></script>
+</head>
+<body>
+<div id="nav-placeholder">
+</div>
+<!--Sidebar-->
+<div class="d-flex wrapper">
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+        <div class="border-right" id="sidebar-wrapper" >
+
+        </div>
+    </div>
+    <div class="container lg-3 mb-4" style="justify-content: center; margin-top: 2rem; color: rgb(158, 206, 166);">
+
+       <--div class="row d-flex justify-">
+            <--div class="container"
+                 id="inputorder"
+                 style="margin-top: 3rem;"
+            -->
+
+                <!--customer registration-->
+                <div class="container">
+                    <h1>Registrera dig</h1>
+                    <p>Fyll i alla fält för att skapa ett konto</p>
+                    <hr>
+                    <form action="/user/signup" th:object="${submitSignupForm}" th:object="${SignupForm}"  method="post" name="form" >
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label >Förnamn:</label>
+                                <!--required säger till html5 valideringen att den inte får vara tom
+                                    pattern beskriver för html5 valideringen hur innehållet måste se ut-->
+                                <!--oninvalid körs då html5 ser att innehållet inte stämmer mot required eller pattern-->
+                                <!--onchange körs då innehållet ändrats då fokus lämnar fältet-->
+                                <input required th:pattern="${SignupForm.FIRSTNAME_PATTERN}"  type="text" th:maxlength="${SignupForm.MAXLENGTH_SIZE}"
+                                       class="form-control" placeholder="Förnamn" th:field="*{firstName}"
+                                       oninvalid="invalidInput(this, 'firstnameError', 'Förnamnet ska inte innehålla specialtecken eller siffror')"
+                                       onchange="validateInput(this, 'firstnameError')">
+                                <label class="red-text" id="firstnameError" hidden></label>
+                                <label id="firstnameErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <label>Efternamn:</label>
+                                <input th:pattern="${SignupForm.LASTNAME_PATTERN}"  th:maxlength="${SignupForm.MAXLENGTH_SIZE}"
+                                       class="form-control" placeholder="Efternamn" th:field="*{lastName}"
+                                       oninvalid="invalidInput(this, 'lastnameError', 'Efternamn ska inte innehålla specialtecken eller siffror')"
+                                       onchange="validateInput(this, 'lastnameError')">
+                                <label class="red-text" id="lastnameError" hidden></label>
+                                <label id="lastnameErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label>Telefonnummer:</label>
+                                <input required th:pattern="${SignupForm.PHONENUMBER_PATTERN}"
+                                       type="tel" th:maxlength="${checkOutForm.MAXLENGTHPHONE_SIZE}" th:minlength="${SignupForm.MINLENGTHPHONE_SIZE}" class="form-control" placeholder="Telefonnummer"th:field="*{phoneNumber}"
+                                       oninvalid="invalidInput(this, 'phoneNumberError', 'Ange ditt telefonnummer i rätt format, tex 123-1234567')"
+                                       onchange="validateInput(this, 'phoneNumberError')">
+                                <label class="red-text" id="phoneNumberError" hidden></label>
+                                <label id="phoneNumberErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <label>Mailadress:</label>
+                                <input required required th:pattern="${SignupForm.EMAIL_PATTERN}"
+                                       type="email" class="form-control" placeholder="E-post" th:field="*{email}"
+                                       oninvalid="invalidInput(this, 'emailerror', 'Ange din mailadress i rätt format,t.ex minmail@mail.com')"
+                                       onchange="validateInput(this, 'emailerror')">
+                                <label class="red-text" id="emailerror" hidden></label>
+                                <label id="emailerrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Gatuadress</label>
+                            <input required th:pattern="${SignupForm.ADDRESS_PATTERN}" type="text"
+                                   class="form-control" placeholder="Postadress" th:field="*{address}"
+                                   oninvalid="invalidInput(this, 'adresserror', 'Ditt adress måste inehålla text and siffra')"
+                                   onchange="validateInput(this, 'adresserror')">
+                            <label class="red-text" id="adresserror" hidden></label>
+                            <label id="addresserrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label>Postnummer:</label>
+                                <input required th:pattern="${SignupForm.ZIPCODE_PATTERN}" type="tel" class="form-control" placeholder="Postnummer" th:field="*{zipCode}"
+                                       oninvalid="invalidInput(this, 'postNumberError', 'Ange postnummer som 123 45')"
+                                       onchange="validateInput(this, 'postNumberError')">
+                                <label class="red-text" id="postNumberError" hidden></label>
+                                <label id="zipCodeSpringValidation" class="red-text" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <label>Postort</label>
+                                <input required th:pattern="${SignupForm.CITY_PATTERN}" type="text" th:maxlength="${SignupForm.MAXLENGTH_SIZE}"
+                                       class="form-control" placeholder="Stad"th:field="*{city}"
+                                       oninvalid="invalidInput(this, 'cityError', 'Postorten ska inte innehålla specialtecken eller siffror')"
+                                       onchange="validateInput(this, 'cityError')">
+                                <label class="red-text" id="cityError" hidden></label>
+                                <label id="cityErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <label>Användarnamn:</label>
+                                <input required th:pattern="${SignupForm.USERNAME_PATTERN}" type="text" th:maxlength="${checkOutForm.MAXLENGTH_SIZE}"
+                                       class="form-control" placeholder="Användarnamn" th:field="*{username}"
+                                       oninvalid="invalidInput(this, 'usernameError', 'Efternamn ska inte innehålla specialtecken')"
+                                       onchange="validateInput(this, 'usernameError')">
+                                <label class="red-text" id="usernameError" hidden></label>
+                                <label id="usernameErrorSpringValidation" class="red-text" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label>Lösenord:</label>
+                                    <input required th:pattern="${SignupForm.PASSWORD_PATTERN}" class="form-control" placeholder="lösenord" th:field="*{password}"
+                                           oninvalid="invalidInput(this, 'passWordError', 'Ange password')"
+                                           onchange="validateInput(this, 'passWordError')">
+                                    <label class="red-text" id="passWordError" hidden></label>
+                                    <label id="passwordSpringValidation" class="red-text" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label> Bekräfta ditt lösenord:</label>
+                                        <input th:pattern="${SignupForm.CONFIRMPASSWORD_PATTERN}" class="form-control" placeholder="lösenord" th:field="*{confirmpassword}"
+                                               oninvalid="invalidInput(this, 'confirmpassWordError', 'Ditt lösenord matchar inte')"
+                                               onchange="validateInput(this, 'confirmpassWordError')">
+                                        <label class="red-text" id="confirmpassWordError" hidden></label>
+                                        <label id="confirmpasswordSpringValidation" class="red-text" th:if="${#fields.hasErrors('password')}" th:errors="*{confirmpassword}"></label>
+                                    </div>
+                                </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" required type="checkbox" id="termsCheck"
+                                           oninvalid="document.getElementById('termsCheckError').removeAttribute('hidden');"
+                                           onchange="document.getElementById('termsCheckError').setAttribute('hidden',true); setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions':'')">
+                                    <label class="form-check-label" for="termsCheck">
+                                        Villkor
+                                    </label>
+                                </div>
+                                <label class="red-text" id="termsCheckError" hidden for="termsCheck">Du måste acceptera villkoren</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group form-row">
+                            <button id="submit" class="btn btn-danger">Skicka in</button>
+                        </div>
+
+                    </form>
+                    <div class="signin">
+                        <p>Är du redan en kund? <a href="#">Logga in</a>.</p>
+
+                    </div>
+                </div>
+                <!--footer-->
+            </--div>
+        </--div>
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"
+    ></script>
+
+
+
+</div>
+<footer id="foot" style="background-color: #007A3D;">
+
+</footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+<script>
+    //SKRIV IN DIN JAVASCRIPT KOD HÄR
+
+
+    $(function(){
+        $("#nav-placeholder").load("../nav.html");
+        $("#sidebar-wrapper").load("../sidebar.html");
+        $("#foot").load("../footer.html");
+    });
+
+
+
+
+
+    //SLUTA SKRIV IN DIN JAVASCRIPT KOD HÄR
+</script>
+
+
+</body>
+</html>
