@@ -3,6 +3,8 @@ package com.example.demo1;
 import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
 import com.example.demo1.util.PaymentDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,8 @@ public class hej {
 
     @Autowired
     AuditLogger auditLogger;
+
+    private final static Logger LOG = LoggerFactory.getLogger(AuditLogger.class);
 
     List<CartService> cartServiceList = new ArrayList<>();
     List<Product> proInCart = new ArrayList<>();
@@ -483,6 +487,7 @@ public class hej {
         Collections.sort(productIdToCart);
         long prev = 0;
         proInCart.clear();
+        totalpris = 0;
 
         for (int i = 0; i < productIdToCart.size(); i++) {
 
@@ -500,8 +505,14 @@ public class hej {
                 proInCart.add(temp);
                 totalpris += temp.getPrice();
             }
+            LOG.info("totalpris i loop = " + totalpris);
+            System.out.println("totalpris i loop = " + totalpris);
 
         }
+
+        LOG.info("totalpris = " + totalpris);
+        System.out.println("totalpris = " + totalpris);
+
 
         //ANVÄND PROINCART FÖR ATT HITTA ALLA KÖPTA VAROR
         //ANVÄND CHECKOUTFORMGLOBAL FÖR ATT HITTA KUNDEN

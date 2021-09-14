@@ -34,13 +34,23 @@ public class ApplicationConfiguration {
         return new AuditLogger(template, objectMapper);
     }
 
-    @Value("${}")
+    @Value("${SENDGRID_API_KEY}")
     String sendGridKey;
+
+
 
     @Bean
     public MailService mailService(){
         return new MailService(sendGridKey);
     }
+
+/*
+    @Bean
+    public MailService mailService(){
+        return new MailService();
+    }
+
+ */
 
     final String topicExchangeName = "payments-exchange2";
 

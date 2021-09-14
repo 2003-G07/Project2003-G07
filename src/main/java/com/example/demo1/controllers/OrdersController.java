@@ -37,7 +37,7 @@ public class OrdersController {
     @Autowired
     RestTemplate restTemplate;
     @Autowired
-    MailService mailService = new MailService();
+    MailService mailService;
 
 
 

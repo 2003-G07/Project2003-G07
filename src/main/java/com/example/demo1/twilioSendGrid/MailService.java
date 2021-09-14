@@ -34,8 +34,14 @@ public class MailService {
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
 
+    String sendGridKey;
+
     public MailService(String sendGridKey) {
+        this.sendGridKey = sendGridKey;
     }
+
+
+
 
     /*public static void main(String[] args) throws IOException {
 
@@ -73,7 +79,7 @@ public class MailService {
         Content content = new Content("text/plain", "Du är nu registrerad kund hos Hakims Livs");
         Mail mail = new Mail(sender, subject, recipient, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(sendGridKey);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
@@ -101,7 +107,7 @@ public class MailService {
         Present present = new Present();
 
 
-        Email sender = new Email("hakimslivs@outlook.com");
+        Email sender = new Email("hakimslivs2@outlook.com");
         Email recipientEmail = new Email(recipient);
 
         String subject = "Din orderbekräftelse för order: " + orderId;
@@ -110,7 +116,7 @@ public class MailService {
 
         for (int i = 0; i < orderDetails.size(); i++) {
             var product = orderDetails.get(i).getProduct();
-            orderConfirmationBody += product.getName() + " " + product.getPrice() + " kr " + "\n";
+            orderConfirmationBody += product.getQuant()+ "x " + product.getName() + " " + product.getPrice() + " kr/st " + "\n";
         }
 
         orderConfirmationBody += "Totalpris: " + orders.getCost() + " kr";
@@ -118,7 +124,7 @@ public class MailService {
         Content content = new Content("text/plain", orderConfirmationBody);
         Mail mail = new Mail(sender, subject, recipientEmail, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(sendGridKey);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
