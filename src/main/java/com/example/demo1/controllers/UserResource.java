@@ -8,19 +8,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController @Slf4j
+@Controller
 public class UserResource {
     private final SignupService signupService;
    private final BCryptPasswordEncoder passwordEncoder;
+
+    SignupForm SignupFormGlobal;
 
    @Autowired
   public UserResource(SignupService signupService, BCryptPasswordEncoder passwordEncoder) {
@@ -34,20 +34,25 @@ public class UserResource {
         return "Successfully logged in";
     }*/
     @GetMapping("user/signupRegister.html")
-    public String showSignupRegisterForm(SignupForm signupForm) {
-
-        return "user/signupRegister";
+    public String showSignupRegisterForm(SignupForm signupForm, Model model) {
+        if(signupForm == null)
+           model.addAttribute("SignupForm", new SignupForm());
+        else
+            model.addAttribute("SignupForm", signupForm);
+        return "user/signupRegister.html";
     }
 
-    @PostMapping("/user/signup")
-    public String submitSignupForm(@Valid SignupForm signupForm, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            return "user/signupRegister.html";
-        }
-        //checkOutFormGlobal = checkOutForm;
+   @PostMapping("/user/signup")
+   public String submitsignupForm(@Valid SignupForm signupForm, BindingResult bindingResult) {
 
-        return "redirect:/inloggning/inloggningsida.html";
-    }
+       if (bindingResult.hasErrors()) {
+           return "user/SignupRegister.html";
+       }
+       SignupFormGlobal = signupForm;
+       System.out.println("fel");
+
+       return "redirect:/inloggning/inloggningsida.html";
+   }
 }
 

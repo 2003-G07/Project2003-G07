@@ -22,8 +22,8 @@ public class SignupForm {
     public static final int MAXLENGTH_SIZE = 30;
     public static final int MAXLENGTHPHONE_SIZE = 11;
     public static final int MINLENGTHPHONE_SIZE = 10;
-    public static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$";
-    public static final String CONFIRMPASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$";
+    public static final String PASSWORD_PATTERN = "^[a-zA-ZôíèÔÍÈåäöÅÄÖ\\- ]*$";//"^([0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8}$";
+    public static final String CONFIRMPASSWORD_PATTERN = "^[a-zA-ZôíèÔÍÈåäöÅÄÖ\\- ]*$";
    // Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character
 
     @NotNull
@@ -84,6 +84,10 @@ public class SignupForm {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 
     public String getPassword() {
