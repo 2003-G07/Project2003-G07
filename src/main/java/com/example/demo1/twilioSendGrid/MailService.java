@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class MailService {
 
     @Autowired
@@ -34,6 +33,9 @@ public class MailService {
     private AddressRepository addressRepository;
     @Autowired
     private OrderDetailsRepository orderDetailsRepository;
+
+    public MailService(String sendGridKey) {
+    }
 
     /*public static void main(String[] args) throws IOException {
 
@@ -64,14 +66,14 @@ public class MailService {
 
     public void sendGreeting(Customer customer) throws IOException {
 
-        Email sender = new Email("hakimslivs@outlook.com");
+        Email sender = new Email("hakimslivs2@outlook.com");
         Email recipient = new Email(customer.getEmail());
         String subject = "Hej " + customer.getFirstName() +" " + customer.getLastName()+"! Välkommen till Hakims Livs";
 
         Content content = new Content("text/plain", "Du är nu registrerad kund hos Hakims Livs");
         Mail mail = new Mail(sender, subject, recipient, content);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);

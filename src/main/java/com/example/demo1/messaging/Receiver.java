@@ -30,7 +30,7 @@ public class Receiver {
     private OrdersRepository ordersRepository;
 
     @Autowired
-    MailService mailService = new MailService();
+    MailService mailService;
 
     Orders newOrder = new Orders();
 

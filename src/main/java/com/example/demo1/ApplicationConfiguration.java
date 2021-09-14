@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import com.example.demo1.repositories.OrdersRepository;
+import com.example.demo1.twilioSendGrid.MailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.*;
@@ -33,6 +34,13 @@ public class ApplicationConfiguration {
         return new AuditLogger(template, objectMapper);
     }
 
+    @Value("${}")
+    String sendGridKey;
+
+    @Bean
+    public MailService mailService(){
+        return new MailService(sendGridKey);
+    }
 
     final String topicExchangeName = "payments-exchange2";
 
