@@ -2,9 +2,6 @@ package com.example.demo1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 
 @SpringBootApplication

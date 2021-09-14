@@ -81,8 +81,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.44" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:2.4.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:jakarta.el:3.0.3" level="project" />
@@ -159,13 +157,6 @@
     <orderEntry type="library" name="Maven: net.minidev:accessors-smart:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
     <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.3.04" level="project" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.18" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.4.4" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:5.4.5" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.flywaydb:flyway-core:5.2.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.testcontainers:rabbitmq:1.16.0" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger2:3.0.0" level="project" />
@@ -194,5 +185,15 @@
     <orderEntry type="library" name="Maven: com.github.docker-java:docker-java-transport-zerodep:3.2.11" level="project" />
     <orderEntry type="library" name="Maven: com.github.docker-java:docker-java-transport:3.2.11" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:5.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:2.4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:5.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.4.5" level="project" />
+    <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt-api:0.11.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: io.jsonwebtoken:jjwt-impl:0.11.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: io.jsonwebtoken:jjwt-jackson:0.11.2" level="project" />
   </component>
 </module>
