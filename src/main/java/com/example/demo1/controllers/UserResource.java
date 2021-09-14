@@ -43,7 +43,7 @@ public class UserResource {
     }
 
 
-   @PostMapping("/user/signup")
+   @PostMapping("/user/submitSignupForm")
    public String submitsignupForm(@Valid SignupForm signupForm, BindingResult bindingResult) {
 
        if (bindingResult.hasErrors()) {
