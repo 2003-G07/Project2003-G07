@@ -571,8 +571,8 @@ public class hej {
 
         }
 
-        Iterable<Orders> orderToFindThisBitch = ordersRepository.findAll();
-        List<Orders> result = StreamSupport.stream(orderToFindThisBitch.spliterator(), false).collect(Collectors.toList());
+        Iterable<Orders> orderToFind = ordersRepository.findAll();
+        List<Orders> result = StreamSupport.stream(orderToFind.spliterator(), false).collect(Collectors.toList());
         var lastID = result.get(result.size()-1).getId();
         auditLogger.notify(new PaymentDto(lastID.toString(), 0));
 
