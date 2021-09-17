@@ -109,28 +109,41 @@
     /**
      * Adds items in shopping cart to show in next page.
      */
+
+
+
+
+
     function checkcart() {
 
         var productcartparse = localStorage.getItem('cloudcart');
         var productcart = JSON.parse(productcartparse);
 
-        $.ajax({
-            type: 'POST',
-            contentType: "application/json",
-            accept: 'text/plain',
-            url: "/url",
-            data: JSON.stringify(productcart),
-            dataType: 'text',
-            error: function (xhr, textStatus, error) {
-                console.log(xhr.statusText);
-                console.log(textStatus);
-                console.log(error);
+        if (productcart != null){
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json",
+                accept: 'text/plain',
+                url: "/url",
+                data: JSON.stringify(productcart),
+                dataType: 'text',
+                error: function (xhr, textStatus, error) {
+                    console.log(xhr.statusText);
+                    console.log(textStatus);
+                    console.log(error);
 
-            },
-            success: function () {
-                location.href = "/varukorg/groceryCart.html"
-            }
-        });
+                },
+                success: function () {
+                    location.href = "/varukorg/groceryCart.html"
+                }
+            });
+
+        }else {
+            location.href = "/varukorg/groceryCart.html"
+        }
+
+
+
 
 
     }

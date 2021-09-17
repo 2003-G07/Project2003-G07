@@ -619,6 +619,10 @@ public class hej {
 
         boolean redirect = true;
 
+        if(proInCart.size()==0){
+            redirect = false;
+        }
+
         for (int i = 0; i < proInCart.size(); i++) {
             if (proInCart.get(i).getQuant() > productRepository.getProductById(proInCart.get(i).getId()).getStorage()) {
                 outOfStock.add(proInCart.get(i));
