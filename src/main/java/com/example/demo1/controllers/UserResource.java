@@ -47,10 +47,12 @@ public class UserResource {
    public String submitsignupForm(@Valid SignupForm signupForm, BindingResult bindingResult) {
 
        if (bindingResult.hasErrors()) {
+           System.out.println("fel");
            return "user/SignupRegister.html";
        }
        SignupFormGlobal = signupForm;
-       System.out.println("fel");
+       signupService.signup(signupForm.getFirstName(),signupForm.getLastName(),signupForm.getPhoneNumber(),
+                             signupForm.getEmail(),signupForm.getUsername(),signupForm.getPassword());
 
        return "redirect:/inloggning/inloggningsida.html";
    }
