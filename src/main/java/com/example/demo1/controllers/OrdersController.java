@@ -5,7 +5,6 @@ import com.example.demo1.models.*;
 import com.example.demo1.repositories.*;
 import com.example.demo1.twilioSendGrid.MailService;
 import com.example.demo1.util.Present;
-import com.example.demo1.util.Serialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,16 +39,10 @@ public class OrdersController {
     @Autowired
     MailService mailService;
 
-
-
     /**
      * This method creates a new order based on some inputs
      * if address and customer don't exist in the system then it creates new once.
      */
-
-
-
-
     @PostMapping(path = "/add")
     public @ResponseBody
     String addOrder(@RequestParam List<Product> productList,
@@ -70,25 +64,21 @@ public class OrdersController {
 
         String formatDateTime = now.format(formatter);
 
-        if (customerRepository == null) {
-            customer = new Customer(fName, lName, tel, email);
-            customerRepository.save(customer);
-        }
+        List<Customer> customers = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email);
+
         // First check to see if customer exists. If they don't create a new and save to repo, if they do use the same one.
-        else if (customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).isEmpty()) {
+        if (customers.isEmpty()) {
             customer = new Customer(fName, lName, tel, email);
             customerRepository.save(customer);
             mailService.sendGreeting(customer);
-
         } else {
-            customer = customerRepository.findByFirstNameAndLastNameAndTelAndEmail(fName, lName, tel, email).get(0);
+            customer = customers.get(0);
         }
 
         // Second check to see if address exists. If it doesn't create a new and save to repo, if it does use the same.
         if (addressRepository.findByCityAndAddressAndZip(city, street, zip).isEmpty()) {
             address = new Address(city, street, zip);
             addressRepository.save(address);
-
         } else {
             address = addressRepository.findByCityAndAddressAndZip(city, street, zip).get(0);
         }

@@ -1,10 +1,11 @@
 package com.example.demo1;
 
-import com.example.demo1.repositories.OrdersRepository;
 import com.example.demo1.twilioSendGrid.MailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -15,19 +16,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
-
-/**
- * Created by Daniel Bojic
- * Date: 2021-09-01
- * Time: 16:30
- * Project: Lab1
- * Copyright: MIT
- */
 @Configuration
 @EnableScheduling
 @ConfigurationProperties("payment")
 public class ApplicationConfiguration {
-
 
     @Bean
     public AuditLogger auditLogger(RabbitTemplate template, ObjectMapper objectMapper) {
@@ -37,10 +29,8 @@ public class ApplicationConfiguration {
     @Value("${SENDGRID_API_KEY}")
     String sendGridKey;
 
-
-
     @Bean
-    public MailService mailService(){
+    public MailService mailService() {
         return new MailService(sendGridKey);
     }
 
@@ -71,8 +61,6 @@ public class ApplicationConfiguration {
         return BindingBuilder.bind(queue).to(exchange).with("#");
     }
 
-
-
     @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory, final Jackson2JsonMessageConverter converter) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
@@ -85,13 +73,10 @@ public class ApplicationConfiguration {
         return new Jackson2JsonMessageConverter();
     }
 
-
-
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
 
     @Value("payment.host")
     private String host;
@@ -103,6 +88,5 @@ public class ApplicationConfiguration {
     public void setHost(String host) {
         this.host = host;
     }
-
 
 }
